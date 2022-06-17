@@ -3,6 +3,14 @@ import React from 'react'
 const PsychosocialData = ({ handleChangeStep }) => {
   return (
     <div className="p-6 rounded-lg shadow-lg bg-white max-w-md m-auto">
+        <div className='mb-5'>
+          <h3 class="text-lg leading-6 font-medium text-gray-900">
+            Perfil Psicosocial
+          </h3>
+          <p class="mt-1 max-w-2xl text-sm text-gray-500">
+            This information will be displayed publicly so be careful what you share.
+          </p>
+        </div>
       <form>
         <div className="form-group mb-6">
           <input type="text" className="form-control block

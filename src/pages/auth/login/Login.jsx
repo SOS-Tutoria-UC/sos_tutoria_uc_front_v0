@@ -1,8 +1,46 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Link, useNavigate } from "react-router-dom"
+
+//Axios
+import instance from '../../../config/axios/instance'
+
+//Components
+import Toast from '../../../layout/components/Toast'
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  const [user, setUser] = useState({
+    email:'',
+    password:''
+  });
+
+  const [ error, setError ] = useState({});
+
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    //Campos obligatorios
+    if([user.email, user.password].includes('')){
+      console.log('Todos los campos son obligatorios!');
+    }
+
+    instance.post('/auth/login', user).then( response => {
+      localStorage.setItem('access_token', response.data.token);
+      navigate('/user');
+    }).catch( error => {
+      console.log(error.response)
+      setError(error.response.data);
+    })
+  }
+
+  const handleChange = (value) => {
+    setUser(value);
+  }
+
   return (
-    <section className="h-screen">
+    <section className="h-full">
       <div className="px-6 h-full text-gray-800">
         <div
           className="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6"
@@ -17,7 +55,8 @@ const Login = () => {
             />
           </div>
           <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
-            <form>
+          <h1 className='text-5xl text-cyan-600 m-10 text-center font-bold hover:text-cyan-800 cursor-pointe'>SOS Tutoría UC 2.0</h1>
+            <form onSubmit={handleSubmit}>
               {/*<div className="flex flex-row items-center justify-center lg:justify-start">
                 <p className="text-lg mb-0 mr-4">Sign in with</p>
                 <button
@@ -68,13 +107,16 @@ const Login = () => {
               >
                 <p className="text-center font-semibold mx-4 mb-0">Or</p>
               </div>  */}
-
+              {error?.msg && <div className='float-right'><Toast>{error.msg}</Toast></div>}
               <div className="mb-6">
                 <input
                   type="text"
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  id="exampleFormControlInput2"
+                  id="email"
+                  name="email"
                   placeholder="Email address"
+                  value={user.email}
+                  onChange={(e) => handleChange({...user, email:e.target.value})}
                 />
               </div>
 
@@ -82,8 +124,11 @@ const Login = () => {
                 <input
                   type="password"
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                  id="exampleFormControlInput2"
+                  id="password"
+                  name="password"
                   placeholder="Password"
+                  value={user.password}
+                  onChange={(e) => handleChange({...user, password: e.target.value})}
                 />
               </div>
 
@@ -91,19 +136,19 @@ const Login = () => {
                 <a href="#!" className="text-cyan-800">Olvidé contraseña</a>
               </div>
 
-              <div className="text-center text-left mt-5">
+              <div className="text-left mt-5">
                 <button
-                  type="button"
-                  className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                  type="submit"
+                  className="inline-block px-7 py-3 bg-cyan-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                 >
-                  Login
+                    Iniciar Sesión
                 </button>
                 <p className="text-sm font-semibold mt-2 pt-1 mb-0">
                   Todavía no tenés cuenta?
-                  <a
-                    href="#!"
+                  <Link
+                    to="register"
                     className="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out m-2"
-                    >Registrarse</a
+                    >Registrarse</Link
                   >
                 </p>
               </div>

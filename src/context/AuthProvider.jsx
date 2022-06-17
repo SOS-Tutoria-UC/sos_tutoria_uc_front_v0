@@ -10,7 +10,15 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const authenticate = () => {
             setLoading(true);
+            const token = localStorage.getItem('access_token');
+
+            if(!token){
+                setLoading(false)
+                return;
+            }
+
             setAuth({id:1});
+            setLoading(false);
         }
 
         authenticate();

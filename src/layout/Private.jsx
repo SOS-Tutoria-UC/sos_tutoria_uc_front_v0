@@ -8,12 +8,13 @@ import PrivateHeader from './components/PrivateHeader'
 import useAuth from '../hooks/useAuth'
 
 const Private = () => {
-  const { auth } = useAuth();
+  const { auth, loading } = useAuth();
 
-  console.log(auth)
+
+  if(loading) return 'Loading';
 
   return (
-     <>{true? (
+     <>{auth.id? (
         <div className="bg-gray-100">
             <PrivateHeader />
             <div className="md:flex md:min-h-screen">
