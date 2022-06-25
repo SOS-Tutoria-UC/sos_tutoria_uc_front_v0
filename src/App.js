@@ -18,21 +18,22 @@ import { StudentDataProvider } from "./context/StudentDataProvider"
 
 function App() {
   return (
-    <AuthProvider>
-      <StudentDataProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Public />}>
-              <Route index element={<Login />}/>
-              <Route path="register" element={<Register />}/>
-            </Route>
-            <Route path="/user" element={<Private />} >
-              <Route index element={<Main />}/>
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </StudentDataProvider>
-    </AuthProvider>
+    <BrowserRouter>
+      <AuthProvider>
+        <StudentDataProvider>
+            <Routes>
+              <Route path="/" element={<Public />}>
+                <Route index element={<Login />}/>
+                <Route path="register" element={<Register />}/>
+              </Route>
+              <Route path="/user" element={<Private />} >
+                <Route index element={<Main />}/>
+              </Route>
+            </Routes>
+        </StudentDataProvider>
+      </AuthProvider>
+    </BrowserRouter>
+
   );
 }
 

@@ -12,6 +12,10 @@ const Private = () => {
 
 
   if(loading) return 'Loading';
+  console.log(auth);
+  if(auth.id){
+    console.log('works');
+  }
 
   return (
      <>{auth.id? (

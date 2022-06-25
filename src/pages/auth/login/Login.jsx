@@ -7,8 +7,12 @@ import instance from '../../../config/axios/instance'
 //Components
 import Toast from '../../../layout/components/Toast'
 
+//Hooks
+import useAuth from '../../../hooks/useAuth'
+
 const Login = () => {
   const navigate = useNavigate();
+  const { handleSetAuth } = useAuth();
 
   const [user, setUser] = useState({
     email:'',
@@ -28,6 +32,7 @@ const Login = () => {
 
     instance.post('/auth/login', user).then( response => {
       localStorage.setItem('access_token', response.data.token);
+      handleSetAuth(response.data)
       navigate('/user');
     }).catch( error => {
       console.log(error.response)
