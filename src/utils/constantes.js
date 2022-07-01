@@ -79,22 +79,51 @@ export const Q01OPTIONS = [
     },
   ]
 
-
-  export const COMPETENCIAS = [
-    {
-      id: 'q06a',
-      name: "Lógica Matemática"
+  export const COMPETENCIAS = {
+    "Ingenieria Informática":[{id:"q06b",name:"Lógica Simbólica",cal: 0,isTutor: false}, {id:"q06c",name:"Aritmética",cal: 0,isTutor: false},],
+    "Análisis de Sistemas":{
+      id:"q06b",
+      name:"Lógica Simbólica",
+      cal: 0,
+      isTutor: false
     },
-    {
-      id: 'q06b',
-      name: "Lógica Simbólica"
+    "Diseño Gráfico":{
+      id:"q06c",
+      name:"Algebra",
+      cal: 0,
+      isTutor: false
     },
-    {
-      id: 'q06c',
-      name: "Aritmética"
-    },
-    {
-      id: 'q06d',
-      name: "Álgebra"
+    "Diseño Industrial":{
+      id:"q06d",
+      name:"Trigonometria",
+      cal: 0,
+      isTutor: false
     }
-  ]
+  }
+
+  export const COMPETENCIAS0 = {
+    q06a:{
+      id:"q06a",
+      name:"Lógica Matemática",
+      cal: 0,
+      isTutor: false
+    },
+    q06b:{
+      id:"q06b",
+      name:"Lógica Simbólica",
+      cal: 0,
+      isTutor: false
+    },
+    q06c:{
+      id:"q06c",
+      name:"Algebra",
+      cal: 0,
+      isTutor: false
+    },
+    q06d:{
+      id:"q06d",
+      name:"Trigonometria",
+      cal: 0,
+      isTutor: false
+    }
+  }

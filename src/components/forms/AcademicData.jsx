@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 //Hooks
 import { useSelect } from '../../hooks/inputs/useSelect'
@@ -12,35 +12,40 @@ import { Q01OPTIONS, Q03AOPTIONS, Q03BOPTIONS, COMPETENCIAS } from '../../utils/
 
 const AcademicData = ({ handleChangeStep }) => {
 
-  const [ stateq06, setStateq06 ] = useState({
-    q06a:{
-      cal: 0,
-      isTutor: false
-    },
-    q06b:{
-      cal: 0,
-      isTutor: false
-    },
-    q06c:{
-      cal: 0,
-      isTutor: false
-    },
-    q06d:{
-      cal: 0,
-      isTutor: false
-    }
-  });
+  const [ career, setCareer ] = useState('Ingenieria Informática');
+
+  const [ stateq06, setStateq06 ] = useState({});
+
+  const [ loading, setLoading ] = useState(false);
 
   const [ stateq01, Selectq01 ] = useSelect("Q01. ¿Cuál es su género?", Q01OPTIONS, "Seleccione un género");
   const [ stateq03a, Selectq03a ] = useSelect("Q03.a ¿Cuál es tu campus?", Q03AOPTIONS, "Seleccione un campus");
   const [ stateq03b, Selectq03b ] = useSelect("Q04 ¿Cuál es su programa de grado este año? (lo que te identifique mejor)", Q03BOPTIONS, "Seleccione un programa");
+
+  useEffect(() => {
+    const createObject = () => {
+      setLoading(false);
+      const objects = {};
+      COMPETENCIAS[career].forEach(element => {
+        objects[element.id] = {
+          cal: 1,
+          isTutor: false
+        };
+      })
+    setStateq06(objects);
+    setLoading(true);
+    }
+    createObject();
+  }, [career])
 
   const handleChangeScore = (e) => {
     setStateq06({...stateq06, [e.target.name]:{cal: e.target.value, isTutor:false}})
   }
 
 
+  if(loading)
   return (
+    <>
     <div className="p-6 rounded-lg shadow-lg bg-white lg:w-3/4 m-auto">
       <div className='mb-5'>
           <h3 className="text-3xl leading-6 font-bold text-gray-900 mb-4">
@@ -98,7 +103,7 @@ const AcademicData = ({ handleChangeStep }) => {
         <div className="form-group mb-6 gap-2">
           <label for="degree" className="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-400 text-bold">Q06 ¿Cómo calificaría su nivel de conocimiento o competencia (el que sea mayor) en lo siguiente? 1=nada, 2=poco, 3=moderado, 4=bastante alto, 5=muy alto</label>
           {
-            COMPETENCIAS.map((c) => (
+            COMPETENCIAS[career].map((c) => (
               <div className="items-center mb-4 grid grid-cols-7" key={c.id}> 
               <label for={c.id} className="ml-2 text-lg font-bold text-gray-900 dark:text-gray-300 col-span-3">{c.id} - {c.name}</label>
               <select id={c.id} name={c.id} value={stateq06[c.id].cal} onChange={ e => handleChangeScore(e)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 col-span-3 sm:col-span-2">
@@ -162,6 +167,8 @@ const AcademicData = ({ handleChangeStep }) => {
        
       </form>
     </div>
+    
+    </>
   )
 }
 
