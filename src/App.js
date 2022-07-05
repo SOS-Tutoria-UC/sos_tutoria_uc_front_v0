@@ -6,7 +6,6 @@ import Login from "./pages/auth/login/Login";
 import { Register } from "./pages/auth/register/Register";
 import Main from "./pages/user/main/Main";
 import Tutoring from "./pages/user/requests/tutoring/Tutoring";
-import BeTutor from "./pages/user/requests/be-tutor/BeTutor";
 
 //Layout
 import Private from "./layout/Private";
@@ -30,7 +29,6 @@ function App() {
               <Route path="/user" element={<Private />} >
                 <Route index element={<Main />}/>
                 <Route path="request-tutoring" element={<Tutoring />}/>
-                <Route path="request-be-tutor" element={<BeTutor />}/>
               </Route>
             </Routes>
         </StudentDataProvider>

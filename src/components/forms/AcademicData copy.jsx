@@ -119,15 +119,22 @@ const AcademicData = ({ handleChangeStep }) => {
           <label for="degree" className="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-400 text-bold">Q06 ¿Cómo calificaría su nivel de conocimiento o competencia (el que sea mayor) en lo siguiente? 1=nada, 2=poco, 3=moderado, 4=bastante alto, 5=muy alto</label>
           {
             COMPETENCIAS[career].map((c) => (
-              <div className="items-center mb-4 grid grid-cols-6" key={c.id}> 
-              <label for={c.id} className="ml-2 text-lg font-bold text-gray-900 dark:text-gray-300 col-span-4">{c.id} - {c.name}</label>
-              <select id={c.id} name={c.id} value={stateq06[c.id].cal} onChange={ e => handleChangeScore(e)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 col-span-2 sm:col-span-2">
+              <div className="items-center mb-4 grid grid-cols-7" key={c.id}> 
+              <label for={c.id} className="ml-2 text-lg font-bold text-gray-900 dark:text-gray-300 col-span-3">{c.id} - {c.name}</label>
+              <select id={c.id} name={c.id} value={stateq06[c.id].cal} onChange={ e => handleChangeScore(e)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 col-span-3 sm:col-span-2">
                 <option selected value="1">Nada</option>
                 <option value="2">Poco</option>
                 <option value="3">Moderado</option>
                 <option value="4">Bastante</option>
                 <option value="5">Muy Alto</option>
               </select>
+              <div className="flex items-center justify-center ml-4 sm:col-span-2 col-span-1">
+                <label for={c.id+'cal'} data-bs-toggle="tooltip" title="Seleccione si desea recibir solicitudes de tutoría en esta materia" className="block sm:inline-flex relative items-center cursor-pointer">
+                  <input type="checkbox" id={c.id+'cal'} className="sr-only peer" onChange={() => setStateq06({...stateq06,[c.id]:{cal:stateq06[c.id].cal, isTutor: !stateq06[c.id].isTutor}})}/>
+                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                  <span className="sm:ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 truncate">Solicitudes</span>
+                </label>
+              </div>
               </div>
             ))
           }   

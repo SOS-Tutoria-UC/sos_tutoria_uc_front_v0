@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 //Components
 import BasicData from '../../../components/forms/BasicData';
 import AcademicData from '../../../components/forms/AcademicData';
-import PsychosocialData  from '../../../components/forms/PsychosocialData';
 
 //Context
 import useStudentData from '../../../hooks/useStudentData';
@@ -47,11 +46,6 @@ export const Register = () => {
         </nav>
         <AcademicData handleChangeStep={handleChangeStep}/>
       </>
-    )
-  }
-  if(step === STEPS[2]){
-    return (
-      <PsychosocialData handleChangeStep={handleChangeStep}/>
     )
   }
 }
