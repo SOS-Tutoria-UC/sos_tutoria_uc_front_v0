@@ -140,11 +140,11 @@ const AcademicData = ({ handleChangeStep }) => {
               <label for={c.id} className="ml-2 text-lg font-bold text-gray-900 dark:text-gray-300 col-span-4">{c.id} - {c.name}</label>
               <select id={c.id} name={c.id} value={stateq09[c.id].cal} onChange={(e) => {setStateq09({...stateq09, [e.target.name]:{cal: e.target.value}})}} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 col-span-2 sm:col-span-2">
                 <option selected value="N">Seleccione una opción</option>
-                <option value="1">Nada</option>
-                <option value="2">Poco</option>
-                <option value="3">Moderado</option>
-                <option value="4">Bastante</option>
-                <option value="5">Muy Alto</option>
+                <option value="1">No me gusta nada</option>
+                <option value="2">No me parece mucho</option>
+                <option value="3">Un poco como yo</option>
+                <option value="4">Bastante como yo</option>
+                <option value="5">Muy como yo</option>
               </select>
               </div>
             ))

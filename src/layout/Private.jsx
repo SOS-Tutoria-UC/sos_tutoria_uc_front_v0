@@ -18,7 +18,7 @@ const Private = () => {
         <div className="bg-gray-100">
             <PrivateHeader />
             <div className="md:flex md:min-h-screen">
-              <main className="flex-1 p-5">
+              <main className="flex-1 mt-10">
                   <Outlet />
               </main>
             </div>
