@@ -79,7 +79,14 @@ export const Q01OPTIONS = [
     },
   ]
 
-  export const COMPETENCIAS = {
+    export const COMPETENCIAS = [
+      {id:"q06a",name:"Geometría Analítica",cal: 0},
+      {id:"q06b",name:"Lógica Simbólica",cal: 0},
+      {id:"q06c",name:"Aritmética",cal: 0}
+    ]
+  
+
+  /*export const COMPETENCIAS = {
     "Ingenieria Informática":[{id:"q06b",name:"Lógica Simbólica",cal: 0}, {id:"q06c",name:"Aritmética",cal: 0},],
     "Análisis de Sistemas":{
       id:"q06b",
@@ -99,7 +106,7 @@ export const Q01OPTIONS = [
       cal: 0,
       isTutor: false
     }
-  }
+  }*/
 
   export const Q09OPTIONS = [
     {
@@ -189,24 +196,20 @@ export const Q01OPTIONS = [
       id:"q06a",
       name:"Lógica Matemática",
       cal: 0,
-      isTutor: false
     },
     {
       id:"q06b",
       name:"Lógica Simbólica",
       cal: 0,
-      isTutor: false
     },
     {
       id:"q06c",
       name:"Algebra",
       cal: 0,
-      isTutor: false
     },
     {
       id:"q06d",
       name:"Trigonometria",
       cal: 0,
-      isTutor: false
     }
   ]
