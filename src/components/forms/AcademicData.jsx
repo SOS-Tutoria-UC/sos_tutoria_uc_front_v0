@@ -5,8 +5,12 @@ import { useState, useEffect } from 'react';
 import { useSelect } from '../../hooks/inputs/useSelect'
 
 //Constantes
-import { Q01OPTIONS, Q03AOPTIONS, Q03BOPTIONS, Q09OPTIONS, COMPETENCIAS } from '../../utils/constantes';
+import { Q01OPTIONS, Q03AOPTIONS, Q03BOPTIONS, Q09OPTIONS, Q03OPTIONS, COMPETENCIAS } from '../../utils/constantes';
 
+
+//Components
+
+import { RadioButton } from '../../layout/components/RadioButton';
 
 const AcademicData = ({ handleChangeStep }) => {
 
@@ -17,6 +21,7 @@ const AcademicData = ({ handleChangeStep }) => {
 
 
   const [ stateq01, Selectq01 ] = useSelect("Q01. ¿Cuál es su género?", Q01OPTIONS, "Seleccione un género");
+  const [ stateq03, Selectq03 ] = useSelect("Q03.b ¿Cuál es tu carrera?", Q03OPTIONS, "Seleccione una carrera");
   const [ stateq03a, Selectq03a ] = useSelect("Q03.a ¿Cuál es tu campus?", Q03AOPTIONS, "Seleccione un campus");
   const [ stateq03b, Selectq03b ] = useSelect("Q04 ¿Cuál es su programa de grado este año? (lo que te identifique mejor)", Q03BOPTIONS, "Seleccione un programa");
 
@@ -27,7 +32,7 @@ const AcademicData = ({ handleChangeStep }) => {
       COMPETENCIAS.forEach(element => {
         objects[element.id] = {
           name: element.name,
-          cal: 1
+          cal: element.cal
         };
       })
     setStateq06(objects);
@@ -42,7 +47,8 @@ const AcademicData = ({ handleChangeStep }) => {
       const objects = {};
       Q09OPTIONS.forEach(element => {
         objects[element.id] = {
-          cal: "N"
+          name: element.name,
+          cal: element.cal
         };
       })
     setStateq09(objects);
@@ -55,7 +61,9 @@ const AcademicData = ({ handleChangeStep }) => {
     setStateq06({...stateq06, [e.target.name]:{name: n, cal: e.target.value}})
   }
   
-  console.log(stateq06);
+  const handleChangeQ09 = (e, n) => {
+    setStateq09({...stateq09, [e.target.name]:{name: n, cal: e.target.value}})
+  }
 
   if(loading && loadingPsy)
   return (
@@ -94,22 +102,7 @@ const AcademicData = ({ handleChangeStep }) => {
           <Selectq03a />
         </div>
         <div className="form-group mb-6">
-          <label for="career" className="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-400 text-bold">Q03.b ¿Cuál es tu carrera?</label>
-          <input type="email" className="form-control block
-            w-full
-            px-3
-            py-1.5
-            text-base
-            font-normal
-            text-gray-700
-            bg-white bg-clip-padding
-            border border-solid border-gray-300
-            rounded
-            transition
-            ease-in-out
-            m-0
-            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="career"
-            placeholder="Carrera"/>
+          <Selectq03 /> 
         </div>
         <div className="form-group mb-6">
           <Selectq03b />
@@ -120,28 +113,7 @@ const AcademicData = ({ handleChangeStep }) => {
             COMPETENCIAS.map((c) => (
               <div className="mb-4 grid grid-cols-6" key={c.id}> 
                 <label htmlFor={c.id} className="ml-2 text-lg font-bold text-gray-500 col-span-4">{c.id} - {c.name}</label>
-                <div className="flex justify-end items-center mb-2 col-span-2 gap-2">
-                  <div>
-                    <input id="1" type="radio" value="1" name={c.id} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={ (e) => handleChangeScore(e, c.name)}/>
-                    <label htmlFor="1" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">1</label>
-                  </div>
-                  <div>
-                    <input id="2" type="radio" value="2" name={c.id} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={ (e) => handleChangeScore(e, c.name)}/>
-                    <label htmlFor="2" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">2</label>
-                  </div>
-                  <div>
-                    <input id="3" type="radio" value="3" name={c.id} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={ (e) => handleChangeScore(e, c.name)}/>
-                    <label htmlFor="3" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">3</label>
-                  </div>
-                  <div>
-                    <input id="4" type="radio" value="4" name={c.id} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={ (e) => handleChangeScore(e, c.name)}/>
-                    <label htmlFor="4" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">4</label>
-                  </div>
-                  <div>
-                    <input id="5" type="radio" value="5" name={c.id} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={ (e) => handleChangeScore(e, c.name)}/>
-                    <label htmlFor="5" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">5</label>
-                  </div>
-                </div>
+                  <RadioButton id={c.id} name={c.name} handleChangeScore={handleChangeScore} />
               </div>
             ))
           }   
@@ -152,13 +124,7 @@ const AcademicData = ({ handleChangeStep }) => {
             Q09OPTIONS.map((c) => (
               <div className="items-center mb-4 grid grid-cols-6" key={c.id}> 
               <label for={c.id} className="ml-2 text-lg font-bold text-gray-500 col-span-4">{c.id} - {c.name}</label>
-              <select id={c.id} name={c.id} value={stateq09[c.id].cal} onChange={(e) => {setStateq09({...stateq09, [e.target.name]:{cal: e.target.value}})}} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 col-span-2">
-                <option value="1">Nada</option>
-                <option value="2">Poco</option>
-                <option value="3">Moderado</option>
-                <option value="4">Bastante</option>
-                <option value="5">Muy Alto</option>
-              </select>
+              <RadioButton id={c.id} name={c.name} handleChangeScore={handleChangeQ09} />
               </div>
             ))
           }   
