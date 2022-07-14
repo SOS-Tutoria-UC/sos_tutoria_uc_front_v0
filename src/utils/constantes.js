@@ -5,7 +5,7 @@ export const Q01OPTIONS = [
     },
     {
       id: 'F',
-      name: "Masculino"
+      name: "Femenino"
     },
     {
       id: 'O',
@@ -101,7 +101,6 @@ export const Q01OPTIONS = [
       {id:"q06s",name:"Historia",cal: 1},
       {id:"q06t",name:"Sociología",cal: 1},
       {id:"q06u",name:"Psicología",cal: 1},
-      {id:"q06v",name:"Musicoterapia",cal: 1},
       {id:"q06w",name:"Ingeniería de Software",cal: 1},
       {id:"q06x",name:"Programación",cal: 1},
       {id:"q06y",name:"Redes de computadoras",cal: 1},
@@ -135,6 +134,84 @@ export const Q01OPTIONS = [
       {id:"q06ba",name:"ELectrónica",cal: 1}
     ]
   
+    export const SKILLS = {
+      "Ciencias exactas":[
+        {id:"q06a",name:"Lógica",cal: 1},
+        {id:"q06b",name:"Matemáticas",cal: 1},
+        {id:"q06d",name:"Física",cal: 1},
+        {id:"q06e",name:"Probabilidad y estadística",cal: 1},
+        {id:"q06f",name:"Trigonometría",cal: 1},
+        {id:"q06g",name:"Aritmética",cal: 1},
+        {id:"q06h",name:"Algebra",cal: 1},
+        {id:"q06i",name:"Geometría Analítica",cal: 1},
+        {id:"q06k",name:"Cálculo",cal: 1},
+      ],
+      "Ciencias de la computación":[
+        {id:"q06c",name:"Informática",cal: 1},
+        {id:"q06w",name:"Ingeniería de Software",cal: 1},
+        {id:"q06x",name:"Programación",cal: 1},
+        {id:"q06y",name:"Redes de computadoras",cal: 1},
+        {id:"q06z",name:"Sistemas Operativos",cal: 1},
+        {id:"q06aa",name:"Base de datos",cal: 1},
+        {id:"q06ab",name:"Compiladores",cal: 1}
+      ],
+      "Salud": [
+        {id:"q06j",name:"Química",cal: 1},
+        {id:"q06l",name:"Biología y Genética",cal: 1},
+        {id:"q06u",name:"Psicología",cal: 1},
+        {id:"q06ag",name:"Kinesiología",cal: 1},
+        {id:"q06ah",name:"Fisioterapia",cal: 1},
+        {id:"q06ai",name:"Bioquímica",cal: 1},
+        {id:"q06aj",name:"Investigación",cal: 1},
+        {id:"q06ak",name:"Odontología",cal: 1},
+        {id:"q06al",name:"Nutrición",cal: 1},
+        {id:"q06am",name:"Farmacología",cal: 1},
+        {id:"q06an",name:"Anatomía",cal: 1},
+        {id:"q06ao",name:"Genética",cal: 1},
+        {id:"q06ap",name:"Fonoaudiología",cal: 1},
+        {id:"q06aq",name:"Histología y Embiología",cal: 1},
+        {id:"q06ar",name:"Nutrición",cal: 1},
+        {id:"q06as",name:"Ginecología y Obstetricia",cal: 1},
+        {id:"q06at",name:"Oncología",cal: 1},
+        {id:"q06au",name:"Psiquiatría",cal: 1},
+        {id:"q06av",name:"Pediatría",cal: 1},
+        {id:"q06aw",name:"Otorrinolaringología",cal: 1},
+        {id:"q06ax",name:"Traumatología",cal: 1},
+        {id:"q06ay",name:"Dermatología",cal: 1}
+      ],
+      "Administrativas y Contables":[
+        {id:"q06m",name:"Administración de empresas",cal: 1},
+        {id:"q06n",name:"Contabilidad",cal: 1},
+        {id:"q06o",name:"Economía",cal: 1},
+        {id:"q06p",name:"Marketing",cal: 1},
+        {id:"q06q",name:"Comercio internacional",cal: 1}
+      ],
+      "Ciencias Sociales": [
+        {id:"q06r",name:"Filosofía",cal: 1},
+        {id:"q06s",name:"Historia",cal: 1},
+        {id:"q06t",name:"Sociología",cal: 1},
+      ],
+      "Jurídicas": [
+        {id:"q06ac",name:"Diplomacia",cal: 1},
+        {id:"q06ad",name:"Política",cal: 1},
+        {id:"q06ae",name:"Derecho",cal: 1},
+        {id:"q06af",name:"Notariado",cal: 1}  
+      ],
+      "Ciencias de la Electrónica": [
+        {id:"q06ba",name:"Electrónica analógica",cal: 1},
+        {id:"q06bb",name:"Electrónica digital",cal: 1},
+        {id:"q06bc",name:"Telecomunicaciones",cal: 1},
+        {id:"q06bd",name:"Automatización",cal: 1},
+        {id:"q06be",name:"Fotónica",cal: 1},
+        {id:"q06bf",name:"Electrónica de potencia",cal: 1}
+      ],
+      "Diseño y Construcción": [
+        {id:"q06bg",name:"Instalaciones sanitarias",cal: 1},
+        {id:"q06bh",name:"Instalaciones eléctricas",cal: 1},
+        {id:"q06bi",name:"Gestión de obras",cal: 1},
+        {id:"q06bj",name:"Diseño de estructuras",cal: 1}
+      ]
+    }
 
   /*export const COMPETENCIAS = {
     "Ingenieria Informática":[{id:"q06b",name:"Lógica Simbólica",cal: 0}, {id:"q06c",name:"Aritmética",cal: 0},],

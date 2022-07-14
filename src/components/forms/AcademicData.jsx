@@ -5,12 +5,14 @@ import { useState, useEffect } from 'react';
 import { useSelect } from '../../hooks/inputs/useSelect'
 
 //Constantes
-import { Q01OPTIONS, Q03AOPTIONS, Q03BOPTIONS, Q09OPTIONS, Q03OPTIONS, COMPETENCIAS } from '../../utils/constantes';
+import { Q01OPTIONS, Q03AOPTIONS, Q03BOPTIONS, Q09OPTIONS, Q03OPTIONS, COMPETENCIAS, SKILLS } from '../../utils/constantes';
 
 
 //Components
 
 import { RadioButton } from '../../layout/components/RadioButton';
+import { Accordion } from '../../layout/components/Accordion';
+
 
 const AcademicData = ({ handleChangeStep }) => {
 
@@ -29,7 +31,9 @@ const AcademicData = ({ handleChangeStep }) => {
     const createSkillsObject = () => {
       setLoading(false);
       const objects = {};
-      COMPETENCIAS.forEach(element => {
+      [...SKILLS["Ciencias exactas"], ...SKILLS["Ciencias de la computación"],
+      ...SKILLS["Salud"], ...SKILLS["Administrativas y Contables"], ...SKILLS["Ciencias Sociales"],
+      ...SKILLS["Jurídicas"],...SKILLS["Ciencias de la Electrónica"],...SKILLS["Diseño y Construcción"]].forEach(element => {
         objects[element.id] = {
           name: element.name,
           cal: element.cal
@@ -109,17 +113,18 @@ const AcademicData = ({ handleChangeStep }) => {
         </div>
         <div className="form-group mb-20 gap-2">
           <label for="degree" className="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-400 text-bold">Q06 ¿Cómo calificaría su nivel de conocimiento o competencia (el que sea mayor) en lo siguiente? 1=nada, 2=poco, 3=moderado, 4=bastante alto, 5=muy alto</label>
-          {
-            COMPETENCIAS.map((c) => (
-              <div className="mb-4 grid grid-cols-6" key={c.id}> 
-                <label htmlFor={c.id} className="ml-2 text-lg font-bold text-gray-500 col-span-4">{c.id} - {c.name}</label>
-                  <RadioButton id={c.id} name={c.name} handleChangeScore={handleChangeScore} />
-              </div>
-            ))
-          }   
+          <Accordion skills={SKILLS["Ciencias exactas"]} handleChangeScore={handleChangeScore} label="Ciencias Exactas" />
+          <Accordion skills={SKILLS["Ciencias de la computación"]} handleChangeScore={handleChangeScore} label="Ciencias de la computación" />
+          <Accordion skills={SKILLS["Salud"]} handleChangeScore={handleChangeScore} label="Salud" />
+          <Accordion skills={SKILLS["Administrativas y Contables"]} handleChangeScore={handleChangeScore} label="Administrativas y Contables" />
+          <Accordion skills={SKILLS["Ciencias Sociales"]} handleChangeScore={handleChangeScore} label="Ciencias Sociales" />
+          <Accordion skills={SKILLS["Jurídicas"]} handleChangeScore={handleChangeScore} label="Jurídicas" />
+          <Accordion skills={SKILLS["Ciencias de la Electrónica"]} handleChangeScore={handleChangeScore} label="Ciencias de la Electrónica" />
+          <Accordion skills={SKILLS["Diseño y Construcción"]} handleChangeScore={handleChangeScore} label="Diseño y Construcción" />
+
         </div>
         <div className="form-group mb-10 gap-2">
-          <label for="degree" className="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-400 text-bold">Q09 Descríbete a ti mismo como generalmente eres ahora, no como deseas ser. Utilice la escala a continuación para calificar con qué precisión lo describe cada afirmación.</label>
+          <label for="degree" className="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-400 text-bold">Q09 Descríbete a ti mismo como generalmente eres ahora, no como deseas ser. Utilice la escala a continuación para calificar con qué precisión lo describe cada afirmación 1= No se parece en nada a mí, 2= no se parece mucho a mí, 3= se parece un poco a mí, 4= se parece bastante a mí, 5= se parece mucho a mí</label>
           {
             Q09OPTIONS.map((c) => (
               <div className="items-center mb-4 grid grid-cols-6" key={c.id}> 

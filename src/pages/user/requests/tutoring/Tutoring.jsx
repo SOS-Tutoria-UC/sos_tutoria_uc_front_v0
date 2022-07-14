@@ -2,12 +2,12 @@ import React from 'react'
 import { useSelect } from '../../../../hooks/inputs/useSelect';
 import { useRow } from '../../../../hooks/inputs/useRow';
 
-import { COMPETENCIAS0 } from '../../../../utils/constantes';
+import { COMPETENCIAS } from '../../../../utils/constantes';
 
 
 const Tutoring = props => {
   const [ stateModalidad, SelectModalidad ] = useSelect('Qué modalidad prefieres que sea la tutoría?', [{id:'p', name:'Presencial'}, {id:'r', name:'Remoto'}, {id:'i', name:'Indiferente'}], "Seleccione modalidad")
-  const [ stateCompetencia, SelectCompetencia ] = useSelect('Elija sobre qué competencia', COMPETENCIAS0, "Seleccione compentencia")
+  const [ stateCompetencia, SelectCompetencia ] = useSelect('Elija sobre qué competencia', COMPETENCIAS, "Seleccione compentencia")
 
 
   const [ state0, Row0] = useRow("8:00 a 9:00");
