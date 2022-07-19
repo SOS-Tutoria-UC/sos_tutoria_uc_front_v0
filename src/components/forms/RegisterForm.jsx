@@ -14,7 +14,7 @@ import { RadioButton } from '../../layout/components/RadioButton';
 import { Accordion } from '../../layout/components/Accordion';
 
 
-const AcademicData = ({ handleChangeStep }) => {
+const RegisterForm = ({handleSetStudentData, studentData}) => {
 
   const [ stateq06, setStateq06 ] = useState({});
   const [ stateq09, setStateq09 ] = useState({});
@@ -73,15 +73,114 @@ const AcademicData = ({ handleChangeStep }) => {
   return (
     <>
     <div className="p-6 rounded-lg shadow-lg bg-white lg:w-3/4 m-auto">
-      <div className='mb-5'>
-          <h3 className="text-3xl leading-6 font-bold text-gray-900 mb-4">
-            Cuestionario
+    <div className='p-5 mt-10 mb-5 bg-blue-50'>
+          <h3 className="text-2xl leading-6 font-bold text-gray-900 mb-4">
+            Datos de autenticación
           </h3>
           <p className="mt-1 max-w-2xl text-sm text-gray-500">
-            
+            Los datos a continuación son requeridos para poder iniciar sesión
           </p>
-        </div>
+       </div>
       <form>
+      <div className="form-group mb-6">
+            <input type="text" className="form-control block
+              w-full
+              px-3
+              py-1.5
+              text-base
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-300
+              rounded
+              transition
+              ease-in-out
+              m-0
+              focus:text-gray-700 focus:bg-white focus:border-cyan-600 focus:outline-none"
+              placeholder="Nombre"
+              name="first_name"
+              id="first_name"
+              value={studentData.first_name}
+              onChange={(e) => handleSetStudentData({...studentData, first_name:e.target.value})}
+              />
+          </div>
+          <div className="form-group mb-6">
+            <input type="text" className="form-control block
+              w-full
+              px-3
+              py-1.5
+              text-base
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-300
+              rounded
+              transition
+              ease-in-out
+              m-0
+              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput8"
+              placeholder="Apellido"/>
+          </div>
+          <div className="form-group mb-6">
+            <input type="email" className="form-control block
+              w-full
+              px-3
+              py-1.5
+              text-base
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-300
+              rounded
+              transition
+              ease-in-out
+              m-0
+              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput8"
+              placeholder="Email"/>
+          </div>
+          <div className="form-group mb-6">
+            <input type="password" className="form-control block
+              w-full
+              px-3
+              py-1.5
+              text-base
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-300
+              rounded
+              transition
+              ease-in-out
+              m-0
+              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput8"
+              placeholder="Contraseña"/>
+          </div>
+          <div className="form-group mb-6">
+            <input type="password" className="form-control block
+              w-full
+              px-3
+              py-1.5
+              text-base
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-300
+              rounded
+              transition
+              ease-in-out
+              m-0
+              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput8"
+              placeholder="Confirmar contraseña"/>
+          </div>
+          <div className='p-5 mt-10 mb-5 bg-blue-50'>
+            <h3 className="text-2xl leading-6 font-bold text-gray-900 mb-4">
+              Cuestionario
+            </h3>
+            <p className="mt-1 max-w-2xl text-sm text-gray-500">
+              El cuestionario a continuación se utilizará para realizar el matching de tutorías,
+              así también como análisis futuros
+            </p>
+        </div>
         <div className="form-group mb-6">
           <Selectq01 /> 
         </div>
@@ -152,25 +251,7 @@ const AcademicData = ({ handleChangeStep }) => {
             active:bg-cyan-800 active:shadow-lg
             transition
             duration-150
-            ease-in-out" onClick={() => handleChangeStep(-1)}>Anterior</button>
-          <button className="
-            w-full
-            px-6
-            py-2.5
-            bg-cyan-600
-            text-white
-            font-medium
-            text-xs
-            leading-tight
-            uppercase
-            rounded
-            shadow-md
-            hover:bg-cyan-700 hover:shadow-lg
-            focus:bg-cyan-700 focus:shadow-lg focus:outline-none focus:ring-0
-            active:bg-cyan-800 active:shadow-lg
-            transition
-            duration-150
-            ease-in-out" onClick={() => handleChangeStep(1)}>Siguiente</button>
+            ease-in-out">Confirmar</button>
         </div>
        
       </form>
@@ -180,4 +261,4 @@ const AcademicData = ({ handleChangeStep }) => {
   )
 }
 
-export default AcademicData
+export default RegisterForm
