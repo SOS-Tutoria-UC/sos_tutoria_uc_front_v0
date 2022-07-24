@@ -69,7 +69,7 @@ const RegisterForm = () => {
       Q09OPTIONS.forEach(element => {
         objects[element.id] = {
           name: element.name,
-          cal: element.cal
+          cal: 1
         };
       })
     setStateq09(objects);
@@ -79,11 +79,11 @@ const RegisterForm = () => {
   }, [])
 
   const handleChangeScore = (e, n) => {
-    setStateq06({...stateq06, [e.target.name]:{name: n, cal: e.target.value}})
+    setStateq06({...stateq06, [e.target.name]:{name: n, cal: Number(e.target.value)}})
   }
   
   const handleChangeQ09 = (e, n) => {
-    setStateq09({...stateq09, [e.target.name]:{name: n, cal: e.target.value}})
+    setStateq09({...stateq09, [e.target.name]:{name: n, cal: Number(e.target.value)}})
   }
 
   const handleSetStudentData = (data) => {
@@ -104,11 +104,6 @@ const RegisterForm = () => {
       personalInfo.password, personalInfo.confirmPassword].includes('')){
         modal('Campos obligatorios!', 'Completar los campos requeridos en Datos Personales.', 'warning');
         return;
-    }
-
-    if(personalInfo.password.length < 6){
-      modal('La contraseña debe tener mínimo 6 caracteres!', '', 'warning');
-      return;
     }
 
     if(personalInfo.password !== personalInfo.confirmPassword){
@@ -139,7 +134,8 @@ const RegisterForm = () => {
       return;
     }
 
-    instance.post('/users', personalInfo).then( response => {
+    instance.post('/users', {...personalInfo, Q01: stateq01, Q02: birthdate, 
+      Q03a: stateq03a, Q03b: stateq03b, Q04: stateq04, Q06:stateq06, Q09:stateq09}).then( response => {
       modal(response.data.msg, '', 'success');
       navigate('/user');
     }).catch( error => {
@@ -244,6 +240,8 @@ const RegisterForm = () => {
               placeholder="Contraseña"
               name="password"
               id="password"
+              pattern=".{6,}"
+              title="Mínimo 6 caracteres"
               value={personalInfo.password}
               onChange={(e) => handleSetStudentData({...personalInfo, password:e.target.value})}/>
           </div>
