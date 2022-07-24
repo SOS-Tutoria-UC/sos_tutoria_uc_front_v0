@@ -35,16 +35,16 @@ export const Accordion = ({skills, handleChangeScore, label}) => {
               " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
                 aria-controls="collapseOne"
                 onClick={() => handleShowBody()}>
-                <spam className="flex-1">{label}</spam> 
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                <span className="flex-1">{label}</span> 
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
             </svg>
               </button>
             </h2>
             <div className={showBody} aria-labelledby="headingOne">
               <div className="py-4 px-5">
                 {
-                    skills.map((c) => (
+                    skills.map((c,i) => (
                     <div className="mb-4 grid grid-cols-6" key={c.id}> 
                         <label htmlFor={c.id} className="ml-2 text-lg font-bold text-gray-500 col-span-4">{c.id} - {c.name}</label>
                         <RadioButton id={c.id} name={c.name} handleChangeScore={handleChangeScore} />
