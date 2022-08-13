@@ -137,9 +137,9 @@ const Login = () => {
                 />
               </div>
 
-              <div className="flex items-right mb-6">
+              {/*<div className="flex items-right mb-6">
                 <a href="#!" className="text-cyan-800">Olvidé contraseña</a>
-              </div>
+            </div>*/}
 
               <div className="text-left mt-5">
                 <button

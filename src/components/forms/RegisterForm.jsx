@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from "react-router-dom"
 import Swal from 'sweetalert2'
 
@@ -34,6 +34,9 @@ const RegisterForm = () => {
   const [ stateq09, setStateq09 ] = useState({});
   const [ loading, setLoading ] = useState(false);
   const [ loadingPsy, setLoadingPsy ] = useState(false);
+  const [ consentimiento, setConsentimiento ] = useState(false);
+  const inputCon = useRef();
+
 
 
   const [ stateq01, Selectq01 ] = useSelect('q01',"Q01. ¿Cuál es su género?", Q01OPTIONS, "Seleccione un género");
@@ -99,6 +102,12 @@ const RegisterForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if(!consentimiento){
+      modal('Campos obligatorio!', 'Debe aceptar los términos y condiciones', 'warning');
+      return;
+    }
+
     //Validaciones para inputs nombre, apellido, email, password, confirm
     if([personalInfo.nombre, personalInfo.apellido, personalInfo.email,
       personalInfo.password, personalInfo.confirmPassword].includes('')){
@@ -148,6 +157,10 @@ const RegisterForm = () => {
   return (
     <>
     <div className="p-6 rounded-lg shadow-lg bg-white lg:w-3/4 m-auto">
+    <div className="flex items-center mb-4">
+          <input ref={inputCon} id="consentimiento" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={e => setConsentimiento(!consentimiento)}/>
+          <label for="consentimiento" className="ml-2 2xl font-medium text-gray-900 dark:text-gray-300">Acepto los términos y condicionhes. Más info en <a href="#" className="text-blue-500">Consentimiento informado</a></label>
+        </div>
     <div className='p-5 mt-10 mb-5 bg-blue-50'>
           <h3 className="text-2xl leading-6 font-bold text-gray-900 mb-4">
             Datos de autenticación
@@ -351,7 +364,6 @@ const RegisterForm = () => {
             duration-150
             ease-in-out">Confirmar</button>
         </div>
-       
       </form>
     </div>
     

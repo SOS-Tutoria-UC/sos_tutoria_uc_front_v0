@@ -1,14 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelect } from '../../../../hooks/inputs/useSelect';
 import { useRow } from '../../../../hooks/inputs/useRow';
+import Swal from 'sweetalert2'
+import { useNavigate } from "react-router-dom"
+
+
 
 import { COMPETENCIAS } from '../../../../utils/constantes';
+import instance from '../../../../config/axios/instance';
 
 
 const Tutoring = props => {
   const [ stateModalidad, SelectModalidad ] = useSelect('m1', 'Qué modalidad prefieres que sea la tutoría?', [{id:'p', name:'Presencial'}, {id:'r', name:'Remoto'}, {id:'i', name:'Indiferente'}], "Seleccione modalidad")
   const [ stateCompetencia, SelectCompetencia ] = useSelect('c1', 'Elija sobre qué competencia', COMPETENCIAS, "Seleccione compentencia")
-
+  const [ descripcion, setDescripcion] = useState("");
+  const navigate = useNavigate();
 
   const [ state0, Row0] = useRow("8:00 a 9:00");
   const [ state1, Row1] = useRow("9:00 a 10:00");
@@ -19,9 +25,53 @@ const Tutoring = props => {
   const [ state6, Row6] = useRow("15:00 a 16:00");
   const [ state7, Row7] = useRow("16:00 a 17:00");
 
+  const [ hidden, setHidden ] = useState("")
 
 
+  const modal = (title, text, icon) => {
+    Swal.fire({
+      title, text, icon, 
+      confirmButtonText: 'Ok'
+    })
+  }
 
+  const handleChangeDisponibilidad = () => {
+    if(hidden){setHidden("")} else setHidden("hidden")
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if(stateModalidad === ""){
+      modal('Campo obligatorio!', 'Seleccione una Modalidad!', 'warning');
+      return;
+    }
+    if(stateCompetencia === ""){
+      modal('Campo obligatorio!', 'Seleccione una Competencia!', 'warning');
+      return;
+    }
+    if(descripcion === ""){
+      modal('Campo obligatorio!', 'Descripción del tema a tratar', 'warning');
+      return;
+    }
+
+    if(!state0.includes(true) && !state1.includes(true) && 
+    !state2.includes(true) && !state3.includes(true) && 
+    !state4.includes(true) && !state5.includes(true) && 
+    !state6.includes(true) && !state7.includes(true)){
+      modal('Campo obligatorio!', 'Seleccione un horario disponible', 'warning');
+      return;
+    }
+
+    instance.post('/request', {stateModalidad, stateCompetencia, descripcion, state0, state1, state2, state3,
+    state4, state5, state6, state7}).then( response => {
+      modal(response.data.msg, '', 'success');
+      navigate('/user');
+    }).catch( error => {
+      console.log(error.response)
+      modal('Error!', error.response.data.msg, 'error');
+    })
+
+  }
   
   
   return (
@@ -32,10 +82,10 @@ const Tutoring = props => {
             Solicitar Tutoría
           </h3>
           <p className="mt-1 max-w-2xl text-sm text-gray-500">
-            Poner un aviso o algo acá para el alumno
+            Complete los campos para solicitar una tutoría
           </p>
       </div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="form-group mb-6">
           <SelectModalidad />
         </div>
@@ -43,18 +93,23 @@ const Tutoring = props => {
           <SelectCompetencia />
         </div>
 
-        <div>
-          <label htmlFor="messadescripcionge" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Describe el tema a tratar a tu compañero</label>
-          <textarea id="descripcion" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Descripción..."></textarea>
+        <div className='mb-5'>
+          <label htmlFor="descripcion" className="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-400 text-bold"><spam className="text-red-500">*</spam> Describe el tema a tratar a tu compañero</label>
+          <textarea id="descripcion" value={descripcion} rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Descripción..."
+          onChange={(e) => setDescripcion(e.target.value)}></textarea>
         </div>
 
 
         <div className="form-group mb-6">
-          <label for="birthdate" className="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-400 text-bold">Elija los horarios disponibles que tiene</label>
+          <label className="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-400 text-bold">Elija los horarios disponibles que tiene</label>
           
-          <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-              <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                  <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <div className="flex items-center mb-4">
+            <input id="disponibilidad" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" onChange={handleChangeDisponibilidad}/>
+            <label for="disponibilidad" className="ml-2 2xl font-medium text-gray-900 dark:text-gray-300">Tengo disponibilidad para la tutoría en cualquier horario</label>
+         </div>
+          <div className={`relative overflow-x-auto shadow-md sm:rounded-lg ${hidden}`}>
+              <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                  <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                       <tr style={{textAlign:"center"}}>
                           <th scope="col">
                           </th>
