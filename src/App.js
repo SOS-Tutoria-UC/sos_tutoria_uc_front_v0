@@ -15,6 +15,9 @@ import Public from "./layout/Public";
 //Context
 import { AuthProvider } from "./context/AuthProvider";
 import { StudentDataProvider } from "./context/StudentDataProvider"
+import { QuienesSomos } from "./pages/user/main/QuienesSomos";
+import { ComoInteractuar } from "./pages/user/main/ComoInteractuar";
+
 
 function App() {
   return (
@@ -29,6 +32,8 @@ function App() {
               <Route path="/user" element={<Private />} >
                 <Route index element={<Main />}/>
                 <Route path="request-tutoring" element={<Tutoring />}/>
+                <Route path="quienes-somos" element={<QuienesSomos />}/>
+                <Route path="como-interactuar" element={<ComoInteractuar />}/>
               </Route>
             </Routes>
         </StudentDataProvider>

@@ -22,9 +22,14 @@ const Header = () => {
                     Solicitar Tutoría
                 </Link>
             </div>
-            <div className="text-sm flex-1">
+            <div className="text-sm">
                 <Link to={"quienes-somos"} className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 sm:mt-0">
                     Quiénes somos?
+                </Link>
+            </div>
+            <div className="text-sm flex-1">
+                <Link to={"como-interactuar"} className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 sm:mt-0">
+                    Cómo interactuar?
                 </Link>
             </div>
             <div>
