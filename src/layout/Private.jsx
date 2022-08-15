@@ -3,6 +3,7 @@ import { Outlet, Navigate } from 'react-router-dom'
 
 //Components
 import PrivateHeader from './components/PrivateHeader'
+import { Spinner } from '../components/spinner/Spinner'
 
 //Hooks
 import useAuth from '../hooks/useAuth'
@@ -11,7 +12,7 @@ const Private = () => {
   const { auth, loading } = useAuth();
 
 
-  if(loading) return 'Loading';
+  if(loading) return <Spinner />;
 
   return (
      <>{auth.id? (

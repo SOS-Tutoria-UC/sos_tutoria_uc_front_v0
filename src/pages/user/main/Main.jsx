@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import useAuth from '../../../hooks/useAuth'
+
+
 
 const StarIcon = () => {
   return (
@@ -243,10 +246,16 @@ const Accordion = ({ label, labelAlumno }) => {
 const Main = () => {
   const [solicitadas, setSolicitadas] = useState([]);
   const [recibidas, setRecibidas] = useState([]);
+  const { handleSetAuth, auth } = useAuth();
+
 
   useEffect(() => {}, []);
 
   useEffect(() => {}, []);
+
+  const getByTutor = () => {
+
+  }
 
   return (
     <>

@@ -54,13 +54,14 @@ const Tutoring = props => {
       return;
     }
 
-    if(!state0.includes(true) && !state1.includes(true) && 
-    !state2.includes(true) && !state3.includes(true) && 
-    !state4.includes(true) && !state5.includes(true) && 
-    !state6.includes(true) && !state7.includes(true)){
-      modal('Campo obligatorio!', 'Seleccione un horario disponible', 'warning');
-      return;
-    }
+    if(hidden !== 'hidden')
+      if(!state0.includes(true) && !state1.includes(true) && 
+      !state2.includes(true) && !state3.includes(true) && 
+      !state4.includes(true) && !state5.includes(true) && 
+      !state6.includes(true) && !state7.includes(true)){
+        modal('Campo obligatorio!', 'Seleccione un horario disponible', 'warning');
+        return;
+      }
 
     instance.post('/request', {stateModalidad, stateCompetencia, descripcion, state0, state1, state2, state3,
     state4, state5, state6, state7}).then( response => {
