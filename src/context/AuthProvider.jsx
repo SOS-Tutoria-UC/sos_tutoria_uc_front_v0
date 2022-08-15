@@ -25,6 +25,7 @@ const AuthProvider = ({ children }) => {
                 navigate("/user");
               }).catch( error => {
                 console.log(error.response)
+                setLoading(false);
             })
             
                 
