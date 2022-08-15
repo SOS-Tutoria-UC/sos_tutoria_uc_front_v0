@@ -22,11 +22,11 @@ const AuthProvider = ({ children }) => {
             instance.get('/users/profile').then( response => {
                 handleSetAuth(response.data)
                 setLoading(false);
+                navigate("/user");
               }).catch( error => {
                 console.log(error.response)
             })
             
-            navigate("/user");
                 
 
         }
