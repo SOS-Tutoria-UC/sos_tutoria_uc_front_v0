@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import useAuth from '../../../hooks/useAuth'
-
-
+import instance from "../../../config/axios/instance";
+import useAuth from "../../../hooks/useAuth";
 
 const StarIcon = () => {
   return (
@@ -20,6 +19,7 @@ const StarIcon = () => {
 };
 
 const Compatibilidad = ({ compatibilidad }) => {
+  console.log(compatibilidad);
   switch (compatibilidad) {
     case 1:
       return (
@@ -84,31 +84,7 @@ const Estado = ({ estado }) => {
   }
 };
 
-const solicitanteList = [
-  {
-    competencia: "Lógica Matemática",
-    descripcion: "Necesito entender la ley de De Morgan",
-    compatibilidad: 3,
-    estado: "APROBADO",
-    fecha_solicitud: "22/12/22",
-  },
-  {
-    competencia: "Programación",
-    descripcion: "Quiero hacer un chat en python",
-    compatibilidad: 2,
-    estado: "RECHAZADO",
-    fecha_solicitud: "22/12/22",
-  },
-  {
-    competencia: "Economía",
-    descripcion: "No entiendo la ley de oferta y demanda",
-    compatibilidad: 5,
-    estado: "PENDIENTE",
-    fecha_solicitud: "22/12/22",
-  },
-];
-
-const Accordion = ({ label, labelAlumno }) => {
+const Accordion = ({ label, labelAlumno, data }) => {
   const [showBody, setShowBody] = useState("hidden");
 
   const handleShowBody = () => {
@@ -116,6 +92,8 @@ const Accordion = ({ label, labelAlumno }) => {
       setShowBody("");
     } else setShowBody("hidden");
   };
+
+  console.log(data);
   return (
     <div className="bg-white border rounded-md border-slate-300">
       <h2 className="b-0" id="headingOne">
@@ -196,7 +174,7 @@ const Accordion = ({ label, labelAlumno }) => {
                 </tr>
               </thead>
               <tbody>
-                {solicitanteList.map((element) => (
+                {data.map((element) => (
                   <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <th
                       scope="row"
@@ -204,13 +182,13 @@ const Accordion = ({ label, labelAlumno }) => {
                     >
                       Persona1
                     </th>
-                    <td class="px-6 py-4">{element.competencia}</td>
-                    <td class="px-6 py-4">{element.descripcion}</td>
+                    <td class="px-6 py-4">{element.skill}</td>
+                    <td class="px-6 py-4">{element.description}</td>
                     <td class="px-6 py-4">
-                      <Compatibilidad compatibilidad={element.compatibilidad} />
+                      <Compatibilidad compatibilidad={Number(element.compatibility)} />
                     </td>
                     <td class="px-6 py-4">
-                      <Estado estado={element.estado} />
+                      <Estado estado={element.state} />
                     </td>
                     <td class="px-6 py-4">{element.fecha_solicitud}</td>
                     <td class="px-6 py-4 text-right">
@@ -246,21 +224,48 @@ const Accordion = ({ label, labelAlumno }) => {
 const Main = () => {
   const [solicitadas, setSolicitadas] = useState([]);
   const [recibidas, setRecibidas] = useState([]);
-  const { handleSetAuth, auth } = useAuth();
+  const { auth } = useAuth();
 
+  useEffect(() => {
+    const getByTutor = () => {
+      instance
+        .get(`/request/tutor/${auth._id}`)
+        .then((response) => {
+          setRecibidas(response.data);
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+    };
+    getByTutor();
+  }, []);
 
-  useEffect(() => {}, []);
-
-  useEffect(() => {}, []);
-
-  const getByTutor = () => {
-
-  }
+  useEffect(() => {
+    const getByRequester = () => {
+      instance
+        .get(`/request/requester/${auth._id}`)
+        .then((response) => {
+          setSolicitadas(response.data);
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+    };
+    getByRequester();
+  }, []);
 
   return (
     <>
-      <Accordion label="Tutorias Solicitadas" labelAlumno="Tutor" />
-      <Accordion label="Solicitudes Recibidas" labelAlumno="Solicitante" />
+      <Accordion
+        label="Tutorias Solicitadas"
+        labelAlumno="Tutor   "
+        data={solicitadas}
+      />
+      <Accordion
+        label="Solicitudes Recibidas"
+        labelAlumno="Solicitante"
+        data={recibidas}
+      />
     </>
   );
 };

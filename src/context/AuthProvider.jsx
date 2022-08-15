@@ -18,24 +18,21 @@ const AuthProvider = ({ children }) => {
                 setLoading(false)
                 return;
             }
-            
-            if(location.pathname === "/" || location.pathname === "/register")
-                navigate("/user");
-                
-            handleSetAuth({id:'1'});
-           /* instance.post('/auth/login', user).then( response => {
-                localStorage.setItem('access_token', response.data.token);
+
+            instance.get('/users/profile').then( response => {
                 handleSetAuth(response.data)
-                navigate('/user');
+                setLoading(false);
               }).catch( error => {
                 console.log(error.response)
-                setError(error.response.data);
-              }) */
-            setLoading(false);
+            })
+            
+            navigate("/user");
+                
+
         }
 
         authenticate();
-    }, [location.pathname, navigate]);
+    }, []);
 
 
     const handleSetAuth = (value) => {
@@ -43,7 +40,7 @@ const AuthProvider = ({ children }) => {
     }
 
     return (
-        <AuthContext.Provider value={{auth, loading, handleSetAuth}}>
+        <AuthContext.Provider value={{auth, loading, setLoading, handleSetAuth}}>
             {children}
         </AuthContext.Provider>
     )

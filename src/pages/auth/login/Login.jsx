@@ -12,7 +12,7 @@ import useAuth from '../../../hooks/useAuth'
 
 const Login = () => {
   const navigate = useNavigate();
-  const { handleSetAuth } = useAuth();
+  const { handleSetAuth, setLoading } = useAuth();
 
   const [user, setUser] = useState({
     email:'',
@@ -24,7 +24,7 @@ const Login = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-
+    setLoading(true)
     //Campos obligatorios
     if([user.email, user.password].includes('')){
       console.log('Todos los campos son obligatorios!');
@@ -33,11 +33,13 @@ const Login = () => {
     instance.post('/auth/login', user).then( response => {
       localStorage.setItem('access_token', response.data.token);
       handleSetAuth(response.data)
+      console.log(response.data)
       navigate('/user');
     }).catch( error => {
       console.log(error.response)
       setError(error.response.data);
     })
+    setLoading(false)
   }
 
   const handleChange = (value) => {
