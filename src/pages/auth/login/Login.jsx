@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from "react-router-dom"
-import Spinner from "../../../components/spinner/Spinner"
+import {Spinner} from "../../../components/spinner/Spinner"
 
 //Axios
 import instance from '../../../config/axios/instance'
