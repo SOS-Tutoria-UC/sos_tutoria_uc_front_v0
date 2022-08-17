@@ -14,7 +14,7 @@ import useAuth from '../../../hooks/useAuth'
 const Login = () => {
   const navigate = useNavigate();
   const { handleSetAuth } = useAuth();
-  const { loading, setLoading} = useState(false)
+  const [ loading, setLoading ] = useState(false)
 
   const [user, setUser] = useState({
     email:'',
