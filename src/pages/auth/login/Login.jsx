@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from "react-router-dom"
+import Spinner from "../../../components/spinner/Spinner"
 
 //Axios
 import instance from '../../../config/axios/instance'
@@ -12,7 +13,8 @@ import useAuth from '../../../hooks/useAuth'
 
 const Login = () => {
   const navigate = useNavigate();
-  const { handleSetAuth, setLoading } = useAuth();
+  const { handleSetAuth } = useAuth();
+  const { loading, setLoading} = useState(false)
 
   const [user, setUser] = useState({
     email:'',
@@ -34,17 +36,18 @@ const Login = () => {
       localStorage.setItem('access_token', response.data.token);
       handleSetAuth(response.data)
       console.log(response.data)
+      setLoading(false)
       navigate('/user');
     }).catch( error => {
       console.log(error.response)
       setError(error.response.data);
     })
-    setLoading(false)
   }
 
   const handleChange = (value) => {
     setUser(value);
   }
+  if(loading) return <Spinner />
 
   return (
     <section className="h-full">

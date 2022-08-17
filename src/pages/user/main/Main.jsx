@@ -193,13 +193,13 @@ const Accordion = ({ label, labelAlumno, data }) => {
                     <td class="px-6 py-4">{element.fecha_solicitud}</td>
                     <td class="px-6 py-4 text-right">
                       {label === "Tutorias Solicitadas" &&
-                        element.estado === "APROBADO" && (
+                        element.state === "APROBADO" && (
                           <button className="p-2 bg-green-200 rounded-md  hover:bg-green-300">
                             Seleccionar tutoría
                           </button>
                         )}
                       {label === "Solicitudes Recibidas" &&
-                        element.estado === "PENDIENTE" && (
+                        element.state === "PENDIENTE" && (
                           <div>
                             <button className="p-2 bg-green-200 rounded-md  hover:bg-green-300 mr-2">
                               Aprobar
