@@ -3,6 +3,7 @@ import { useSelect } from '../../../../hooks/inputs/useSelect';
 import { useRow } from '../../../../hooks/inputs/useRow';
 import Swal from 'sweetalert2'
 import { useNavigate } from "react-router-dom"
+import "./tutoring.css"
 
 
 
