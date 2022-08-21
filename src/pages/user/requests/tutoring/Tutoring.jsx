@@ -7,13 +7,15 @@ import "./tutoring.css"
 
 
 
-import { COMPETENCIAS } from '../../../../utils/constantes';
+import { SKILLS } from '../../../../utils/constantes';
 import instance from '../../../../config/axios/instance';
 
 
 const Tutoring = props => {
   const [ stateModalidad, SelectModalidad ] = useSelect('m1', 'Qué modalidad prefieres que sea la tutoría?', [{id:'p', name:'Presencial'}, {id:'r', name:'Remoto'}, {id:'i', name:'Indiferente'}], "Seleccione modalidad")
-  const [ stateCompetencia, SelectCompetencia ] = useSelect('c1', 'Elija sobre qué competencia', COMPETENCIAS, "Seleccione compentencia")
+  const [ stateCompetencia, SelectCompetencia ] = useSelect('c1', 'Elija sobre qué competencia',  [...SKILLS["Ciencias exactas"], ...SKILLS["Ciencias de la computación"],
+  ...SKILLS["Salud"], ...SKILLS["Administrativas y Contables"], ...SKILLS["Ciencias Sociales"],
+  ...SKILLS["Jurídicas"],...SKILLS["Ciencias de la Electrónica"],...SKILLS["Diseño y Construcción"]], "Seleccione compentencia")
   const [ descripcion, setDescripcion] = useState("");
   const navigate = useNavigate();
 
@@ -22,9 +24,11 @@ const Tutoring = props => {
   const [ state2, Row2] = useRow("10:00 a 11:00");
   const [ state3, Row3] = useRow("11:00 a 12:00");
   const [ state4, Row4] = useRow("12:00 a 13:00");
-  const [ state5, Row5] = useRow("14:00 a 15:00");
-  const [ state6, Row6] = useRow("15:00 a 16:00");
-  const [ state7, Row7] = useRow("16:00 a 17:00");
+  const [ state5, Row5] = useRow("13:00 a 14:00");
+  const [ state6, Row6] = useRow("14:00 a 15:00");
+  const [ state7, Row7] = useRow("15:00 a 16:00");
+  const [ state8, Row8] = useRow("16:00 a 17:00");
+
 
   const [ hidden, setHidden ] = useState("")
 
@@ -64,8 +68,95 @@ const Tutoring = props => {
         return;
       }
 
-    instance.post('/request', {stateModalidad, stateCompetencia, descripcion, state0, state1, state2, state3,
-    state4, state5, state6, state7}).then( response => {
+      const _8a9 = {
+        lunes: state0[0],
+        martes: state0[1],
+        meircoles: state0[2],
+        jueves: state0[3],
+        viernes: state0[4],
+        sabado: state0[5],
+      };
+  
+      const _9a10 = {
+        lunes: state1[0],
+        martes: state1[1],
+        meircoles: state1[2],
+        jueves: state1[3],
+        viernes: state1[4],
+        sabado: state1[5],
+      };
+
+      const _10a11 = {
+        lunes: state2[0],
+        martes: state2[1],
+        meircoles: state2[2],
+        jueves: state2[3],
+        viernes: state2[4],
+        sabado: state2[5],
+      };
+
+      const _11a12 = {
+        lunes: state3[0],
+        martes: state3[1],
+        meircoles: state3[2],
+        jueves: state3[3],
+        viernes: state3[4],
+        sabado: state3[5],
+      };
+
+      const _12a13 = {
+        lunes: state4[0],
+        martes: state4[1],
+        meircoles: state4[2],
+        jueves: state4[3],
+        viernes: state4[4],
+        sabado: state4[5],
+      };
+
+      const _13a14 = {
+        lunes: state5[0],
+        martes: state5[1],
+        meircoles: state5[2],
+        jueves: state5[3],
+        viernes: state5[4],
+        sabado: state5[5],
+      };
+
+      const _14a15 = {
+        lunes: state6[0],
+        martes: state6[1],
+        meircoles: state6[2],
+        jueves: state6[3],
+        viernes: state6[4],
+        sabado: state6[5],
+      };
+
+      const _15a16 = {
+        lunes: state7[0],
+        martes: state7[1],
+        meircoles: state7[2],
+        jueves: state7[3],
+        viernes: state7[4],
+        sabado: state7[5],
+      };
+
+      const _16a17 = {
+        lunes: state8[0],
+        martes: state8[1],
+        meircoles: state8[2],
+        jueves: state8[3],
+        viernes: state8[4],
+        sabado: state8[5],
+      };
+
+
+
+
+      const requester_availability =  hidden ? true : {_8a9, _9a10, _10a11, _11a12,
+        _12a13, _13a14, _14a15, _15a16, _16a17};
+
+
+    instance.post('/request', {modality: stateModalidad, skill: stateCompetencia, description: descripcion, requester_availability}).then( response => {
       modal(response.data.msg, '', 'success');
       navigate('/user');
     }).catch( error => {
@@ -144,6 +235,7 @@ const Tutoring = props => {
                     <Row5 />
                     <Row6 />
                     <Row7 />
+                    <Row8 />
                   </tbody>
               </table>
           </div>
