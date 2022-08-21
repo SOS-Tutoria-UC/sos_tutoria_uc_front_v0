@@ -146,52 +146,53 @@ const Accordion = ({ label, labelAlumno, data }) => {
         </spam>
 
         <div className="py-4 px-5">
-          <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-              <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+              <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" className="px-6 py-3">
                     {labelAlumno}
                   </th>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" className="px-6 py-3">
                     Competencia
                   </th>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" className="px-6 py-3">
                     Descripción
                   </th>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" className="px-6 py-3">
                     Compatibilidad
                   </th>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" className="px-6 py-3">
                     Estado
                   </th>
-                  <th scope="col" class="px-6 py-3">
+                  <th scope="col" className="px-6 py-3">
                     Fecha de solicitud
                   </th>
-                  <th scope="col" class="px-6 py-3">
-                    <span class="sr-only">Edit</span>
+                  <th scope="col" className="px-6 py-3">
+                    <span className="sr-only">Edit</span>
                   </th>
                 </tr>
               </thead>
               <tbody>
+                {!data.length && <tr><th className="m-2 font-bold font-medium">No hay datos</th></tr>}
                 {data.map((element) => (
-                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <th
                       scope="row"
-                      class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+                      className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
                     >
                       Persona1
                     </th>
-                    <td class="px-6 py-4">{element.skill}</td>
-                    <td class="px-6 py-4">{element.description}</td>
-                    <td class="px-6 py-4">
+                    <td className="px-6 py-4">{element.skill}</td>
+                    <td className="px-6 py-4">{element.description}</td>
+                    <td className="px-6 py-4">
                       <Compatibilidad compatibilidad={Number(element.compatibility)} />
                     </td>
-                    <td class="px-6 py-4">
+                    <td className="px-6 py-4">
                       <Estado estado={element.state} />
                     </td>
-                    <td class="px-6 py-4">{element.fecha_solicitud}</td>
-                    <td class="px-6 py-4 text-right">
+                    <td className="px-6 py-4">{element.fecha_solicitud}</td>
+                    <td className="px-6 py-4 text-right">
                       {label === "Tutorias Solicitadas" &&
                         element.state === "APROBADO" && (
                           <button className="p-2 bg-green-200 rounded-md  hover:bg-green-300">
@@ -228,28 +229,28 @@ const Main = () => {
 
   useEffect(() => {
     const getByTutor = () => {
-      instance
+      /*instance
         .get(`/request/tutor/${auth._id}`)
         .then((response) => {
           setRecibidas(response.data);
         })
         .catch((error) => {
           console.log(error.response);
-        });
+        });*/
     };
     getByTutor();
   }, []);
 
   useEffect(() => {
     const getByRequester = () => {
-      instance
+      /*instance
         .get(`/request/requester/${auth._id}`)
         .then((response) => {
           setSolicitadas(response.data);
         })
         .catch((error) => {
           console.log(error.response);
-        });
+        });*/
     };
     getByRequester();
   }, []);
