@@ -39,7 +39,6 @@ const Login = () => {
         method: "POST",
         mode: 'no-cors',
         body: new URLSearchParams({
-          mode: "no-cors",
           grant_type: "authorization_code",
           client_id: "NqGWkPYgkE",
           client_secret: "fELXQpoBnnMoWDgt5mek",
