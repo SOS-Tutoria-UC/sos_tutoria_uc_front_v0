@@ -37,12 +37,14 @@ const Login = () => {
     } else {
       fetch("https://internetofus.u-hopper.com/prod/api/oauth2/token", {
         method: "POST",
-        mode: 'no-cors',
+        mode: "no-cors",
         body: new URLSearchParams({
           grant_type: "authorization_code",
           client_id: "NqGWkPYgkE",
           client_secret: "fELXQpoBnnMoWDgt5mek",
           code: code,
+        }).then((res) => {
+          console.log(res);
         }),
       });
     }
