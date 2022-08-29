@@ -1,69 +1,76 @@
-import React, { useState } from 'react'
-import { Link, useNavigate } from "react-router-dom"
-import {Spinner} from "../../../components/spinner/Spinner"
+import React, { useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Spinner } from "../../../components/spinner/Spinner";
 
 //Axios
-import instance from '../../../config/axios/instance'
+import instance from "../../../config/axios/instance";
 
 //Components
-import Toast from '../../../layout/components/Toast'
+import Toast from "../../../layout/components/Toast";
 
 //Hooks
-import useAuth from '../../../hooks/useAuth'
-import { useEffect } from 'react'
+import useAuth from "../../../hooks/useAuth";
+import { useEffect } from "react";
 
 const Login = () => {
   const navigate = useNavigate();
+
+  const search = useLocation().search;
+  const code = new URLSearchParams(search).get("code");
+
   const { handleSetAuth } = useAuth();
-  const [ loading, setLoading ] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const [user, setUser] = useState({
-    email:'',
-    password:''
+    email: "",
+    password: "",
   });
 
-  const [ error, setError ] = useState({});
+  const [error, setError] = useState({});
 
   useEffect(() => {
-    window.location.replace('http://internetofus.u-hopper.com/prod/hub/frontend/oauth/login?client_id=NqGWkPYgkE');
+    if (code === null) {
+      window.location.replace(
+        "http://internetofus.u-hopper.com/prod/hub/frontend/oauth/login?client_id=NqGWkPYgkE"
+      );
+    } else {
+      console.log(code);
+    }
+  }, []);
 
-  }, [])
-
-
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
     //Campos obligatorios
-    if([user.email, user.password].includes('')){
-      console.log('Todos los campos son obligatorios!');
+    if ([user.email, user.password].includes("")) {
+      console.log("Todos los campos son obligatorios!");
     }
 
-    instance.post('/auth/login', user).then( response => {
-      localStorage.setItem('access_token', response.data.token);
-      handleSetAuth(response.data)
-      console.log(response.data)
-      setLoading(false)
-      navigate('/user');
-    }).catch( error => {
-      console.log(error.response)
-      setError(error.response.data);
-    })
-  }
+    instance
+      .post("/auth/login", user)
+      .then((response) => {
+        localStorage.setItem("access_token", response.data.token);
+        handleSetAuth(response.data);
+        console.log(response.data);
+        setLoading(false);
+        navigate("/user");
+      })
+      .catch((error) => {
+        console.log(error.response);
+        setError(error.response.data);
+      });
+  };
 
   const handleChange = (value) => {
     setUser(value);
-  }
-  if(loading) return <Spinner />
+  };
+  if (loading) return <Spinner />;
 
   return (
     <section className="h-full">
       <div className="px-6 h-full text-gray-800">
-        <div
-          className="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6"
-        >
-          <div
-            className="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0"
-          >
+        <div className="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6">
+          <div className="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0">
             <img
               src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
               className="w-full"
@@ -71,7 +78,9 @@ const Login = () => {
             />
           </div>
           <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
-          <h1 className='text-5xl text-cyan-600 m-10 text-center font-bold hover:text-cyan-800 cursor-pointe'>SOS Tutoría UC 2.0</h1>
+            <h1 className="text-5xl text-cyan-600 m-10 text-center font-bold hover:text-cyan-800 cursor-pointe">
+              SOS Tutoría UC 2.0
+            </h1>
             <form onSubmit={handleSubmit}>
               {/*<div className="flex flex-row items-center justify-center lg:justify-start">
                 <p className="text-lg mb-0 mr-4">Sign in with</p>
@@ -123,7 +132,11 @@ const Login = () => {
               >
                 <p className="text-center font-semibold mx-4 mb-0">Or</p>
               </div>  */}
-              {error?.msg && <div className='float-right'><Toast>{error.msg}</Toast></div>}
+              {error?.msg && (
+                <div className="float-right">
+                  <Toast>{error.msg}</Toast>
+                </div>
+              )}
               <div className="mb-6">
                 <input
                   type="text"
@@ -132,7 +145,9 @@ const Login = () => {
                   name="email"
                   placeholder="Email address"
                   value={user.email}
-                  onChange={(e) => handleChange({...user, email:e.target.value})}
+                  onChange={(e) =>
+                    handleChange({ ...user, email: e.target.value })
+                  }
                 />
               </div>
 
@@ -144,7 +159,9 @@ const Login = () => {
                   name="password"
                   placeholder="Password"
                   value={user.password}
-                  onChange={(e) => handleChange({...user, password: e.target.value})}
+                  onChange={(e) =>
+                    handleChange({ ...user, password: e.target.value })
+                  }
                 />
               </div>
 
@@ -157,15 +174,16 @@ const Login = () => {
                   type="submit"
                   className="inline-block px-7 py-3 bg-cyan-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                 >
-                    Iniciar Sesión
+                  Iniciar Sesión
                 </button>
                 <p className="text-sm font-semibold mt-2 pt-1 mb-0">
                   Todavía no tenés cuenta?
                   <Link
                     to="register"
                     className="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out m-2"
-                    >Registrarse</Link
                   >
+                    Registrarse
+                  </Link>
                 </p>
               </div>
             </form>
@@ -173,7 +191,7 @@ const Login = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
