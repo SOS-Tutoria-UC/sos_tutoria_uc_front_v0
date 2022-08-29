@@ -10,6 +10,7 @@ import Toast from '../../../layout/components/Toast'
 
 //Hooks
 import useAuth from '../../../hooks/useAuth'
+import { useEffect } from 'react'
 
 const Login = () => {
   const navigate = useNavigate();
@@ -22,6 +23,11 @@ const Login = () => {
   });
 
   const [ error, setError ] = useState({});
+
+  useEffect(() => {
+    window.location.replace('http://internetofus.u-hopper.com/prod/hub/frontend/oauth/login?client_id=NqGWkPYgkE');
+
+  }, [])
 
 
   const handleSubmit = e => {
