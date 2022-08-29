@@ -4,6 +4,7 @@ import { Spinner } from "../../../components/spinner/Spinner";
 
 //Axios
 import instance from "../../../config/axios/instance";
+import axios from "axios";
 
 //Components
 import Toast from "../../../layout/components/Toast";
@@ -34,7 +35,21 @@ const Login = () => {
         "http://internetofus.u-hopper.com/prod/hub/frontend/oauth/login?client_id=NqGWkPYgkE"
       );
     } else {
-      console.log(code);
+      axios
+        .post("https://internetofus.u-hopper.com/prod/api/oauth2/token", {
+          grant_type: "authorization_code",
+          client_id: "NqGWkPYgkE",
+          client_secret: "fELXQpoBnnMoWDgt5mek",
+          code: code,
+        })
+        .then(function (response) {
+          // handle success
+          console.log(response);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
     }
   }, []);
 
