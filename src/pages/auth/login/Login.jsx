@@ -38,6 +38,7 @@ const Login = () => {
       fetch("https://internetofus.u-hopper.com/prod/api/oauth2/token", {
         method: "POST",
         body: new URLSearchParams({
+          mode: 'no-cors',
           grant_type: "authorization_code",
           client_id: "NqGWkPYgkE",
           client_secret: "fELXQpoBnnMoWDgt5mek",
