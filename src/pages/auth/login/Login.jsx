@@ -42,7 +42,7 @@ const Login = () => {
           grant_type: "authorization_code",
           client_id: "NqGWkPYgkE",
           client_secret: "fELXQpoBnnMoWDgt5mek",
-          code: "4pxClmXKjDL99jqNvYBL33Ly5bgWRDXz",
+          code: code,
         }),
       });
     }
