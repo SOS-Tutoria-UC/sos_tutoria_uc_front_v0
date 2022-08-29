@@ -35,18 +35,23 @@ const Login = () => {
         "http://internetofus.u-hopper.com/prod/hub/frontend/oauth/login?client_id=NqGWkPYgkE"
       );
     } else {
-      fetch("https://internetofus.u-hopper.com/prod/api/oauth2/token", {
-        method: "POST",
-        mode: "no-cors",
-        body: new URLSearchParams({
-          grant_type: "authorization_code",
-          client_id: "NqGWkPYgkE",
-          client_secret: "fELXQpoBnnMoWDgt5mek",
-          code: code,
-        }).then((res) => {
-          console.log(res);
-        }),
-      });
+      const getToken = async () => {
+        const response = await fetch(
+          "https://internetofus.u-hopper.com/prod/api/oauth2/token",
+          {
+            method: "POST",
+            mode: "no-cors",
+            body: new URLSearchParams({
+              grant_type: "authorization_code",
+              client_id: "NqGWkPYgkE",
+              client_secret: "fELXQpoBnnMoWDgt5mek",
+              code: code,
+            }),
+          }
+        );
+        console.log(response)
+      };
+      getToken();
     }
   }, []);
 
