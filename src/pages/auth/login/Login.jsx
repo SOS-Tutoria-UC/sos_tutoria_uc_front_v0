@@ -35,21 +35,15 @@ const Login = () => {
         "http://internetofus.u-hopper.com/prod/hub/frontend/oauth/login?client_id=NqGWkPYgkE"
       );
     } else {
-      axios
-        .post("https://internetofus.u-hopper.com/prod/api/oauth2/token", {
+      fetch("https://internetofus.u-hopper.com/prod/api/oauth2/token", {
+        method: "POST",
+        body: new URLSearchParams({
           grant_type: "authorization_code",
           client_id: "NqGWkPYgkE",
           client_secret: "fELXQpoBnnMoWDgt5mek",
-          code: code,
-        })
-        .then(function (response) {
-          // handle success
-          console.log(response);
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        });
+          code: "4pxClmXKjDL99jqNvYBL33Ly5bgWRDXz",
+        }),
+      });
     }
   }, []);
 
