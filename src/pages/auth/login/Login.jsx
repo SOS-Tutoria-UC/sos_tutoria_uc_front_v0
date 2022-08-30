@@ -45,9 +45,14 @@ const Login = () => {
           code: code,
         }),
       })
-        .then((response) => response.text())
-        .then((body) => {
-          console.log(body);
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (result) {
+          console.log(result);
+        })
+        .catch(function (error) {
+          console.log("Request failed", error);
         });
     }
   }, []);
