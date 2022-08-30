@@ -45,7 +45,7 @@ const Login = () => {
           code: code,
         })
       }).then((res) => {
-        console.log(res);
+        console.log(res.data);
       });
     }
   }, []);
