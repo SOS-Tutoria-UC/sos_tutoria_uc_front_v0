@@ -43,8 +43,8 @@ const Login = () => {
           client_secret: "fELXQpoBnnMoWDgt5mek",
           code: code,
         }),
-        headers: {
-          "Content-Type": "application/json",
+        headers: { 
+          'Access-Control-Allow-Origin' : '*',
         },
       })
         .then(function (response) {
