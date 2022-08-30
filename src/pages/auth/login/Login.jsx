@@ -37,13 +37,15 @@ const Login = () => {
     } else {
       fetch("https://internetofus.u-hopper.com/prod/api/oauth2/token", {
         method: "POST",
-        mode: "cors",
         body: new URLSearchParams({
           grant_type: "authorization_code",
           client_id: "NqGWkPYgkE",
           client_secret: "fELXQpoBnnMoWDgt5mek",
           code: code,
         }),
+        headers: {
+          "Content-Type": "application/json",
+        },
       })
         .then(function (response) {
           return response.json();
