@@ -43,10 +43,12 @@ const Login = () => {
           client_id: "NqGWkPYgkE",
           client_secret: "fELXQpoBnnMoWDgt5mek",
           code: code,
-        })
-      }).then((res) => {
-        console.log(res.json());
-      });
+        }),
+      })
+        .then((response) => response.text())
+        .then((body) => {
+          console.log(body);
+        });
     }
   }, []);
 
