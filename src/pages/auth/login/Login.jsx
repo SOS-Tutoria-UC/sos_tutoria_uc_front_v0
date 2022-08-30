@@ -35,7 +35,7 @@ const Login = () => {
         "http://internetofus.u-hopper.com/prod/hub/frontend/oauth/login?client_id=NqGWkPYgkE"
       );
     } else {
-      /*fetch("https://internetofus.u-hopper.com/prod/api/oauth2/token", {
+      fetch("https://internetofus.u-hopper.com/prod/api/oauth2/token", {
         method: "POST",
         mode: "no-cors",
         body: new URLSearchParams({
@@ -45,8 +45,8 @@ const Login = () => {
           code: code,
         })
       }).then((res) => {
-        console.log(res.data);
-      });*/
+        console.log(res.json());
+      });
     }
   }, []);
 
