@@ -44,7 +44,7 @@ const Login = () => {
           code: code,
         }),
         headers: { 
-          'Access-Control-Allow-Origin' : '*',
+          "Content-Type": "application/x-www-form-urlencoded"
         },
       })
         .then(function (response) {
