@@ -4,7 +4,6 @@ import { Spinner } from "../../../components/spinner/Spinner";
 
 //Axios
 import instance from "../../../config/axios/instance";
-import axios from "axios";
 
 //Components
 import Toast from "../../../layout/components/Toast";
@@ -20,7 +19,7 @@ const Login = () => {
   const code = new URLSearchParams(search).get("code");
 
   const { handleSetAuth } = useAuth();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const [user, setUser] = useState({
     email: "",
@@ -35,29 +34,27 @@ const Login = () => {
         "http://internetofus.u-hopper.com/prod/hub/frontend/oauth/login?client_id=NqGWkPYgkE"
       );
     } else {
-      fetch("https://internetofus.u-hopper.com/prod/api/oauth2/token", {
-        method: "POST",
-        body: new URLSearchParams({
-          grant_type: "authorization_code",
-          client_id: "NqGWkPYgkE",
-          client_secret: "fELXQpoBnnMoWDgt5mek",
+      instance
+        .post("/auth/oauth", {
+          url: "https://internetofus.u-hopper.com/prod/api/oauth2/token",
           code: code,
-        }),
-        headers: { 
-          "Content-Type": "application/x-www-form-urlencoded"
-        },
-      })
-        .then(function (response) {
-          return response.json();
         })
-        .then(function (result) {
-          console.log(result);
+        .then((response) => {
+          localStorage.setItem("access_token", response.data.access_token);
+          instance.get(`/auth/token-details/${response.data.access_token}`).then( response => {
+            handleSetAuth(response.data)
+            setLoading(false)
+            console.log(response)
+          }).catch( error => {
+            console.log(error.response)
+            setLoading(false);
         })
-        .catch(function (error) {
-          console.log("Request failed", error);
+        })
+        .catch((error) => {
+          console.log(error.response);
         });
     }
-  }, []);
+  }, [code]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -70,7 +67,7 @@ const Login = () => {
     instance
       .post("/auth/login", user)
       .then((response) => {
-        localStorage.setItem("access_token", response.data.token);
+        localStorage.setItem("access_token", response.data.acess_token);
         handleSetAuth(response.data);
         console.log(response.data);
         setLoading(false);

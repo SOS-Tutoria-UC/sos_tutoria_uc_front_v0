@@ -8,7 +8,6 @@ const AuthProvider = ({ children }) => {
     const [ auth, setAuth ] =  useState({});
     const [ loading, setLoading ] = useState(true);
     const navigate = useNavigate();
-    const location = useLocation();
 
     useEffect(() => {
         const authenticate = () => {
@@ -19,7 +18,16 @@ const AuthProvider = ({ children }) => {
                 return;
             }
 
-            instance.get('/users/profile').then( response => {
+            /*instance.get('/users/profile').then( response => {
+                handleSetAuth(response.data)
+                setLoading(false);
+                navigate("/user");
+              }).catch( error => {
+                console.log(error.response)
+                setLoading(false);
+            })*/
+
+            instance.get(`/auth/token-details/${token}`).then( response => {
                 handleSetAuth(response.data)
                 setLoading(false);
                 navigate("/user");
