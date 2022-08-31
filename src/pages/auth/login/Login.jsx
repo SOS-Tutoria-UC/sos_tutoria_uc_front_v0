@@ -44,6 +44,7 @@ const Login = () => {
           instance.get(`/auth/token-details/${response.data.access_token}`).then( response => {
             handleSetAuth(response.data)
             setLoading(false)
+            navigate("/user");
             console.log(response)
           }).catch( error => {
             console.log(error.response)
