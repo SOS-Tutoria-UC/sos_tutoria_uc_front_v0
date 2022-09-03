@@ -11,7 +11,7 @@ export const Register = () => {
               <span className="font-semibold text-xl tracking-tight">Registro de nuevo usuario</span>
           </div>
         </nav>
-        <RegisterForm />
+        <RegisterForm  authData={true}/>
       </>
     )
 
