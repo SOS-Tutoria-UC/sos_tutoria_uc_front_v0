@@ -27,7 +27,7 @@ const AuthProvider = ({ children }) => {
                 setLoading(false);
             })*/
 
-            instance.get(`/auth/token-details/${token}`).then( response => {
+            instance.get(`/users/wenet-profile}`).then( response => {
                 handleSetAuth(response.data)
                 setLoading(false);
                 navigate("/user");

@@ -29,6 +29,8 @@ const Login = () => {
   const [error, setError] = useState({});
 
   useEffect(() => {
+    if (localStorage.getItem("access_token")) navigate("/user");
+
     if (code === null) {
       window.location.replace(
         "http://internetofus.u-hopper.com/prod/hub/frontend/oauth/login?client_id=NqGWkPYgkE"
@@ -41,15 +43,17 @@ const Login = () => {
         })
         .then((response) => {
           localStorage.setItem("access_token", response.data.access_token);
-          instance.get(`/auth/token-details/${response.data.access_token}`).then( response => {
-            handleSetAuth(response.data)
-            setLoading(false)
-            navigate("/user");
-            console.log(response)
-          }).catch( error => {
-            console.log(error.response)
-            setLoading(false);
-        })
+          instance
+            .get(`/users/wenet-profile`)
+            .then((response) => {
+              console.log(response.data);
+              handleSetAuth(response.data);
+              setLoading(false);
+              navigate("/user");
+            })
+            .catch((error) => {
+              console.log(error);
+            });
         })
         .catch((error) => {
           console.log(error.response);
