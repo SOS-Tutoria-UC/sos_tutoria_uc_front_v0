@@ -18,9 +18,9 @@ export const useButton = (label) => {
   }
 
 
-  const Button = () => (
+  const Button = ({disabled}) => (
     <>
-        <button className={c} onClick={() => handleChangeColor()}>{label}</button>
+        <button disabled={disabled} className={c} onClick={() => handleChangeColor()}>{label}</button>
     </>
 )
 

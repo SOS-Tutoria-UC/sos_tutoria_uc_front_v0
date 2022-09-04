@@ -2,7 +2,8 @@ import React from "react";
 import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-
+import { Spinner } from "../spinner/Spinner";
+import moment from "moment";
 //Hooks
 import { useSelect } from "../../hooks/inputs/useSelect";
 
@@ -40,28 +41,30 @@ const RegisterForm = (props) => {
   const [loadingQ06, setLoadingQ06] = useState(false);
   const [loadingPsy, setLoadingPsy] = useState(false);
   const [consentimiento, setConsentimiento] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const inputCon = useRef();
 
   const [stateq01, Selectq01] = useSelect(
-    "q01",
-    "Q01. ¿Cuál es su género?",
+    "gender",
+    "¿Cuál es su género?",
     Q01OPTIONS,
     "Seleccione un género"
   );
   const [stateq03b, Selectq03b] = useSelect(
-    "q03b",
+    "major",
     "Q03.b ¿Cuál es tu carrera?",
     Q03OPTIONS,
     "Seleccione una carrera"
   );
   const [stateq03a, Selectq03a] = useSelect(
-    "q03a",
+    "campus",
     "Q03.a ¿Cuál es tu campus?",
     Q03AOPTIONS,
     "Seleccione un campus"
   );
   const [stateq04, Selectq04] = useSelect(
-    "q04",
+    "degree_programme",
     "Q04 ¿Cuál es su programa de grado este año? (lo que te identifique mejor)",
     Q03BOPTIONS,
     "Seleccione un programa"
@@ -102,8 +105,8 @@ const RegisterForm = (props) => {
       const objects = {};
       Q09OPTIONS.forEach((element) => {
         objects[element.id] = {
-          name: element.name,
-          cal: 1,
+          name: element.id,
+          level: element.level,
         };
       });
       setStateq09(objects);
@@ -115,15 +118,19 @@ const RegisterForm = (props) => {
   const handleChangeScore = (e, n) => {
     setStateq06({
       ...stateq06,
-      [e.target.name]: { name: n, level: Number(e.target.value), ontology: "competence" },
+      [e.target.name]: {
+        name: n,
+        level: Number(e.target.value),
+        ontology: "competence",
+      },
     });
-    console.log(stateq06)
+    console.log(stateq06);
   };
 
   const handleChangeQ09 = (e, n) => {
     setStateq09({
       ...stateq09,
-      [e.target.name]: { name: n, cal: Number(e.target.value) },
+      [e.target.name]: { name: n, level: Number(e.target.value) },
     });
   };
 
@@ -203,18 +210,38 @@ const RegisterForm = (props) => {
       modal("Campos obligatorios!", "Completar fecha de nacimiento", "warning");
       return;
     }
-
-    //TODO
-    //Actualizar competencias en Wenet
-    console.log(Object.values(stateq06))
+    setLoading(true);
     instance
       .post("/users", {
         ...personalInfo,
-        Q01: stateq01,
-        Q02: birthdate,
-        Q03a: stateq03a,
-        Q03b: stateq03b,
-        Q04: stateq04,
+        Q01_Q02: {
+          dateOfBirth: {
+            year: moment(birthdate).year(),
+            month: moment(birthdate).month(),
+            day: moment(birthdate).day(),
+          },
+          gender: stateq01 === "Prefiero no decirlo" ? "not-say" : stateq01[0],
+        },
+        /**MATERIALS */
+        Q03a: {
+          name: "campus",
+          description: stateq03a,
+          quantity: 1,
+          classification: "university_status",
+        },
+        Q03b: {
+          name: "dyspline",
+          description: stateq03b,
+          quantity: 1,
+          classification: "university_status",
+        },
+        Q04: {
+          name: "study_year",
+          description: stateq04,
+          quantity: 1,
+          classification: "university_status",
+        },
+        /******** */
         Q06: Object.values(stateq06),
         Q09: stateq09,
       })
@@ -233,11 +260,13 @@ const RegisterForm = (props) => {
       <>
         <div className="p-6 rounded-lg shadow-lg bg-white lg:w-3/4 m-auto">
           <div className="flex items-center mb-4">
+            {loading && <Spinner />}
             <input
               ref={inputCon}
               id="consentimiento"
               type="checkbox"
               value=""
+              disabled={loading}
               className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
               onChange={(e) => setConsentimiento(!consentimiento)}
             />
@@ -271,6 +300,7 @@ const RegisterForm = (props) => {
                 <div className="form-group mb-6">
                   <input
                     type="text"
+                    disabled={loading}
                     className="form-control block
               w-full
               px-3
@@ -300,6 +330,7 @@ const RegisterForm = (props) => {
                 <div className="form-group mb-6">
                   <input
                     type="text"
+                    disabled={loading}
                     className="form-control block
               w-full
               px-3
@@ -427,7 +458,7 @@ const RegisterForm = (props) => {
               </p>
             </div>
             <div className="form-group mb-6">
-              <Selectq01 />
+              <Selectq01 disabled={loading} />
             </div>
             <div className="form-group mb-6">
               <label
@@ -455,17 +486,18 @@ const RegisterForm = (props) => {
                 name="birthdate"
                 id="birthdate"
                 value={birthdate}
+                disabled={loading}
                 onChange={(e) => setBirthdate(e.target.value)}
               />
             </div>
             <div className="form-group mb-6">
-              <Selectq03a />
+              <Selectq03a disabled={loading} />
             </div>
             <div className="form-group mb-6">
-              <Selectq03b />
+              <Selectq03b disabled={loading} />
             </div>
             <div className="form-group mb-6">
-              <Selectq04 />
+              <Selectq04 disabled={loading} />
             </div>
             <div className="form-group mb-20 gap-2">
               <label
@@ -480,41 +512,55 @@ const RegisterForm = (props) => {
                 skills={SKILLS["Ciencias exactas"]}
                 handleChangeScore={handleChangeScore}
                 label="Ciencias Exactas"
+                disabled={loading}
               />
               <Accordion
                 skills={SKILLS["Ciencias de la computación"]}
                 handleChangeScore={handleChangeScore}
                 label="Ciencias de la computación"
+                disabled={loading}
               />
               <Accordion
                 skills={SKILLS["Salud"]}
                 handleChangeScore={handleChangeScore}
                 label="Salud"
+                disabled={loading}
               />
               <Accordion
                 skills={SKILLS["Administrativas y Contables"]}
                 handleChangeScore={handleChangeScore}
                 label="Administrativas y Contables"
+                disabled={loading}
               />
               <Accordion
                 skills={SKILLS["Ciencias Sociales"]}
                 handleChangeScore={handleChangeScore}
                 label="Ciencias Sociales"
+                disabled={loading}
               />
               <Accordion
                 skills={SKILLS["Jurídicas"]}
                 handleChangeScore={handleChangeScore}
                 label="Jurídicas"
+                disabled={loading}
               />
               <Accordion
                 skills={SKILLS["Ciencias de la Electrónica"]}
                 handleChangeScore={handleChangeScore}
                 label="Ciencias de la Electrónica"
+                disabled={loading}
               />
               <Accordion
                 skills={SKILLS["Diseño y Construcción"]}
                 handleChangeScore={handleChangeScore}
                 label="Diseño y Construcción"
+                disabled={loading}
+              />
+                            <Accordion
+                skills={SKILLS["Ambiental"]}
+                handleChangeScore={handleChangeScore}
+                label="Ambiental"
+                disabled={loading}
               />
             </div>
             <div className="form-group mb-10 gap-2">
@@ -534,18 +580,20 @@ const RegisterForm = (props) => {
                     htmlFor={c.id}
                     className="ml-2 text-lg font-bold text-gray-500 col-span-4"
                   >
-                    {c.id} - {c.name}
+                    {c.name}
                   </label>
                   <RadioButton
                     id={c.id}
                     name={c.name}
                     handleChangeScore={handleChangeQ09}
+                    disabled={loading}
                   />
                 </div>
               ))}
             </div>
             <div className="flex justify-center gap-2">
               <button
+              disabled={loading}
                 className="
             w-full
             px-6

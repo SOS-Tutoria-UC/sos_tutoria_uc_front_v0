@@ -13,29 +13,29 @@ export const useRow = (hour) => {
     const [ state4, Button4 ] = useButton("Seleccionar");
     const [ state5, Button5 ] = useButton("Seleccionar");
 
-  const Row = () => (
+  const Row = ({...props}) => (
     <>
         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
             <th scope="row" className="font-medium text-gray-900 dark:text-white whitespace-nowrap bg-white">
               {hour}
             </th>
             <td style={{width:"10px"}}>
-               <Button0 />
+               <Button0 disabled={props.disabled}/>
              </td>
            <td style={{width:"10px"}}>
-                <Button1 />
+                <Button1 disabled={props.disabled}/>
             </td>
             <td style={{width:"10px"}}>
-              <Button2 />
+              <Button2 disabled={props.disabled}/>
             </td>
             <td style={{width:"10px"}}>
-              <Button3 />
+              <Button3 disabled={props.disabled}/>
             </td>
             <td style={{width:"10px"}}>
-              <Button4 />
+              <Button4 disabled={props.disabled}/>
             </td>
             <td style={{width:"10px"}}>
-              <Button5 />
+              <Button5 disabled={props.disabled}/>
             </td>
         </tr>
     </>
