@@ -46,8 +46,8 @@ export const Accordion = ({skills, handleChangeScore, label}) => {
                 {
                     skills.map((c,i) => (
                     <div className="mb-4 grid grid-cols-6" key={c.id}> 
-                        <label htmlFor={c.id} className="ml-2 text-lg font-bold text-gray-500 col-span-4">{c.id} - {c.name}</label>
-                        <RadioButton id={c.id} name={c.name} handleChangeScore={handleChangeScore} />
+                        <label htmlFor={c.id} className="ml-2 text-lg font-bold text-gray-500 col-span-4">{c.name}</label>
+                        <RadioButton id={c.id} name={c.id} handleChangeScore={handleChangeScore} />
                     </div>
                     ))
                 }   

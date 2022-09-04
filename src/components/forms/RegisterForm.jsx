@@ -37,7 +37,7 @@ const RegisterForm = (props) => {
   const [birthdate, setBirthdate] = useState("");
   const [stateq06, setStateq06] = useState({});
   const [stateq09, setStateq09] = useState({});
-  const [loading, setLoading] = useState(false);
+  const [loadingQ06, setLoadingQ06] = useState(false);
   const [loadingPsy, setLoadingPsy] = useState(false);
   const [consentimiento, setConsentimiento] = useState(false);
   const inputCon = useRef();
@@ -71,7 +71,7 @@ const RegisterForm = (props) => {
 
   useEffect(() => {
     const createSkillsObject = () => {
-      setLoading(false);
+      setLoadingQ06(false);
       const objects = {};
       [
         ...SKILLS["Ciencias exactas"],
@@ -82,14 +82,16 @@ const RegisterForm = (props) => {
         ...SKILLS["Jurídicas"],
         ...SKILLS["Ciencias de la Electrónica"],
         ...SKILLS["Diseño y Construcción"],
+        ...SKILLS["Ambiental"],
       ].forEach((element) => {
         objects[element.id] = {
-          name: element.name,
-          cal: element.cal,
+          name: element.id,
+          ontology: "competence",
+          level: element.level,
         };
       });
       setStateq06(objects);
-      setLoading(true);
+      setLoadingQ06(true);
     };
     createSkillsObject();
   }, []);
@@ -113,8 +115,9 @@ const RegisterForm = (props) => {
   const handleChangeScore = (e, n) => {
     setStateq06({
       ...stateq06,
-      [e.target.name]: { name: n, cal: Number(e.target.value) },
+      [e.target.name]: { name: n, level: Number(e.target.value), ontology: "competence" },
     });
+    console.log(stateq06)
   };
 
   const handleChangeQ09 = (e, n) => {
@@ -203,6 +206,7 @@ const RegisterForm = (props) => {
 
     //TODO
     //Actualizar competencias en Wenet
+    console.log(Object.values(stateq06))
     instance
       .post("/users", {
         ...personalInfo,
@@ -211,7 +215,7 @@ const RegisterForm = (props) => {
         Q03a: stateq03a,
         Q03b: stateq03b,
         Q04: stateq04,
-        Q06: stateq06,
+        Q06: Object.values(stateq06),
         Q09: stateq09,
       })
       .then((response) => {
@@ -224,7 +228,7 @@ const RegisterForm = (props) => {
       });
   };
 
-  if (loading && loadingPsy)
+  if (loadingQ06 && loadingPsy)
     return (
       <>
         <div className="p-6 rounded-lg shadow-lg bg-white lg:w-3/4 m-auto">
