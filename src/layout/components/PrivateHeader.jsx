@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
+import logo from "./images.png";
 
 //Hooks
 import useAuth from "../../hooks/useAuth";
@@ -23,7 +24,12 @@ const Header = () => {
           to={"/user"}
           className="flex items-center flex-shrink-0 text-white mr-6"
         >
-          <span className="font-bold text-4xl tracking-tight hover:text-slate-200">
+          <img
+            src={logo}
+            className="m-5 h-10 sm:h-10"
+            alt="Logo"
+          />
+          <span className="font-bold text-2xl hover:text-slate-200">
             SOS Tutoría UC
           </span>
         </Link>
@@ -31,7 +37,7 @@ const Header = () => {
           <div className="text-sm">
             <Link
               to={"request-tutoring"}
-              className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 sm:mt-0"
+              className="inline-block text-sm px-4 py-2 font-bold leading-none rounded text-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 sm:mt-0"
             >
               Solicitar Tutoría
             </Link>
@@ -39,7 +45,7 @@ const Header = () => {
           <div className="text-sm">
             <Link
               to={"survey"}
-              className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 sm:mt-0"
+              className="inline-block text-sm px-4 py-2 font-bold leading-none rounded text-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 sm:mt-0"
             >
               Completar Survey
             </Link>
@@ -47,7 +53,7 @@ const Header = () => {
           <div className="text-sm">
             <Link
               to={"quienes-somos"}
-              className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 sm:mt-0"
+              className="inline-block text-sm px-4 py-2 font-bold leading-none rounded text-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 sm:mt-0"
             >
               Quiénes somos?
             </Link>
@@ -55,7 +61,7 @@ const Header = () => {
           <div className="text-sm flex-1">
             <Link
               to={"como-interactuar"}
-              className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 sm:mt-0"
+              className="inline-block text-sm px-4 py-2 font-bold leading-none rounded text-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 sm:mt-0"
             >
               Cómo interactuar?
             </Link>

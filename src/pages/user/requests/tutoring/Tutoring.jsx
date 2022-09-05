@@ -267,8 +267,8 @@ const Tutoring = (props) => {
             <div
               className={`relative overflow-x-auto shadow-md sm:rounded-lg ${hidden}`}
             >
-              <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <table className="w-full text-sm text-left text-gray-500 dark:text-gray-100">
+                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-100 dark:text-gray-800">
                   <tr style={{ textAlign: "center" }}>
                     <th scope="col"></th>
                     <th scope="col">Lunes</th>
@@ -279,7 +279,7 @@ const Tutoring = (props) => {
                     <th scope="col">Sábado</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody >
                   <Row0 disabled={loading} />
                   <Row1 disabled={loading} />
                   <Row2 disabled={loading} />

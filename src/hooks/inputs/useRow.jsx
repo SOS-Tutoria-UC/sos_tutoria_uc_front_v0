@@ -16,7 +16,7 @@ export const useRow = (hour) => {
   const Row = ({...props}) => (
     <>
         <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <th scope="row" className="font-medium text-gray-900 dark:text-white whitespace-nowrap bg-white">
+            <th scope="row" className="font-medium text-gray-900 dark:text-black whitespace-nowrap bg-white">
               {hour}
             </th>
             <td style={{width:"10px"}}>
