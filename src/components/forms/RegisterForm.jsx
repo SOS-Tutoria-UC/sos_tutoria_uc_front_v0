@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { Spinner } from "../spinner/Spinner";
 import moment from "moment";
@@ -40,7 +40,6 @@ const RegisterForm = (props) => {
   const [stateq09, setStateq09] = useState({});
   const [loadingQ06, setLoadingQ06] = useState(false);
   const [loadingPsy, setLoadingPsy] = useState(false);
-  const [consentimiento, setConsentimiento] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const inputCon = useRef();
@@ -150,15 +149,6 @@ const RegisterForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!consentimiento) {
-      modal(
-        "Campos obligatorio!",
-        "Debe aceptar los términos y condiciones",
-        "warning"
-      );
-      return;
-    }
-
     //Validaciones para inputs nombre, apellido, email, password, confirm
     if (props.authData) {
       if (
@@ -259,27 +249,6 @@ const RegisterForm = (props) => {
     return (
       <>
         <div className="p-6 rounded-lg shadow-lg bg-white lg:w-3/4 m-auto">
-          <div className="flex items-center mb-4">
-            {loading && <Spinner />}
-            <input
-              ref={inputCon}
-              id="consentimiento"
-              type="checkbox"
-              value=""
-              disabled={loading}
-              className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-              onChange={(e) => setConsentimiento(!consentimiento)}
-            />
-            <label
-              for="consentimiento"
-              className="ml-2 2xl font-medium text-gray-900 dark:text-gray-300"
-            >
-              Acepto los términos y condicionhes. Más info en{" "}
-              <Link to="#" className="text-blue-500">
-                Consentimiento informado
-              </Link>
-            </label>
-          </div>
           {props.authData && (
             <div className="p-5 mt-10 mb-5 bg-blue-50">
               <h3 className="text-2xl leading-6 font-bold text-gray-900 mb-4">

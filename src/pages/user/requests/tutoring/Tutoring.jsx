@@ -20,6 +20,17 @@ const Tutoring = (props) => {
     ],
     "Seleccione modalidad"
   );
+  const [stateBeliefsAndValues, SelectBeliefsAndValues] = useSelect(
+    "b1",
+    "Qué similitud en creencias/valores el tutor debe tener?",
+    [
+      { id: "similar", name: "Similar" },
+      { id: "indifferent", name: "Indiferente" },
+      { id: "different", name: "Diferente" },
+    ],
+    "Seleccione similitud en creencias"
+  );
+
   const [stateCompetencia, SelectCompetencia] = useSelect(
     "c1",
     "Elija sobre qué competencia",
@@ -32,6 +43,7 @@ const Tutoring = (props) => {
       ...SKILLS["Jurídicas"],
       ...SKILLS["Ciencias de la Electrónica"],
       ...SKILLS["Diseño y Construcción"],
+      ...SKILLS["Ambiental"],
     ],
     "Seleccione compentencia"
   );
@@ -66,10 +78,20 @@ const Tutoring = (props) => {
     } else setHidden("hidden");
   };
 
+  const getBeliefAndValue = (beliefAndValue) => {
+    if (beliefAndValue === "Similar") return "similar";
+    else if ("Diferente") return "different";
+    else return "indifferent";
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (stateModalidad === "") {
       modal("Campo obligatorio!", "Seleccione una Modalidad!", "warning");
+      return;
+    }
+    if (stateBeliefsAndValues === "") {
+      modal("Campo obligatorio!", "Creencias/valoresr", "warning");
       return;
     }
     if (stateCompetencia === "") {
@@ -187,9 +209,11 @@ const Tutoring = (props) => {
 
     setLoading(true);
     instance
-      .post("/request", {
+      .post("/task", {
         modality: stateModalidad,
         skill: stateCompetencia,
+        domain: "exact_sciences",
+        beliefsAndValues: getBeliefAndValue(stateBeliefsAndValues),
         description: descripcion,
         requester_availability,
       })
@@ -217,13 +241,19 @@ const Tutoring = (props) => {
           </p>
         </div>
         <form onSubmit={handleSubmit}>
-          <div className="form-group mb-6">
-            <SelectModalidad disabled={loading} />
+          <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <SelectModalidad disabled={loading} />
+            </div>
+            <div class="w-full md:w-1/2 px-3">
+              <SelectBeliefsAndValues disabled={loading} />
+            </div>
           </div>
-          <div className="form-group mb-6">
-            <SelectCompetencia disabled={loading} />
+          <div className="form-group mb-6 cgrid grid-cols-8 gap-4">
+            <div className="col-span-6">
+              <SelectCompetencia disabled={loading} />
+            </div>
           </div>
-
           <div className="mb-5">
             <label
               htmlFor="descripcion"
@@ -279,7 +309,7 @@ const Tutoring = (props) => {
                     <th scope="col">Sábado</th>
                   </tr>
                 </thead>
-                <tbody >
+                <tbody>
                   <Row0 disabled={loading} />
                   <Row1 disabled={loading} />
                   <Row2 disabled={loading} />

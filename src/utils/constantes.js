@@ -10,11 +10,7 @@ export const Q01OPTIONS = [
   {
     id: "O",
     name: "Otro",
-  },
-  {
-    id: "not-say",
-    name: "Prefiero no decirlo",
-  },
+  }
 ];
 
 export const Q03AOPTIONS = [
@@ -105,7 +101,6 @@ export const SKILLS = {
   Salud: [
     { id: "c_chemistry", name: "Química", level: 1 },
     { id: "c_biology", name: "Biología y Genética", level: 1 },
-    { id: "c_psicology", name: "Psicología", level: 1 },
     { id: "c_kinesiology", name: "Kinesiología", level: 1 },
     { id: "c_physiotherapy", name: "Fisioterapia", level: 1 },
     { id: "c_biochemistry", name: "Bioquímica", level: 1 },
@@ -131,11 +126,11 @@ export const SKILLS = {
     { id: "c_int_commerce", name: "Comercio internacional", level: 1 },
   ],
   "Ciencias Sociales": [
-    { id: "c_psicology", name: "Filosofía", level: 1 },
+    { id: "c_psicology", name: "Psicología", level: 1 },
     { id: "c_history", name: "Historia", level: 1 },
     { id: "c_sociology", name: "Sociología", level: 1 },
   ],
-  Jurídicas: [
+  "Jurídicas": [
     { id: "c_diplomacy", name: "Diplomacia", level: 1 },
     { id: "c_politics", name: "Política", level: 1 },
     { id: "c_law", name: "Derecho", level: 1 },
@@ -164,7 +159,7 @@ export const SKILLS = {
     { id: "c_visual_design", name: "Diseño de estructuras", level: 1 },
     { id: "c_digital_design", name: "Diseño de estructuras", level: 1 },
   ],
-  Ambiental: [
+  "Ambiental": [
     { id: "c_environment_sciences", name: "Ciencias ambientales", level: 1 },
   ],
 };
