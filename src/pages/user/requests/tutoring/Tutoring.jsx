@@ -48,7 +48,7 @@ const Tutoring = (props) => {
     "Seleccione compentencia"
   );
   const [descripcion, setDescripcion] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const [state0, Row0] = useRow("8:00 a 9:00");
