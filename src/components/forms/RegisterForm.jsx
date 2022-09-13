@@ -249,6 +249,7 @@ const RegisterForm = (props) => {
     return (
       <>
         <div className="p-6 rounded-lg shadow-lg bg-white lg:w-3/4 m-auto">
+          {loading && <Spinner />}
           {props.authData && (
             <div className="p-5 mt-10 mb-5 bg-blue-50">
               <h3 className="text-2xl leading-6 font-bold text-gray-900 mb-4">
@@ -525,7 +526,7 @@ const RegisterForm = (props) => {
                 label="Diseño y Construcción"
                 disabled={loading}
               />
-                            <Accordion
+              <Accordion
                 skills={SKILLS["Ambiental"]}
                 handleChangeScore={handleChangeScore}
                 label="Ambiental"
@@ -562,7 +563,7 @@ const RegisterForm = (props) => {
             </div>
             <div className="flex justify-center gap-2">
               <button
-              disabled={loading}
+                disabled={loading}
                 className="
             w-full
             px-6

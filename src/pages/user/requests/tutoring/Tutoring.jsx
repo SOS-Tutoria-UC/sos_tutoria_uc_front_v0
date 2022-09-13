@@ -48,7 +48,7 @@ const Tutoring = (props) => {
     "Seleccione compentencia"
   );
   const [descripcion, setDescripcion] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   const [state0, Row0] = useRow("8:00 a 9:00");
@@ -218,14 +218,15 @@ const Tutoring = (props) => {
         requester_availability,
       })
       .then((response) => {
+        setLoading(false);
         modal(response.data.msg, "", "success");
         navigate("/user");
       })
       .catch((error) => {
+        setLoading(false);
         console.log(error.response);
         modal("Error!", error.response.data.msg, "error");
       });
-    setLoading(false);
   };
 
   return (
