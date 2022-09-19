@@ -30,7 +30,7 @@ const Header = () => {
           </span>
         </Link>
         <div className="w-full block flex-grow sm:flex items-center sm:w-auto gap-2">
-          {localUser && localUser.id !== -1 && (
+          {true && (
              <div className="text-sm">
               <Link
                 to={"request-tutoring"}
