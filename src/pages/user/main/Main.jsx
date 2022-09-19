@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import instance from "../../../config/axios/instance";
 import useAuth from "../../../hooks/useAuth";
-import moment from "moment"
-import 'moment/locale/es' 
+import { getDomainLabel } from "../../../utils/constantes";
+import moment from "moment";
+import "moment/locale/es";
 
 const StarIcon = () => {
   return (
@@ -95,8 +96,7 @@ const Accordion = ({ label, labelAlumno, data }) => {
     } else setShowBody("hidden");
   };
 
-  const Solicitadas = ({ data, skill, description, modality }) => {
-
+  const Solicitadas = ({ data, domain, description, modality, state }) => {
     const [showRequestBody, setShowRequestBody] = useState("hidden");
 
     const handleShowRequestBody = () => {
@@ -106,9 +106,9 @@ const Accordion = ({ label, labelAlumno, data }) => {
     };
     return (
       <div className="bg-white border rounded-md border-slate-300">
-      <h2 className="b-0" id="headingOne">
-        <button
-          className="
+        <h2 className="b-0" id="headingOne">
+          <button
+            className="
                     relative
                     flex
                     font-bold
@@ -125,93 +125,101 @@ const Accordion = ({ label, labelAlumno, data }) => {
                     transition
                     focus:outline-none
                 "
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#collapseOne"
-          aria-expanded="true"
-          aria-controls="collapseOne"
-          onClick={() => handleShowRequestBody()}
-        >
-          <span className="flex-1">{skill}</span>
-          <span className="flex-1">{modality}</span>
-
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth="2"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseOne"
+            aria-expanded="true"
+            aria-controls="collapseOne"
+            onClick={() => handleShowRequestBody()}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
-        </button>
-      </h2>
-      <div className={`${showRequestBody} p-5`} aria-labelledby="headingOne">
-        <div className="py-4 px-5">
-        <span className="m-2">Descripción: {description}</span>
+            <span className="flex-1 sm:block">Modalidad: {modality}</span>
+            <span className="flex-1">{getDomainLabel(domain)}</span>
+            <span className="p-2 mr-2 bg-yellow-100 text-center rounded-md">
+              {state}
+            </span>
 
-          <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-              <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr>
-                  <th scope="col" className="px-6 py-3">
-                    Tutor
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Compatibilidad
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Estado
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Fecha de solicitud
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    <span className="sr-only">Acciones</span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {!data.length && <tr><th className="m-2 font-bold font-medium">No hay datos</th></tr>}
-                {data.map((element) => (
-                  <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <th
-                      scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
-                    >
-                      Persona1
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </button>
+        </h2>
+        <div className={`${showRequestBody} p-5`} aria-labelledby="headingOne">
+          <div className="py-4 px-5">
+            <span className="m-2">Descripción: {description}</span>
+
+            <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+              <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                  <tr>
+                    <th scope="col" className="px-6 py-3">
+                      Tutor
                     </th>
-                    <td className="px-6 py-4">
-                      <Compatibilidad compatibilidad={Number(element.compatibility)} />
-                    </td>
-                    <td className="px-6 py-4">
-                      <Estado estado={element.state} />
-                    </td>
-                    <td className="px-6 py-4">{moment(element.createdAt).format('LLLL')}</td>
-                    <td className="px-6 py-4 text-right">
-                      {label === "Tutorias Solicitadas" &&
-                        element.state === "APROBADO" && (
-                          <button className="p-2 bg-green-200 rounded-md  hover:bg-green-300">
-                            Seleccionar tutoría
-                          </button>
-                        )}
-                    </td>
+                    <th scope="col" className="px-6 py-3">
+                      Label
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      Estado
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      Fecha de solicitud
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      <span className="sr-only">Acciones</span>
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {!data.length && (
+                    <tr>
+                      <th className="m-2 font-bold font-medium">
+                        No hay datos
+                      </th>
+                    </tr>
+                  )}
+                  {data.map((element) => (
+                    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                      <th
+                        scope="row"
+                        className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+                      >
+                        {element.receiver.profile_id}
+                      </th>
+                      <td className="px-6 py-4">{element.label}</td>
+                      <td className="px-6 py-4">
+                        <Estado estado={element.state} />
+                      </td>
+                      <td className="px-6 py-4">
+                        {moment(element.createdAt).format("LLLL")}
+                      </td>
+                      <td className="px-6 py-4 text-right">
+                        {label === "Tutorias Solicitadas" &&
+                          element.state === "APROBADO" && (
+                            <button className="p-2 bg-green-200 rounded-md  hover:bg-green-300">
+                              Seleccionar tutoría
+                            </button>
+                          )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    )
-  
-  }
+    );
+  };
 
   console.log(data);
   return (
@@ -267,77 +275,92 @@ const Accordion = ({ label, labelAlumno, data }) => {
 
         <div className="py-4 px-5">
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-          {
-                label === 'Tutorias Solicitadas' ? data.map(elem => <Solicitadas data={elem.body} skill={elem.skill} description={elem.description} modality={elem.modality} key={elem._id}/>) : (
-              
-            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-              <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr>
-                  <th scope="col" className="px-6 py-3">
-                    {labelAlumno}
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Competencia
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Descripción
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Compatibilidad
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Estado
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Fecha de solicitud
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    <span className="sr-only">Edit</span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {!data.length && <tr><th className="m-2 font-bold font-medium">No hay datos</th></tr>}
-                {data.map((element) => (
-                  <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <th
-                      scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
-                    >
-                      Persona1
+            {label === "Tutorias Solicitadas" ? (
+              data.map((elem) => (
+                <Solicitadas
+                  data={elem.messages}
+                  domain={elem.domain}
+                  description={elem.description}
+                  modality={elem.modality}
+                  state={elem.state}
+                  key={elem._id}
+                />
+              ))
+            ) : (
+              <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                  <tr>
+                    <th scope="col" className="px-6 py-3">
+                      {labelAlumno}
                     </th>
-                    <td className="px-6 py-4">{element.skill}</td>
-                    <td className="px-6 py-4">{element.description}</td>
-                    <td className="px-6 py-4">
-                      <Compatibilidad compatibilidad={Number(element.compatibility)} />
-                    </td>
-                    <td className="px-6 py-4">
-                      <Estado estado={element.state} />
-                    </td>
-                    <td className="px-6 py-4">{element.fecha_solicitud}</td>
-                    <td className="px-6 py-4 text-right">
-                      {label === "Tutorias Solicitadas" &&
-                        element.state === "APROBADO" && (
-                          <button className="p-2 bg-green-200 rounded-md  hover:bg-green-300">
-                            Seleccionar tutoría
-                          </button>
-                        )}
-                      {label === "Solicitudes Recibidas" &&
-                        element.state === "PENDIENTE" && (
-                          <div>
-                            <button className="p-2 bg-green-200 rounded-md  hover:bg-green-300 mr-2">
-                              Aprobar
-                            </button>
-                            <button className="p-2 bg-red-200 rounded-md  hover:bg-red-300">
-                              Rechazar
-                            </button>
-                          </div>
-                        )}
-                    </td>
+                    <th scope="col" className="px-6 py-3">
+                      Competencia
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      Descripción
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      Estado
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      Fecha de solicitud
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      <span className="sr-only">Edit</span>
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>)}
+                </thead>
+                <tbody>
+                  {!data.length && (
+                    <tr>
+                      <th className="m-2 font-bold font-medium">
+                        No hay datos
+                      </th>
+                    </tr>
+                  )}
+                  {data.map((element) => (
+                    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                      <th
+                        scope="row"
+                        className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+                      >
+                        {element.profile_id}
+                      </th>
+                      <td className="px-6 py-4">
+                        {element.attributes.question}
+                      </td>
+                      <td className="px-6 py-4">{element.description}</td>
+                      <td className="px-6 py-4">
+                        <Estado estado={element.state} />
+                      </td>
+                      <td className="px-6 py-4">
+                        {" "}
+                        {moment(element.createdAt).format("LLLL")}
+                      </td>
+                      <td className="px-6 py-4 text-right">
+                        {label === "Tutorias Solicitadas" &&
+                          element.state === "APROBADO" && (
+                            <button className="p-2 bg-green-200 rounded-md  hover:bg-green-300">
+                              Seleccionar tutoría
+                            </button>
+                          )}
+                        {label === "Solicitudes Recibidas" &&
+                          element.state === "PENDIENTE" && (
+                            <div>
+                              <button className="p-2 bg-green-200 rounded-md  hover:bg-green-300 mr-2 mb-2">
+                                Aprobar
+                              </button>
+                              <button className="p-2 bg-red-200 rounded-md  hover:bg-red-300">
+                                Rechazar
+                              </button>
+                            </div>
+                          )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
           </div>
         </div>
       </div>
@@ -352,14 +375,15 @@ const Main = () => {
 
   useEffect(() => {
     const getByTutor = () => {
-      /*instance
-        .get(`/request/tutor/${auth._id}`)
+      instance
+        .get(`/task/tutor/${auth.id}`)
         .then((response) => {
+          console.log(response.data);
           setRecibidas(response.data);
         })
         .catch((error) => {
           console.log(error.response);
-        });*/
+        });
     };
     getByTutor();
   }, []);
@@ -367,7 +391,7 @@ const Main = () => {
   useEffect(() => {
     const getByRequester = () => {
       instance
-        .get(`/request/requester/${auth._id}`)
+        .get(`/task/requester/${auth.id}`)
         .then((response) => {
           setSolicitadas(response.data);
         })
@@ -380,11 +404,13 @@ const Main = () => {
 
   return (
     <>
-      <Accordion
-        label="Tutorias Solicitadas"
-        labelAlumno="Tutor   "
-        data={solicitadas}
-      />
+      {solicitadas.length > 0 && (
+        <Accordion
+          label="Tutorias Solicitadas"
+          labelAlumno="Tutor   "
+          data={solicitadas}
+        />
+      )}
       <Accordion
         label="Solicitudes Recibidas"
         labelAlumno="Solicitante"

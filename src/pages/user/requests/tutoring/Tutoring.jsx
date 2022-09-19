@@ -242,11 +242,11 @@ const Tutoring = (props) => {
           </p>
         </div>
         <form onSubmit={handleSubmit}>
-          <div class="flex flex-wrap -mx-3 mb-6">
-            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
               <SelectModalidad disabled={loading} />
             </div>
-            <div class="w-full md:w-1/2 px-3">
+            <div className="w-full md:w-1/2 px-3">
               <SelectBeliefsAndValues disabled={loading} />
             </div>
           </div>

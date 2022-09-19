@@ -10,7 +10,7 @@ import useAuth from "../../hooks/useAuth";
 
 const Header = () => {
   const [hidden, setHidden] = useState("hidden");
-  const { handleSetAuth, auth } = useAuth();
+  const { handleSetAuth, auth, localUser } = useAuth();
 
   const handleLogout = () => {
     handleSetAuth({});
@@ -24,24 +24,22 @@ const Header = () => {
           to={"/user"}
           className="flex items-center flex-shrink-0 text-white mr-6"
         >
-          <img
-            src={logo}
-            className="m-5 h-10 sm:h-10"
-            alt="Logo"
-          />
+          <img src={logo} className="m-5 h-10 sm:h-10" alt="Logo" />
           <span className="font-bold text-2xl hover:text-slate-200">
             SOS Tutoría UC
           </span>
         </Link>
         <div className="w-full block flex-grow sm:flex items-center sm:w-auto gap-2">
-          <div className="text-sm">
-            <Link
-              to={"request-tutoring"}
-              className="inline-block text-sm px-4 py-2 font-bold leading-none rounded text-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 sm:mt-0"
-            >
-              Solicitar Tutoría
-            </Link>
-          </div>
+          {localUser && localUser.id !== -1 && (
+             <div className="text-sm">
+              <Link
+                to={"request-tutoring"}
+                className="inline-block text-sm px-4 py-2 font-bold leading-none rounded text-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 sm:mt-0"
+              >
+                Solicitar Tutoría
+              </Link>
+            </div>
+          )}
           <div className="text-sm">
             <Link
               to={"survey"}

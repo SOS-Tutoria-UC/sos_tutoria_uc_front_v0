@@ -10,7 +10,7 @@ export const Q01OPTIONS = [
   {
     id: "O",
     name: "Otro",
-  }
+  },
 ];
 
 export const Q03AOPTIONS = [
@@ -130,7 +130,7 @@ export const SKILLS = {
     { id: "c_history", name: "Historia", level: 1 },
     { id: "c_sociology", name: "Sociología", level: 1 },
   ],
-  "Jurídicas": [
+  Jurídicas: [
     { id: "c_diplomacy", name: "Diplomacia", level: 1 },
     { id: "c_politics", name: "Política", level: 1 },
     { id: "c_law", name: "Derecho", level: 1 },
@@ -159,7 +159,7 @@ export const SKILLS = {
     { id: "c_visual_design", name: "Diseño de estructuras", level: 1 },
     { id: "c_digital_design", name: "Diseño de estructuras", level: 1 },
   ],
-  "Ambiental": [
+  Ambiental: [
     { id: "c_environment_sciences", name: "Ciencias ambientales", level: 1 },
   ],
 };
@@ -499,3 +499,28 @@ export const Q09OPTIONS = [
     level: 1,
   },
 ];
+
+export const getDomainLabel = (domain) => {
+  switch (domain) {
+    case "exact_sciences":
+      return "Ciencias Exactas";
+    case "computer_s_science":
+      return "Ciencias de la computación";
+    case "health":
+      return "Salud";
+    case "administrative_and_accounting":
+      return "Administrativas y Contables";
+    case "social_sciences":
+      return "Ciencias Sociales";
+    case "legal":
+      return "Jurídicas";
+    case "environmental":
+      return "Ambiental";
+    case "design_and_construction":
+      return "Diseño y Construcción";
+    case "electronic_sciences":
+      return "Ciencias de la Electrónica";
+    default:
+      break;
+  }
+};
