@@ -85,21 +85,46 @@ const Tutoring = (props) => {
   };
 
   const getDominio = (competence) => {
-    if (SKILLS["Ciencias exactas"].includes(competence))
+    if (
+      SKILLS["Ciencias exactas"].filter((e) => e.name === competence).length > 0
+    )
       return "exact_sciences";
-    else if (SKILLS["Ciencias de la computación"].includes(competence))
+    else if (
+      SKILLS["Ciencias de la computación"].filter((e) => e.name === competence)
+        .length > 0
+    )
       return "computer_s_science";
-    else if (SKILLS["Salud"].includes(competence)) return "health";
-    else if (SKILLS["Administrativas y Contables"].includes(competence))
+    else if (SKILLS["Salud"].filter((e) => e.name === competence).length > 0)
+      return "health";
+    else if (
+      SKILLS["Administrativas y Contables"].filter((e) => e.name === competence)
+        .length > 0
+    )
       return "administrative_and_accounting";
-    else if (SKILLS["Ciencias Sociales"].includes(competence))
+    else if (
+      SKILLS["Ciencias Sociales"].filter((e) => e.name === competence).length >
+      0
+    )
       return "social_sciences";
-    else if (SKILLS["Jurídicas"].includes(competence)) return "legal";
-    else if (SKILLS["Ciencias de la Electrónica"].includes(competence))
+    else if (
+      SKILLS["Jurídicas"].filter((e) => e.name === competence).length > 0
+    )
+      return "legal";
+    else if (
+      SKILLS["Ciencias de la Electrónica"].filter((e) => e.name === competence)
+        .length > 0
+    )
       return "electronic_sciences";
-    else if (SKILLS["Diseño y Construcción"].includes(competence))
+    else if (
+      SKILLS["Diseño y Construcción"].filter((e) => e.name === competence)
+        .length > 0
+    )
       return "design_and_construction";
-    else if (SKILLS["Ambiental"].includes(competence)) return "environmental";
+    else if (
+      SKILLS["Ambiental"].filter((e) => e.name === competence).length > 0
+    )
+      return "environmental";
+    return "";
   };
 
   const handleSubmit = (e) => {
