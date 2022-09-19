@@ -84,6 +84,24 @@ const Tutoring = (props) => {
     else return "indifferent";
   };
 
+  const getDominio = (competence) => {
+    if (SKILLS["Ciencias exactas"].includes(competence))
+      return "exact_sciences";
+    else if (SKILLS["Ciencias de la computación"].includes(competence))
+      return "computer_s_science";
+    else if (SKILLS["Salud"].includes(competence)) return "health";
+    else if (SKILLS["Administrativas y Contables"].includes(competence))
+      return "administrative_and_accounting";
+    else if (SKILLS["Ciencias Sociales"].includes(competence))
+      return "social_sciences";
+    else if (SKILLS["Jurídicas"].includes(competence)) return "legal";
+    else if (SKILLS["Ciencias de la Electrónica"].includes(competence))
+      return "electronic_sciences";
+    else if (SKILLS["Diseño y Construcción"].includes(competence))
+      return "design_and_construction";
+    else if (SKILLS["Ambiental"].includes(competence)) return "environmental";
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (stateModalidad === "") {
@@ -212,7 +230,7 @@ const Tutoring = (props) => {
       .post("/task", {
         modality: stateModalidad,
         skill: stateCompetencia,
-        domain: "exact_sciences",
+        domain: getDominio(stateCompetencia),
         beliefsAndValues: getBeliefAndValue(stateBeliefsAndValues),
         description: descripcion,
         requester_availability,
