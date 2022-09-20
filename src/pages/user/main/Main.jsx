@@ -324,7 +324,7 @@ const Accordion = ({ label, labelAlumno, data }) => {
                         scope="row"
                         className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
                       >
-                        {element.receiver.profile_id}
+                        {element.attributes.userId}
                       </th>
                       <td className="px-6 py-4">
                         {element.attributes.question}
