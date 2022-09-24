@@ -12,6 +12,7 @@ import {
   Q01OPTIONS,
   Q03AOPTIONS,
   Q03BOPTIONS,
+  Q08OPTIONS,
   Q09OPTIONS,
   Q03OPTIONS,
   SKILLS,
@@ -37,9 +38,11 @@ const RegisterForm = (props) => {
   /*Survey */
   const [birthdate, setBirthdate] = useState("");
   const [stateq06, setStateq06] = useState({});
+  const [stateq08, setStateq08] = useState({});
   const [stateq09, setStateq09] = useState({});
   const [loadingQ06, setLoadingQ06] = useState(false);
   const [loadingPsy, setLoadingPsy] = useState(false);
+  const [loadingGP, setLoadingGP] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const inputCon = useRef();
@@ -114,6 +117,22 @@ const RegisterForm = (props) => {
     createPsyObject();
   }, []);
 
+  useEffect(() => {
+    const createGuidingPrinciplesObject = () => {
+      setLoadingGP(false);
+      const objects = {};
+      Q08OPTIONS.forEach((element) => {
+        objects[element.id] = {
+          name: element.id,
+          level: element.level,
+        };
+      });
+      setStateq08(objects);
+      setLoadingGP(true);
+    };
+    createGuidingPrinciplesObject();
+  }, []);
+
   const handleChangeScore = (e, n) => {
     setStateq06({
       ...stateq06,
@@ -128,6 +147,13 @@ const RegisterForm = (props) => {
 
   const handleChangeQ09 = (e, n) => {
     setStateq09({
+      ...stateq09,
+      [e.target.name]: { name: n, level: Number(e.target.value) },
+    });
+  };
+
+  const handleChangeQ08 = (e, n) => {
+    setStateq08({
       ...stateq09,
       [e.target.name]: { name: n, level: Number(e.target.value) },
     });
@@ -233,6 +259,7 @@ const RegisterForm = (props) => {
         },
         /******** */
         Q06: Object.values(stateq06),
+        Q08: stateq08,
         Q09: stateq09,
       })
       .then((response) => {
@@ -245,7 +272,7 @@ const RegisterForm = (props) => {
       });
   };
 
-  if (loadingQ06 && loadingPsy)
+  if (loadingQ06 && loadingPsy && loadingGP)
     return (
       <>
         <div className="p-6 rounded-lg shadow-lg bg-white lg:w-3/4 m-auto">
@@ -556,6 +583,33 @@ const RegisterForm = (props) => {
                     id={c.id}
                     name={c.name}
                     handleChangeScore={handleChangeQ09}
+                    disabled={loading}
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="form-group mb-10 gap-2">
+              <label
+                htmlFor="degree"
+                className="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-400 text-bold"
+              >
+                Q08 Utilizando la siguiente escala, indica qué tan importante
+                consideras cada valor como un principio rector en tu vida. 1=
+                nada importante, 2= poco importante, 3= algo importante, 4=
+                importante, 5= muy importante
+              </label>
+              {Q08OPTIONS.map((c) => (
+                <div className="items-center mb-4 grid grid-cols-6" key={c.id}>
+                  <label
+                    htmlFor={c.id}
+                    className="ml-2 text-lg font-bold text-gray-500 col-span-4"
+                  >
+                    {c.name}
+                  </label>
+                  <RadioButton
+                    id={c.id}
+                    name={c.name}
+                    handleChangeScore={handleChangeQ08}
                     disabled={loading}
                   />
                 </div>

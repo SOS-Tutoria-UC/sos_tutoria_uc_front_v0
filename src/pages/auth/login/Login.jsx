@@ -30,34 +30,35 @@ const Login = () => {
 
   useEffect(() => {
     const oauth = () => {
-      if (code === null) {
-        window.location.replace(
-          "http://internetofus.u-hopper.com/prod/hub/frontend/oauth/login?client_id=NqGWkPYgkE"
-        );
-      } else {
-        instance
-          .post("/auth/oauth", {
-            url: "https://internetofus.u-hopper.com/prod/api/oauth2/token",
-            code: code,
-          })
-          .then((response) => {
-            localStorage.setItem("access_token", response.data.access_token);
-            instance
-              .get(`/users/wenet-profile`)
-              .then((response) => {
-                console.log(response.data);
-                handleSetAuth(response.data);
-                setLoading(false);
-                navigate("/user");
-              })
-              .catch((error) => {
-                console.log(error);
-              });
-          })
-          .catch((error) => {
-            console.log(error.response);
-          });
-      }
+      if (!localStorage.getItem("access_token"))
+        if (code === null) {
+          window.location.replace(
+            "http://internetofus.u-hopper.com/prod/hub/frontend/oauth/login?client_id=NqGWkPYgkE"
+          );
+        } else {
+          instance
+            .post("/auth/oauth", {
+              url: "https://internetofus.u-hopper.com/prod/api/oauth2/token",
+              code: code,
+            })
+            .then((response) => {
+              localStorage.setItem("access_token", response.data.access_token);
+              instance
+                .get(`/users/wenet-profile`)
+                .then((response) => {
+                  console.log(response.data);
+                  handleSetAuth(response.data);
+                  setLoading(false);
+                  navigate("/user");
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
+            })
+            .catch((error) => {
+              console.log(error.response);
+            });
+        }
     };
     oauth();
   }, [code]);

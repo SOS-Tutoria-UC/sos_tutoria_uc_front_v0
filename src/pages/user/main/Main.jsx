@@ -4,6 +4,8 @@ import useAuth from "../../../hooks/useAuth";
 import { getDomainLabel } from "../../../utils/constantes";
 import moment from "moment";
 import "moment/locale/es";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const StarIcon = () => {
   return (
@@ -89,12 +91,41 @@ const Estado = ({ estado }) => {
 
 const Accordion = ({ label, labelAlumno, data }) => {
   const [showBody, setShowBody] = useState("hidden");
+  const navigate = useNavigate();
+
+
+  const modal = (title, text, icon) => {
+    Swal.fire({
+      title,
+      text,
+      icon,
+      confirmButtonText: "Ok",
+    });
+  };
 
   const handleShowBody = () => {
     if (showBody) {
       setShowBody("");
     } else setShowBody("hidden");
   };
+
+  const handleUpdateTask = (data, answer) => {
+    console.log(data)
+    instance
+    .put(`/task`, {
+      answer,
+      taskId: data.attributes.taskId,
+      receiverId: data.attributes.userId
+    })
+    .then((response) => {
+      modal(response.data.msg, "", "success");
+      window.location.reload();
+    })
+    .catch((error) => {
+      modal("Error!", error.response.data.msg, "error");
+      console.log(error.response);
+    });
+  }
 
   const Solicitadas = ({ data, domain, description, modality, state }) => {
     const [showRequestBody, setShowRequestBody] = useState("hidden");
@@ -347,10 +378,10 @@ const Accordion = ({ label, labelAlumno, data }) => {
                         {label === "Solicitudes Recibidas" &&
                           element.state === "PENDIENTE" && (
                             <div>
-                              <button className="p-2 bg-green-200 rounded-md  hover:bg-green-300 mr-2 mb-2">
+                              <button className="p-2 bg-green-200 rounded-md  hover:bg-green-300 mr-2 mb-2" onClick={() => handleUpdateTask(element, "No")}>
                                 Aprobar
                               </button>
-                              <button className="p-2 bg-red-200 rounded-md  hover:bg-red-300">
+                              <button className="p-2 bg-red-200 rounded-md  hover:bg-red-300" onClick={() => handleUpdateTask(element, "Sí")}>
                                 Rechazar
                               </button>
                             </div>

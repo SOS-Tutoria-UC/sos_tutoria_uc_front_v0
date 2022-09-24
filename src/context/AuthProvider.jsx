@@ -20,17 +20,6 @@ const AuthProvider = ({ children }) => {
       }
 
       instance
-        .get(`/users/profile`)
-        .then((response) => {
-          handleSetAuth(response.data);
-          setLoading(false);
-        })
-        .catch((error) => {
-          console.log(error.response);
-          setLoading(false);
-        });
-
-      instance
         .get(`/users/wenet-profile`)
         .then((response) => {
           handleSetAuth(response.data);

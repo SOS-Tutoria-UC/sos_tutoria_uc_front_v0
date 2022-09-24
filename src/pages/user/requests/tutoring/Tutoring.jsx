@@ -134,7 +134,7 @@ const Tutoring = (props) => {
       return;
     }
     if (stateBeliefsAndValues === "") {
-      modal("Campo obligatorio!", "Creencias/valoresr", "warning");
+      modal("Campo obligatorio!", "Creencias/valores", "warning");
       return;
     }
     if (stateCompetencia === "") {

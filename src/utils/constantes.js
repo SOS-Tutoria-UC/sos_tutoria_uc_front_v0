@@ -164,28 +164,6 @@ export const SKILLS = {
   ],
 };
 
-/*export const COMPETENCIAS = {
-    "Ingenieria Informática":[{id:"q06b",name:"Lógica Simbólica",cal: 0}, {id:"q06c",name:"Aritmética",cal: 0},],
-    "Análisis de Sistemas":{
-      id:"q06b",
-      name:"Lógica Simbólica",
-      cal: 0,
-      isTutor: false
-    },
-    "Diseño Gráfico":{
-      id:"q06c",
-      name:"Algebra",
-      cal: 0,
-      isTutor: false
-    },
-    "Diseño Industrial":{
-      id:"q06d",
-      name:"Trigonometria",
-      cal: 0,
-      isTutor: false
-    }
-  }*/
-
 export const Q03OPTIONS = [
   {
     id: "q03a",
@@ -394,6 +372,99 @@ export const Q03OPTIONS = [
   {
     id: "q03az",
     name: "Trabajo Social",
+  },
+];
+
+export const Q08OPTIONS = [
+  {
+    id: "v_support",
+    name: "01. APOYO SOCIAL. Obtener ayuda cuando la necesite; sentir que no estás solo en el mundo.",
+    level: 1,
+  },
+  {
+    id: "v_success",
+    name: "02. ÉXITO. Alcanzar sus metas; ser eficiente en todo lo que haces.",
+    level: 1,
+  },
+  {
+    id: "v_sexuality",
+    name: "03. SEXUALIDAD. Tener relaciones sexuales; obtener placer sexual.",
+    level: 1,
+  },
+  {
+    id: "v_know",
+    name: "04. CONOCIMIENTO. Buscar noticias de actualidad sobre asuntos no muy conocidos; Tratar de descubrir cosas nuevas sobre el mundo.",
+    level: 1,
+  },
+  {
+    id: "v_emotion",
+    name: "05. EMOCIÓN. Disfrutar de retos o situaciones desconocidas; buscar aventuras.",
+    level: 1,
+  },
+  {
+    id: "v_power",
+    name: "06. PODER. Tener el poder de influir en los demás y controlar las decisiones; ser el jefe de un equipo.",
+    level: 1,
+  },
+  {
+    id: "v_affect",
+    name: "07. AFECTIVIDAD. Tener una relación afectiva profunda y duradera; tener a alguien con quien compartir éxitos y fracasos.",
+    level: 1,
+  },
+  {
+    id: "v_relig",
+    name: "08. RELIGIOSIDAD. Creer en Dios como salvador de la humanidad; cumplir la voluntad de Dios.",
+    level: 1,
+  },
+  {
+    id: "v_health",
+    name: "09. SALUD. Velar por su salud en todo momento, no sólo cuando esté enfermo; no estar enfermo",
+    level: 1,
+  },
+  {
+    id: "v_pleasure",
+    name: "10. PLACER. Vivir el momento; satisfacer todos tus deseos.",
+    level: 1,
+  },
+  {
+    id: "v_prestige",
+    name: "11. PRESTIGIO. Saber que mucha gente te conoce y te admira; cuando seas mayor para recibir un homenaje por tus aportes.",
+    level: 1,
+  },
+  {
+    id: "v_obed",
+    name: "12. OBEDIENCIA. Cumplir con sus deberes y obligaciones diarias; respetar a tus padres, superiores o mayores.",
+    level: 1,
+  },
+  {
+    id: "v_stabil",
+    name: "13. ESTABILIDAD PERSONAL. Tener la certeza de que mañana tendrás todo lo que tienes hoy; tener una vida organizada y planificada.",
+    level: 1,
+  },
+  {
+    id: "v_belong",
+    name: "14. PERTENENCIA. Tener buenas relaciones de vecindad; formar parte de un grupo (por ejemplo, social, religioso, deportivo, etc.)",
+    level: 1,
+  },
+  {
+    id: "v_beauty",
+    name: "15. BELLEZA. Poder apreciar lo mejor del arte, la música y la literatura; ir a museos o exposiciones donde se pueden ver cosas bonitas.",
+    level: 1,
+  },
+  {
+    id: "v_trad",
+    name: "16. TRADICIÓN. Seguir las normas sociales de su país; respetar las tradiciones de vuestra sociedad.",
+    level: 1,
+  },
+  {
+    id: "v_surviv",
+    name: "17. SUPERVIVENCIA. Tener agua, alimento y abrigo todos los días de tu vida; vivir en un lugar con suficiente comida.",
+    level: 1,
+  },
+  {
+    id: "v_mature",
+    name: "18. MADUREZ. Sentir que tu propósito en la vida se ha cumplido; desarrollar todas tus capacidades.",
+    level: 1,
   },
 ];
 
