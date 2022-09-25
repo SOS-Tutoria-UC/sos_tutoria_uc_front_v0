@@ -58,7 +58,22 @@ const Login = () => {
             .catch((error) => {
               console.log(error.response);
             });
-        }
+      } else {
+
+      instance
+      .get(`/users/wenet-profile`)
+      .then((response) => {
+        handleSetAuth(response.data);
+        setLoading(false);
+        navigate("/user");
+      })
+      .catch((error) => {
+        console.log(error.response);
+        localStorage.removeItem("access_token");
+        setLoading(false);
+        navigate("/");
+      });
+      }
     };
     oauth();
   }, [code]);
