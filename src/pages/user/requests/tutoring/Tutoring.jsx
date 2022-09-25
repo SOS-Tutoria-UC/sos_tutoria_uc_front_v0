@@ -31,6 +31,16 @@ const Tutoring = (props) => {
     "Seleccione similitud en creencias"
   );
 
+  const [statePositionOfAnswerer, SelectPositionOfAnswerer] = useSelect(
+    "d1",
+    "Qué tan cerca deben estar los usuarios para recibir la pregunta?",
+    [
+      { id: "nearby", name: "Cerca" },
+      { id: "anywhere", name: "Indiferente" },
+    ],
+    "Seleccione Posición de receptor"
+  );
+
   const [stateCompetencia, SelectCompetencia] = useSelect(
     "c1",
     "Elija sobre qué competencia",
@@ -293,9 +303,12 @@ const Tutoring = (props) => {
               <SelectBeliefsAndValues disabled={loading} />
             </div>
           </div>
-          <div className="form-group mb-6 cgrid grid-cols-8 gap-4">
-            <div className="col-span-6">
+          <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
               <SelectCompetencia disabled={loading} />
+            </div>
+            <div className="w-full md:w-1/2 px-3">
+              <SelectPositionOfAnswerer disabled={loading} />
             </div>
           </div>
           <div className="mb-5">

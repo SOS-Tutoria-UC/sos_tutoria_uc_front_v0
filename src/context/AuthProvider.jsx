@@ -22,8 +22,8 @@ const AuthProvider = ({ children }) => {
       instance
         .get(`/users/wenet-profile`)
         .then((response) => {
+          console.log(response.data)
           handleSetAuth(response.data);
-
           instance
             .get(`/users/profile/${auth.id}`)
             .then((response) => {
@@ -31,25 +31,30 @@ const AuthProvider = ({ children }) => {
             })
             .catch((error) => {
               console.log(error.response);
+              localStorage.removeItem("access_token");
+              navigate("/");
             });
           setLoading(false);
-          navigate("/user");
         })
         .catch((error) => {
           console.log(error.response);
+          localStorage.removeItem("access_token");
           setLoading(false);
+          navigate("/");
         });
     };
 
     authenticate();
-  }, []);
+  }, [navigate]);
 
   const handleSetAuth = (value) => {
     setAuth(value);
   };
 
   return (
-    <AuthContext.Provider value={{ auth, loading, setLoading, handleSetAuth, localUser }}>
+    <AuthContext.Provider
+      value={{ auth, loading, setLoading, handleSetAuth, localUser }}
+    >
       {children}
     </AuthContext.Provider>
   );

@@ -127,6 +127,23 @@ const Accordion = ({ label, labelAlumno, data }) => {
     });
   }
 
+  const handleSelectBestAnswer = (data) => {
+    console.log(data)
+    /*instance
+    .put(`/task/best-answer`, {
+      taskId: data.attributes.taskId,
+      receiverId: data.attributes.userId
+    })
+    .then((response) => {
+      modal(response.data.msg, "", "success");
+      window.location.reload();
+    })
+    .catch((error) => {
+      modal("Error!", error.response.data.msg, "error");
+      console.log(error.response);
+    });*/
+  }
+
   const Solicitadas = ({ data, domain, description, modality, state }) => {
     const [showRequestBody, setShowRequestBody] = useState("hidden");
 
@@ -236,7 +253,9 @@ const Accordion = ({ label, labelAlumno, data }) => {
                       <td className="px-6 py-4 text-right">
                         {label === "Tutorias Solicitadas" &&
                           element.state === "APROBADO" && (
-                            <button className="p-2 bg-green-200 rounded-md  hover:bg-green-300">
+                            <button className="p-2 bg-green-200 rounded-md  hover:bg-green-300" onClick={() => {
+                              handleSelectBestAnswer(element)
+                            }}>
                               Seleccionar tutoría
                             </button>
                           )}
