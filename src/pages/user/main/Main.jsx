@@ -87,7 +87,13 @@ const Main = () => {
           {estado}
         </span>
       );
-    } else {
+    } else if (estado === "SELECCIONADO"){
+      return (
+        <span className="bg-green-300 p-3 rounded-md font-bold border-2 text-black">
+          {estado}
+        </span>
+      );
+    }else {
       return (
         <span className="bg-red-100 p-3 rounded-md font-bold border-2 text-black">
           {estado}
@@ -137,19 +143,22 @@ const Main = () => {
 
     const handleSelectBestAnswer = (data) => {
       console.log(data);
-      /*instance
-      .put(`/task/best-answer`, {
-        taskId: data.attributes.taskId,
-        receiverId: data.attributes.userId
-      })
-      .then((response) => {
-        modal(response.data.msg, "", "success");
-        window.location.reload();
-      })
-      .catch((error) => {
-        modal("Error!", error.response.data.msg, "error");
-        console.log(error.response);
-      });*/
+      setLoading(true);
+      instance
+        .put(`/task/best-answer`, {
+          taskId: data.attributes.taskId,
+          transactionId: data.transactionId,
+        })
+        .then((response) => {
+          modal(response.data.msg, "", "success");
+          setLoading(false);
+          window.location.reload();
+        })
+        .catch((error) => {
+          modal("Error!", error.response.data.msg, "error");
+          console.log(error.response);
+          setLoading(false);
+        });
     };
 
     const Solicitadas = ({ data, domain, description, modality, state }) => {
