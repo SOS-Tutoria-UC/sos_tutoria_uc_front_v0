@@ -146,6 +146,7 @@ const Main = () => {
       setLoading(true);
       instance
         .put(`/task/best-answer`, {
+          tutor: data.receiver.profile_id,
           taskId: data.attributes.taskId,
           transactionId: data.transactionId,
         })
