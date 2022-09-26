@@ -235,9 +235,6 @@ const Main = () => {
                         Tutor
                       </th>
                       <th scope="col" className="px-6 py-3">
-                        Label
-                      </th>
-                      <th scope="col" className="px-6 py-3">
                         Estado
                       </th>
                       <th scope="col" className="px-6 py-3">
@@ -264,7 +261,6 @@ const Main = () => {
                         >
                           {element.receiver.profile_id}
                         </th>
-                        <td className="px-6 py-4">{element.label}</td>
                         <td className="px-6 py-4">
                           <Estado estado={element.state} />
                         </td>
