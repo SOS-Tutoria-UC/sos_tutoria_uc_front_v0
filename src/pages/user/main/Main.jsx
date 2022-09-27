@@ -11,7 +11,9 @@ import { Spinner } from "../../../components/spinner/Spinner";
 const Main = () => {
   const [solicitadas, setSolicitadas] = useState([]);
   const [recibidas, setRecibidas] = useState([]);
+  const [recibidasCount, setRecibidasCount] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [skip, setSkip] = useState(0);
   const { auth } = useAuth();
 
   const StarIcon = () => {
@@ -87,13 +89,13 @@ const Main = () => {
           {estado}
         </span>
       );
-    } else if (estado === "SELECCIONADO"){
+    } else if (estado === "SELECCIONADO") {
       return (
         <span className="bg-green-300 p-3 rounded-md font-bold border-2 text-black">
           {estado}
         </span>
       );
-    }else {
+    } else {
       return (
         <span className="bg-red-100 p-3 rounded-md font-bold border-2 text-black">
           {estado}
@@ -291,7 +293,6 @@ const Main = () => {
       );
     };
 
-    console.log(data);
     return (
       <div className="bg-white border rounded-md border-slate-300">
         <h2 className="b-0" id="headingOne">
@@ -357,89 +358,141 @@ const Main = () => {
                   />
                 ))
               ) : (
-                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                  <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                      <th scope="col" className="px-6 py-3">
-                        {labelAlumno}
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        Competencia
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        Descripción
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        Estado
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        Fecha de solicitud
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        <span className="sr-only">Edit</span>
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {!data.length && (
+                <>
+                  <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                       <tr>
-                        <th className="m-2 font-bold font-medium">
-                          No hay datos
+                        <th scope="col" className="px-6 py-3">
+                          {labelAlumno}
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          Competencia
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          Descripción
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          Estado
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          Fecha de solicitud
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                          <span className="sr-only">Edit</span>
                         </th>
                       </tr>
+                    </thead>
+                    <tbody>
+                      {!data.length && (
+                        <tr>
+                          <th className="m-2 font-bold font-medium">
+                            No hay datos
+                          </th>
+                        </tr>
+                      )}
+                      {data.map((element) => (
+                        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                          <th
+                            scope="row"
+                            className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+                          >
+                            {element.attributes.userId}
+                          </th>
+                          <td className="px-6 py-4">
+                            {element.attributes.question}
+                          </td>
+                          <td className="px-6 py-4">{element.description}</td>
+                          <td className="px-6 py-4">
+                            <Estado estado={element.state} />
+                          </td>
+                          <td className="px-6 py-4">
+                            {" "}
+                            {moment(element.createdAt).format("LLLL")}
+                          </td>
+                          <td className="px-6 py-4 text-right">
+                            {label === "Tutorias Solicitadas" &&
+                              element.state === "APROBADO" && (
+                                <button className="p-2 bg-green-200 rounded-md  hover:bg-green-300">
+                                  Seleccionar tutoría
+                                </button>
+                              )}
+                            {label === "Solicitudes Recibidas" &&
+                              element.state === "PENDIENTE" && (
+                                <div>
+                                  <button
+                                    className="p-2 bg-green-200 rounded-md  hover:bg-green-300 mr-2 mb-2"
+                                    onClick={() =>
+                                      handleUpdateTask(element, "Sí")
+                                    }
+                                  >
+                                    Aprobar
+                                  </button>
+                                  <button
+                                    className="p-2 bg-red-200 rounded-md  hover:bg-red-300"
+                                    onClick={() =>
+                                      handleUpdateTask(element, "No")
+                                    }
+                                  >
+                                    Rechazar
+                                  </button>
+                                </div>
+                              )}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  <div className="flex justify-right gap-2">
+                    {skip !== 0 && (
+                      <button
+                        onClick={back}
+                        className="
+                          w-full
+                          px-6
+                          py-2.5
+                          bg-cyan-600
+                          text-white
+                          font-medium
+                          text-xs
+                          leading-tight
+                          uppercase
+                          rounded
+                          shadow-md
+                          hover:bg-cyan-700 hover:shadow-lg
+                          focus:bg-cyan-700 focus:shadow-lg focus:outline-none focus:ring-0
+                          active:bg-cyan-800 active:shadow-lg
+                          transition
+                          duration-150
+                          ease-in-out"
+                      >
+                        Anterior
+                      </button>
                     )}
-                    {data.map((element) => (
-                      <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <th
-                          scope="row"
-                          className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
-                        >
-                          {element.attributes.userId}
-                        </th>
-                        <td className="px-6 py-4">
-                          {element.attributes.question}
-                        </td>
-                        <td className="px-6 py-4">{element.description}</td>
-                        <td className="px-6 py-4">
-                          <Estado estado={element.state} />
-                        </td>
-                        <td className="px-6 py-4">
-                          {" "}
-                          {moment(element.createdAt).format("LLLL")}
-                        </td>
-                        <td className="px-6 py-4 text-right">
-                          {label === "Tutorias Solicitadas" &&
-                            element.state === "APROBADO" && (
-                              <button className="p-2 bg-green-200 rounded-md  hover:bg-green-300">
-                                Seleccionar tutoría
-                              </button>
-                            )}
-                          {label === "Solicitudes Recibidas" &&
-                            element.state === "PENDIENTE" && (
-                              <div>
-                                <button
-                                  className="p-2 bg-green-200 rounded-md  hover:bg-green-300 mr-2 mb-2"
-                                  onClick={() =>
-                                    handleUpdateTask(element, "Sí")
-                                  }
-                                >
-                                  Aprobar
-                                </button>
-                                <button
-                                  className="p-2 bg-red-200 rounded-md  hover:bg-red-300"
-                                  onClick={() =>
-                                    handleUpdateTask(element, "No")
-                                  }
-                                >
-                                  Rechazar
-                                </button>
-                              </div>
-                            )}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                   { skip+5 < recibidasCount && <button
+                      onClick={next}
+                      className="
+                          w-full
+                          px-6
+                          py-2.5
+                          bg-cyan-600
+                          text-white
+                          font-medium
+                          text-xs
+                          leading-tight
+                          uppercase
+                          rounded
+                          shadow-md
+                          hover:bg-cyan-700 hover:shadow-lg
+                          focus:bg-cyan-700 focus:shadow-lg focus:outline-none focus:ring-0
+                          active:bg-cyan-800 active:shadow-lg
+                          transition
+                          duration-150
+                          ease-in-out"
+                    >
+                      Siguiente
+                    </button>}
+                  </div>
+                </>
               )}
             </div>
           </div>
@@ -448,19 +501,37 @@ const Main = () => {
     );
   };
 
-  useEffect(() => {
-    const getByTutor = () => {
-      instance
-        .get(`/task/tutor/${auth.id}`)
-        .then((response) => {
-          console.log(response.data);
-          setRecibidas(response.data);
-        })
-        .catch((error) => {
-          console.log(error.response);
-        });
-    };
+  const back = () => {
+    setSkip(skip - 5);
     getByTutor();
+  };
+
+  const next = () => {
+    setSkip(skip + 5);
+    console.log(skip);
+    getByTutor(skip+5);
+  };
+
+  const getByTutor = (skip) => {
+    setLoading(true);
+    instance
+      .get(`/task/tutor/${auth.id}`, {
+        params: {
+          skip,
+        },
+      })
+      .then((response) => {
+        setRecibidas(response.data.solicitudes);
+        setRecibidasCount(response.data.count)
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error.response);
+        setLoading(false);
+      });
+  };
+  useEffect(() => {
+    getByTutor(0);
   }, []);
 
   useEffect(() => {
