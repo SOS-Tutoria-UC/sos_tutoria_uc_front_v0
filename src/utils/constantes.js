@@ -156,8 +156,8 @@ export const SKILLS = {
     },
     { id: "c_contr_management", name: "Gestión de obras", level: 1 },
     { id: "c_structure_design", name: "Diseño de estructuras", level: 1 },
-    { id: "c_visual_design", name: "Diseño de estructuras", level: 1 },
-    { id: "c_digital_design", name: "Diseño de estructuras", level: 1 },
+    { id: "c_visual_design", name: "Diseño visual", level: 1 },
+    { id: "c_digital_design", name: "Diseño digital", level: 1 },
   ],
   Ambiental: [
     { id: "c_environment_sciences", name: "Ciencias ambientales", level: 1 },

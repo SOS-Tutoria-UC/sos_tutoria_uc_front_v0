@@ -200,7 +200,7 @@ const Main = () => {
               aria-controls="collapseOne"
               onClick={() => handleShowRequestBody()}
             >
-              <span className="flex-1 sm:block">Modalidad: {modality}</span>
+              <span className="flex-1 sm:block">Modalidad: {modality==='nearby'?'Presencial':'Remoto'}</span>
               <span className="flex-1">{getDomainLabel(domain)}</span>
               <span className="p-2 mr-2 bg-yellow-100 text-center rounded-md">
                 {state}
