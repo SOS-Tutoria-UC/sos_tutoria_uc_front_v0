@@ -264,11 +264,13 @@ const RegisterForm = (props) => {
       })
       .then((response) => {
         modal(response.data.msg, "", "success");
+        setLoading(false);
         navigate("/user");
       })
       .catch((error) => {
         console.log(error.response);
         modal("Error!", error.response.data.msg, "error");
+        setLoading(false);
       });
   };
 
@@ -565,6 +567,33 @@ const RegisterForm = (props) => {
                 htmlFor="degree"
                 className="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-400 text-bold"
               >
+                Q08 Utilizando la siguiente escala, indica qué tan importante
+                consideras cada valor como un principio rector en tu vida. 1=
+                nada importante, 2= poco importante, 3= algo importante, 4=
+                importante, 5= muy importante
+              </label>
+              {Q08OPTIONS.map((c) => (
+                <div className="items-center mb-4 grid grid-cols-6" key={c.id}>
+                  <label
+                    htmlFor={c.id}
+                    className="ml-2 text-lg font-bold text-gray-500 col-span-4"
+                  >
+                    {c.name}
+                  </label>
+                  <RadioButton
+                    id={c.id}
+                    name={c.name}
+                    handleChangeScore={handleChangeQ08}
+                    disabled={loading}
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="form-group mb-10 gap-2">
+              <label
+                htmlFor="degree"
+                className="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-400 text-bold"
+              >
                 Q09 Descríbete a ti mismo como generalmente eres ahora, no como
                 deseas ser. Utilice la escala a continuación para calificar con
                 qué precisión lo describe cada afirmación 1= No se parece en
@@ -583,33 +612,6 @@ const RegisterForm = (props) => {
                     id={c.id}
                     name={c.name}
                     handleChangeScore={handleChangeQ09}
-                    disabled={loading}
-                  />
-                </div>
-              ))}
-            </div>
-            <div className="form-group mb-10 gap-2">
-              <label
-                htmlFor="degree"
-                className="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-400 text-bold"
-              >
-                Q08 Utilizando la siguiente escala, indica qué tan importante
-                consideras cada valor como un principio rector en tu vida. 1=
-                nada importante, 2= poco importante, 3= algo importante, 4=
-                importante, 5= muy importante
-              </label>
-              {Q08OPTIONS.map((c) => (
-                <div className="items-center mb-4 grid grid-cols-6" key={c.id}>
-                  <label
-                    htmlFor={c.id}
-                    className="ml-2 text-lg font-bold text-gray-500 col-span-4"
-                  >
-                    {c.name}
-                  </label>
-                  <RadioButton
-                    id={c.id}
-                    name={c.name}
-                    handleChangeScore={handleChangeQ08}
                     disabled={loading}
                   />
                 </div>

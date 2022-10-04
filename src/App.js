@@ -16,6 +16,8 @@ import { StudentDataProvider } from "./context/StudentDataProvider";
 import { QuienesSomos } from "./pages/user/main/QuienesSomos";
 import { ComoInteractuar } from "./pages/user/main/ComoInteractuar";
 import Survey from "./pages/user/survey/Survey";
+import EvaluarByRequester from "./pages/user/main/EvaluarByRequester";
+import EvaluarByTutor from "./pages/user/main/EvaluarByTutor";
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
               <Route path="quienes-somos" element={<QuienesSomos />} />
               <Route path="como-interactuar" element={<ComoInteractuar />} />
               <Route path="survey" element={<Survey />} />
+              <Route path="evaluar/requester/:taskId" element={<EvaluarByRequester />} />
+              <Route path="evaluar/tutor/:taskId" element={<EvaluarByTutor />} />
             </Route>
           </Routes>
         </StudentDataProvider>

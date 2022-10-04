@@ -10,7 +10,7 @@ export const useSelect = (id, label, options, option1) => {
         htmlFor={id}
         className="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-400 text-bold"
       >
-        <spam className="text-red-500">*</spam> {label}
+        <span className="text-red-500">*</span> {label}
       </label>
       <select
         disabled={disabled}

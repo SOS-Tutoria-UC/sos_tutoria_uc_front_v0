@@ -14,8 +14,8 @@ const Tutoring = (props) => {
     "m1",
     "Qué modalidad prefieres que sea la tutoría?",
     [
-      { id: "nearby", name: "Presencial" },
-      { id: "anywhere", name: "Indiferente" },
+      { id: "presencial", name: "Presencial" },
+      { id: "remoto", name: "Remoto" },
     ],
     "Seleccione modalidad"
   );
@@ -48,6 +48,7 @@ const Tutoring = (props) => {
   );
   const [descripcion, setDescripcion] = useState("");
   const [loading, setLoading] = useState(false);
+  const [positionOA, setPositionOA] = useState("anywhere");
   const navigate = useNavigate();
 
   const [state0, Row0] = useRow("8:00 a 9:00");
@@ -75,6 +76,12 @@ const Tutoring = (props) => {
     if (hidden) {
       setHidden("");
     } else setHidden("hidden");
+  };
+
+  const handleChangePositionOfAnswerer = () => {
+    if (positionOA === "anywhere") {
+      setPositionOA("nearby");
+    } else setPositionOA("anywhere");
   };
 
   const getBeliefAndValue = (beliefAndValue) => {
@@ -252,7 +259,8 @@ const Tutoring = (props) => {
     setLoading(true);
     instance
       .post("/task", {
-        modality: stateModalidad  === 'Presencial' ? 'nearby' : 'anywhere',
+        modality: stateModalidad,
+        positionOfAnswerer: positionOA,
         skill: stateCompetencia,
         domain: getDominio(stateCompetencia),
         beliefsAndValues: getBeliefAndValue(stateBeliefsAndValues),
@@ -302,7 +310,7 @@ const Tutoring = (props) => {
               htmlFor="descripcion"
               className="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-400 text-bold"
             >
-              <spam className="text-red-500">*</spam> Describe el tema a tratar
+              <span className="text-red-500">*</span> Describe el tema a tratar
               a tu compañero
             </label>
             <textarea
@@ -315,7 +323,22 @@ const Tutoring = (props) => {
               onChange={(e) => setDescripcion(e.target.value)}
             ></textarea>
           </div>
-
+          <div className="flex items-center mb-4">
+            <input
+              id="disponibilidad"
+              disabled={loading}
+              type="checkbox"
+              value=""
+              className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              onChange={handleChangePositionOfAnswerer}
+            />
+            <label
+              for="disponibilidad"
+              className="ml-2 2xl font-medium text-gray-900 dark:text-gray-300"
+            >
+              Encontrar alguien cerca mío
+            </label>
+          </div>
           <div className="form-group mb-6">
             <label className="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-400 text-bold">
               Elija los horarios disponibles que tiene

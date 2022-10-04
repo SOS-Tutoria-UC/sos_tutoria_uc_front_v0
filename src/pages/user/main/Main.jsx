@@ -5,7 +5,7 @@ import { getDomainLabel } from "../../../utils/constantes";
 import moment from "moment";
 import "moment/locale/es";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Spinner } from "../../../components/spinner/Spinner";
 
 const Main = () => {
@@ -14,6 +14,7 @@ const Main = () => {
   const [recibidasCount, setRecibidasCount] = useState(0);
   const [loading, setLoading] = useState(false);
   const [skip, setSkip] = useState(0);
+  const navigate = useNavigate();
   const { auth } = useAuth();
 
   const StarIcon = () => {
@@ -164,7 +165,15 @@ const Main = () => {
         });
     };
 
-    const Solicitadas = ({ data, domain, description, modality, state }) => {
+    const Solicitadas = ({
+      data,
+      taskId,
+      domain,
+      description,
+      modality,
+      state,
+      revew_requester,
+    }) => {
       const [showRequestBody, setShowRequestBody] = useState("");
 
       const handleShowRequestBody = () => {
@@ -200,7 +209,9 @@ const Main = () => {
               aria-controls="collapseOne"
               onClick={() => handleShowRequestBody()}
             >
-              <span className="flex-1 sm:block">Modalidad: {modality==='nearby'?'Presencial':'Remoto'}</span>
+              <span className="flex-1 sm:block">
+                Modalidad: {modality === "nearby" ? "Presencial" : "Remoto"}
+              </span>
               <span className="flex-1">{getDomainLabel(domain)}</span>
               <span className="p-2 mr-2 bg-yellow-100 text-center rounded-md">
                 {state}
@@ -270,8 +281,8 @@ const Main = () => {
                           {moment(element.createdAt).format("LLLL")}
                         </td>
                         <td className="px-6 py-4 text-right">
-                          {label === "Tutorias Solicitadas" &&
-                            element.state === "APROBADO" && (
+                          {element.state === "APROBADO" &&
+                            state !== "FINALIZADO" && (
                               <button
                                 className="p-2 bg-green-200 rounded-md  hover:bg-green-300"
                                 onClick={() => {
@@ -281,6 +292,24 @@ const Main = () => {
                                 Seleccionar tutoría
                               </button>
                             )}
+                          {state === "FINALIZADO" &&
+                            element.state === "SELECCIONADO" &&
+                            revew_requester && (
+                              <Link
+                                to={`evaluar/requester/${taskId}`}
+                                className="p-2 bg-green-200 rounded-md  hover:bg-green-300"
+                              >
+                                Evaluar tutoría
+                              </Link>
+                            )}
+                          {!revew_requester && element.state === "SELECCIONADO" && (
+                            <Link
+                              to={`evaluar/requester/${taskId}`}
+                              className="p-2 bg-green-200 rounded-md  hover:bg-green-300"
+                            >
+                              Ver evaluación
+                            </Link>
+                          )}
                         </td>
                       </tr>
                     ))}
@@ -350,10 +379,16 @@ const Main = () => {
                 data.map((elem) => (
                   <Solicitadas
                     data={elem.messages}
+                    taskId={elem.task_id}
                     domain={elem.domain}
                     description={elem.description}
                     modality={elem.modality}
                     state={elem.state}
+                    revew={
+                      elem.revew_requester
+                        ? Object.keys(elem.revew_requester).length === 0
+                        : false
+                    }
                     key={elem._id}
                   />
                 ))
@@ -468,9 +503,10 @@ const Main = () => {
                         Anterior
                       </button>
                     )}
-                   { skip+5 < recibidasCount && <button
-                      onClick={next}
-                      className="
+                    {skip + 5 < recibidasCount && (
+                      <button
+                        onClick={next}
+                        className="
                           w-full
                           px-6
                           py-2.5
@@ -488,9 +524,10 @@ const Main = () => {
                           transition
                           duration-150
                           ease-in-out"
-                    >
-                      Siguiente
-                    </button>}
+                      >
+                        Siguiente
+                      </button>
+                    )}
                   </div>
                 </>
               )}
@@ -509,7 +546,7 @@ const Main = () => {
   const next = () => {
     setSkip(skip + 5);
     console.log(skip);
-    getByTutor(skip+5);
+    getByTutor(skip + 5);
   };
 
   const getByTutor = (skip) => {
@@ -522,7 +559,7 @@ const Main = () => {
       })
       .then((response) => {
         setRecibidas(response.data.solicitudes);
-        setRecibidasCount(response.data.count)
+        setRecibidasCount(response.data.count);
         setLoading(false);
       })
       .catch((error) => {
