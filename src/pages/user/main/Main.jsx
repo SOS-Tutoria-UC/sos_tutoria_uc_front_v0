@@ -369,8 +369,7 @@ const Main = () => {
         </h2>
         <div className={`${showBody} p-5`} aria-labelledby="headingOne">
           <spam className="text-red-500 font-bold">
-            *Luego de dos días se rechazarán automáticamente las solicitudes
-            pendientes
+            *La solicitudes expiran dentro de 5 días desde la fecha de creación
           </spam>
 
           <div className="py-4 px-5">
