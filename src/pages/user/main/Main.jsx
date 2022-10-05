@@ -431,7 +431,7 @@ const Main = () => {
                             scope="row"
                             className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
                           >
-                            {element.attributes.userId}
+                            {element.state === 'SELECCIONADO' ? element.receiver.email : element.attributes.userId}
                           </th>
                           <td className="px-6 py-4">
                             {element.attributes.question}
