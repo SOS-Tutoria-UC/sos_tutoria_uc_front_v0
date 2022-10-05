@@ -272,7 +272,7 @@ const Main = () => {
                           scope="row"
                           className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
                         >
-                          {element.receiver.profile_id}
+                          {state === 'FINALIZADO' && element.state === 'SELECCIONADO' ? element.receiver.email :element.receiver.profile_id}
                         </th>
                         <td className="px-6 py-4">
                           <Estado estado={element.state} />
