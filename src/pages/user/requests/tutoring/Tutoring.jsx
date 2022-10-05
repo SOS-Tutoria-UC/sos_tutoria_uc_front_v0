@@ -49,6 +49,8 @@ const Tutoring = (props) => {
   const [descripcion, setDescripcion] = useState("");
   const [loading, setLoading] = useState(false);
   const [positionOA, setPositionOA] = useState("anywhere");
+  const [disponibilidadCheck, setDisponibilidadCheck] = useState(true);
+
   const navigate = useNavigate();
 
   const [state0, Row0] = useRow("8:00 a 9:00");
@@ -81,7 +83,13 @@ const Tutoring = (props) => {
   const handleChangePositionOfAnswerer = () => {
     if (positionOA === "anywhere") {
       setPositionOA("nearby");
-    } else setPositionOA("anywhere");
+      setHidden("hidden");
+      setDisponibilidadCheck(false)
+    } else {
+      setPositionOA("anywhere")
+      setHidden("");
+      setDisponibilidadCheck(true)
+    };
   };
 
   const getBeliefAndValue = (beliefAndValue) => {
@@ -344,7 +352,7 @@ const Tutoring = (props) => {
               Elija los horarios disponibles que tiene
             </label>
 
-            <div className="flex items-center mb-4">
+           { disponibilidadCheck && <div className="flex items-center mb-4">
               <input
                 id="disponibilidad"
                 disabled={loading}
@@ -359,7 +367,7 @@ const Tutoring = (props) => {
               >
                 Tengo disponibilidad para la tutoría en cualquier horario
               </label>
-            </div>
+            </div>}
             <div
               className={`relative overflow-x-auto shadow-md sm:rounded-lg ${hidden}`}
             >
