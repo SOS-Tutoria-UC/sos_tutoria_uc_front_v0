@@ -208,9 +208,7 @@ const Main = () => {
               aria-controls="collapseOne"
               onClick={() => handleShowRequestBody()}
             >
-              <span className="flex-1 sm:block">
-                Modalidad: {modality}
-              </span>
+              <span className="flex-1 sm:block">Modalidad: {modality}</span>
               <span className="flex-1">{getDomainLabel(domain)}</span>
               <span className="p-2 mr-2 bg-yellow-100 text-center rounded-md">
                 {state}
@@ -474,7 +472,9 @@ const Main = () => {
                                   </div>
                                 )}
                               {element.state === "SELECCIONADO" &&
-                                element.review_tutor && Object.keys(element.review_tutor).length === 0 && (
+                                element.review_tutor &&
+                                Object.keys(element.review_tutor).length ===
+                                  0 && (
                                   <Link
                                     to={`evaluar/tutor/${element.attributes.taskId}`}
                                     className="p-2 bg-green-200 rounded-md  hover:bg-green-300"
@@ -482,7 +482,6 @@ const Main = () => {
                                     Evaluar tutoría
                                   </Link>
                                 )}
-                              }
                             </td>
                           </tr>
                           {expand === element._id && (
