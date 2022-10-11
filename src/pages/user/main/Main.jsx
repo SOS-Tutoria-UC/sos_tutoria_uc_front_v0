@@ -474,7 +474,7 @@ const Main = () => {
                                   </div>
                                 )}
                               {element.state === "SELECCIONADO" &&
-                                !element.review_tutor && (
+                                element.review_tutor && Object.keys(element.review_tutor).length === 0 && (
                                   <Link
                                     to={`evaluar/tutor/${element.attributes.taskId}`}
                                     className="p-2 bg-green-200 rounded-md  hover:bg-green-300"
