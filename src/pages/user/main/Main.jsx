@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import instance from "../../../config/axios/instance";
 import useAuth from "../../../hooks/useAuth";
@@ -5,7 +6,7 @@ import { getDomainLabel } from "../../../utils/constantes";
 import moment from "moment";
 import "moment/locale/es";
 import Swal from "sweetalert2";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Spinner } from "../../../components/spinner/Spinner";
 
 const Main = () => {
@@ -14,10 +15,9 @@ const Main = () => {
   const [recibidasCount, setRecibidasCount] = useState(0);
   const [loading, setLoading] = useState(false);
   const [skip, setSkip] = useState(0);
-  const navigate = useNavigate();
   const { auth } = useAuth();
 
-  const StarIcon = () => {
+  /*const StarIcon = () => {
     return (
       <svg
         color="yellow"
@@ -31,9 +31,9 @@ const Main = () => {
         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
       </svg>
     );
-  };
+  };*/
 
-  const Compatibilidad = ({ compatibilidad }) => {
+  /*const Compatibilidad = ({ compatibilidad }) => {
     console.log(compatibilidad);
     switch (compatibilidad) {
       case 1:
@@ -75,7 +75,7 @@ const Main = () => {
       default:
         return <div style={{ display: "flex" }}></div>;
     }
-  };
+  };*/
 
   const Estado = ({ estado }) => {
     if (estado === "APROBADO") {
@@ -107,7 +107,7 @@ const Main = () => {
 
   const Accordion = ({ label, labelAlumno, data }) => {
     const [showBody, setShowBody] = useState("");
-    const navigate = useNavigate();
+    const [expand, setExpand] = useState("");
 
     const modal = (title, text, icon) => {
       Swal.fire({
@@ -145,7 +145,6 @@ const Main = () => {
     };
 
     const handleSelectBestAnswer = (data) => {
-      console.log(data);
       setLoading(true);
       instance
         .put(`/task/best-answer`, {
@@ -272,7 +271,10 @@ const Main = () => {
                           scope="row"
                           className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
                         >
-                          {state === 'FINALIZADO' && element.state === 'SELECCIONADO' ? element.receiver.email :element.receiver.profile_id}
+                          {state === "FINALIZADO" &&
+                          element.state === "SELECCIONADO"
+                            ? element.receiver.email
+                            : element.receiver.profile_id}
                         </th>
                         <td className="px-6 py-4">
                           <Estado estado={element.state} />
@@ -294,7 +296,7 @@ const Main = () => {
                             )}
                           {state === "FINALIZADO" &&
                             element.state === "SELECCIONADO" &&
-                            revew_requester && (
+                            !revew_requester && (
                               <Link
                                 to={`evaluar/requester/${taskId}`}
                                 className="p-2 bg-green-200 rounded-md  hover:bg-green-300"
@@ -302,14 +304,6 @@ const Main = () => {
                                 Evaluar tutoría
                               </Link>
                             )}
-                          {!revew_requester && element.state === "SELECCIONADO" && (
-                            <Link
-                              to={`evaluar/requester/${taskId}`}
-                              className="p-2 bg-green-200 rounded-md  hover:bg-green-300"
-                            >
-                              Ver evaluación
-                            </Link>
-                          )}
                         </td>
                       </tr>
                     ))}
@@ -383,8 +377,8 @@ const Main = () => {
                     description={elem.description}
                     modality={elem.modality}
                     state={elem.state}
-                    revew={
-                      elem.revew_requester
+                    review={
+                      elem.review_requester
                         ? Object.keys(elem.revew_requester).length === 0
                         : false
                     }
@@ -425,54 +419,87 @@ const Main = () => {
                         </tr>
                       )}
                       {data.map((element) => (
-                        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                          <th
-                            scope="row"
-                            className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+                        <>
+                          <tr
+                            className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer"
+                            onClick={() => {
+                              expand ? setExpand("") : setExpand(element._id);
+                            }}
                           >
-                            {element.state === 'SELECCIONADO' ? element.receiver.email : element.attributes.userId}
-                          </th>
-                          <td className="px-6 py-4">
-                            {element.attributes.question}
-                          </td>
-                          <td className="px-6 py-4">{element.description}</td>
-                          <td className="px-6 py-4">
-                            <Estado estado={element.state} />
-                          </td>
-                          <td className="px-6 py-4">
-                            {" "}
-                            {moment(element.createdAt).format("LLLL")}
-                          </td>
-                          <td className="px-6 py-4 text-right">
-                            {label === "Tutorias Solicitadas" &&
-                              element.state === "APROBADO" && (
-                                <button className="p-2 bg-green-200 rounded-md  hover:bg-green-300">
-                                  Seleccionar tutoría
-                                </button>
-                              )}
-                            {label === "Solicitudes Recibidas" &&
-                              element.state === "PENDIENTE" && (
-                                <div>
-                                  <button
-                                    className="p-2 bg-green-200 rounded-md  hover:bg-green-300 mr-2 mb-2"
-                                    onClick={() =>
-                                      handleUpdateTask(element, "Sí")
-                                    }
-                                  >
-                                    Aprobar
+                            <th
+                              scope="row"
+                              className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
+                            >
+                              {element.state === "SELECCIONADO"
+                                ? element.receiver.email
+                                : element.profile_id}
+                            </th>
+                            <td className="px-6 py-4">
+                              {element.attributes.question}
+                            </td>
+                            <td className="px-6 py-4">{element.description}</td>
+                            <td className="px-6 py-4">
+                              <Estado estado={element.state} />
+                            </td>
+                            <td className="px-6 py-4">
+                              {" "}
+                              {moment(element.createdAt).format("LLLL")}
+                            </td>
+                            <td className="px-6 py-4 text-right">
+                              {label === "Tutorias Solicitadas" &&
+                                element.state === "APROBADO" && (
+                                  <button className="p-2 bg-green-200 rounded-md  hover:bg-green-300">
+                                    Seleccionar tutoría
                                   </button>
-                                  <button
-                                    className="p-2 bg-red-200 rounded-md  hover:bg-red-300"
-                                    onClick={() =>
-                                      handleUpdateTask(element, "No")
-                                    }
+                                )}
+                              {label === "Solicitudes Recibidas" &&
+                                element.state === "PENDIENTE" && (
+                                  <div>
+                                    <button
+                                      className="p-2 bg-green-200 rounded-md  hover:bg-green-300 mr-2 mb-2"
+                                      onClick={() =>
+                                        handleUpdateTask(element, "Sí")
+                                      }
+                                    >
+                                      Aprobar
+                                    </button>
+                                    <button
+                                      className="p-2 bg-red-200 rounded-md  hover:bg-red-300"
+                                      onClick={() =>
+                                        handleUpdateTask(element, "No")
+                                      }
+                                    >
+                                      Rechazar
+                                    </button>
+                                  </div>
+                                )}
+                              {element.state === "SELECCIONADO" &&
+                                !element.review_tutor && (
+                                  <Link
+                                    to={`evaluar/tutor/${element.attributes.taskId}`}
+                                    className="p-2 bg-green-200 rounded-md  hover:bg-green-300"
                                   >
-                                    Rechazar
-                                  </button>
-                                </div>
-                              )}
-                          </td>
-                        </tr>
+                                    Evaluar tutoría
+                                  </Link>
+                                )}
+                              }
+                            </td>
+                          </tr>
+                          {expand === element._id && (
+                            <div className="w-full p-6">
+                              <div>
+                                <strong>MODALIDAD:</strong> {element.modality}
+                              </div>{" "}
+                              <div>
+                                <strong>POSICIÓN DE CONTESTADOR:</strong>{" "}
+                                {element.attributes.positionOfAnswerer ===
+                                "anywhere"
+                                  ? "Cualquier parte"
+                                  : "Cercana"}
+                              </div>
+                            </div>
+                          )}
+                        </>
                       ))}
                     </tbody>
                   </table>

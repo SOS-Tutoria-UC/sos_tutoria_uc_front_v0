@@ -113,7 +113,7 @@ const EvaluarByTutor = () => {
 
     setLoading(true);
     instance
-      .post("/task/revew-by-requester", {
+      .post("/task/review-by-requester", {
         task_id: params.taskId,
         qs01,
         qs02,
