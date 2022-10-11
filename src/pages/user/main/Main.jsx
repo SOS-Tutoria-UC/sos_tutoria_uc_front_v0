@@ -296,7 +296,7 @@ const Main = () => {
                             )}
                           {state === "FINALIZADO" &&
                             element.state === "SELECCIONADO" &&
-                            !revew_requester && (
+                            revew_requester && (
                               <Link
                                 to={`evaluar/requester/${taskId}`}
                                 className="p-2 bg-green-200 rounded-md  hover:bg-green-300"
