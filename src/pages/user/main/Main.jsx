@@ -379,7 +379,7 @@ const Main = () => {
                     state={elem.state}
                     review={
                       elem.review_requester
-                        ? Object.keys(elem.revew_requester).length === 0
+                        ? Object.keys(elem.review_requester).length === 0
                         : false
                     }
                     key={elem._id}
