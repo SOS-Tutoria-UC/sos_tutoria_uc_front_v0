@@ -49,8 +49,8 @@ const EvaluarByRequester = () => {
     [
       { id: "1", name: "Menos de 30 min" },
       { id: "2", name: "Entre 30 min a 1 hora" },
-      { id: "2", name: "Entre 1 a 2 horas" },
-      { id: "3", name: "Más de 2 horas" },
+      { id: "3", name: "Entre 1 a 2 horas" },
+      { id: "4", name: "Más de 2 horas" },
     ],
     "Seleccione respuesta"
   );
@@ -64,7 +64,7 @@ const EvaluarByRequester = () => {
     "Seleccione respuesta"
   );
   const [qs06, SelectQs06] = useSelect(
-    "qs05",
+    "qs06",
     "El tutor supo transmitir/explicar el tema?",
     [
       { id: "1", name: "No en absoluto" },

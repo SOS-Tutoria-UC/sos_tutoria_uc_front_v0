@@ -171,7 +171,7 @@ const Main = () => {
       description,
       modality,
       state,
-      revew_requester,
+      review,
     }) => {
       const [showRequestBody, setShowRequestBody] = useState("");
 
@@ -264,7 +264,7 @@ const Main = () => {
                       </tr>
                     )}
                     {data.map((element) => (
-                      <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                      <tr ke={element._id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <th
                           scope="row"
                           className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
@@ -294,7 +294,7 @@ const Main = () => {
                             )}
                           {state === "FINALIZADO" &&
                             element.state === "SELECCIONADO" &&
-                            revew_requester && (
+                            !review && (
                               <Link
                                 to={`evaluar/requester/${taskId}`}
                                 className="p-2 bg-green-200 rounded-md  hover:bg-green-300"
@@ -360,9 +360,9 @@ const Main = () => {
           </button>
         </h2>
         <div className={`${showBody} p-5`} aria-labelledby="headingOne">
-          <spam className="text-red-500 font-bold">
+          <span className="text-red-500 font-bold">
             *La solicitudes expiran dentro de 5 días desde la fecha de creación
-          </spam>
+          </span>
 
           <div className="py-4 px-5">
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -375,11 +375,7 @@ const Main = () => {
                     description={elem.description}
                     modality={elem.modality}
                     state={elem.state}
-                    review={
-                      elem.review_requester
-                        ? Object.keys(elem.review_requester).length === 0
-                        : false
-                    }
+                    review={elem.review_requester}
                     key={elem._id}
                   />
                 ))
@@ -488,7 +484,7 @@ const Main = () => {
                                 <strong>MODALIDAD:</strong> {element.modality}
                               </div>{" "}
                               <div>
-                                <strong>POSICIÓN DE CONTESTADOR:</strong>{" "}
+                                <strong>POSICIÓN:</strong>{" "}
                                 {element.attributes.positionOfAnswerer ===
                                 "anywhere"
                                   ? "Cualquier parte"
