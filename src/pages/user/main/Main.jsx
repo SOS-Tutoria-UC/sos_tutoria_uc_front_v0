@@ -431,8 +431,8 @@ const Main = () => {
                               className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
                             >
                               {element.state === "SELECCIONADO"
-                                ? element.receiver.email
-                                : element.profile_id}
+                                ? element.email_tutor
+                                : element.attributes.userId}
                             </th>
                             <td className="px-6 py-4">
                               {element.attributes.question}
