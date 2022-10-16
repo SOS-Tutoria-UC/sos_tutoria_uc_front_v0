@@ -559,7 +559,7 @@ const Main = () => {
                                 <button
                                   className="p-2 bg-cyan-200 rounded-md  hover:bg-cyan-300 mr-2 mb-2"
                                   onClick={() => {
-                                    ModalMatrizHorario(
+                                    ModalMatrizHorario(element.requester_availability ?
                                       `<table style='margin:auto'>
                                       <thead>
                                         <tr>
@@ -610,7 +610,7 @@ const Main = () => {
                                         "16:00 a 17:00"
                                       )}
                                       </tbody>
-                                    </table>`
+                                    </table>`: 'Disponibilidad flexible'
                                     );
                                   }}
                                 >
