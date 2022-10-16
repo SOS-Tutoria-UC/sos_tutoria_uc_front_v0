@@ -79,7 +79,7 @@ const Main = () => {
 
   const ModalMatrizHorario = (v) => {
     return Swal.fire({
-      title: "Disponibilidad de Solicitante",
+      title: "Disponibilidad del Solicitante",
       html: v,
       width: "800px",
       color: "#716add",
