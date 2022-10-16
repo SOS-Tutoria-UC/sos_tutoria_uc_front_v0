@@ -545,10 +545,10 @@ const Main = () => {
                           </tr>
                           {expand === element._id && (
                             <tr className="w-full p-6 flex">
-                              <div>
+                              <div className="flex">
                                 <strong>MODALIDAD:</strong> {element.modality}
                               </div>{" "}
-                              <div>
+                              <div className="flex">
                                 <strong>POSICIÓN:</strong>{" "}
                                 {element.attributes.positionOfAnswerer ===
                                 "anywhere"
