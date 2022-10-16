@@ -544,7 +544,7 @@ const Main = () => {
                             </td>
                           </tr>
                           {expand === element._id && (
-                            <div className="w-full p-6">
+                            <tr className="w-full p-6 flex">
                               <div>
                                 <strong>MODALIDAD:</strong> {element.modality}
                               </div>{" "}
@@ -617,7 +617,7 @@ const Main = () => {
                                   Matriz de horario
                                 </button>
                               </div>
-                            </div>
+                            </tr>
                           )}
                         </>
                       ))}
