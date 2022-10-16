@@ -544,11 +544,11 @@ const Main = () => {
                             </td>
                           </tr>
                           {expand === element._id && (
-                            <tr className="w-full p-6 flex">
-                              <div className="flex">
+                            <div className="w-full p-6">
+                              <div>
                                 <strong>MODALIDAD:</strong> {element.modality}
                               </div>{" "}
-                              <div className="flex">
+                              <div>
                                 <strong>POSICIÓN:</strong>{" "}
                                 {element.attributes.positionOfAnswerer ===
                                 "anywhere"
@@ -617,7 +617,7 @@ const Main = () => {
                                   Matriz de horario
                                 </button>
                               </div>
-                            </tr>
+                            </div>
                           )}
                         </>
                       ))}
