@@ -15,7 +15,7 @@ const Private = () => {
   if(loading) return <Spinner />;
 
   return (
-     <>{auth.id? (
+     <>{auth.profile_id? (
         <div className="bg-gray-100">
             <PrivateHeader />
             <div className="md:flex md:min-h-screen">

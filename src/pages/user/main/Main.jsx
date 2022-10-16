@@ -77,6 +77,68 @@ const Main = () => {
     }
   };*/
 
+  const ModalMatrizHorario = (v) => {
+    return Swal.fire({
+      title: "Disponibilidad de Solicitante",
+      html: v,
+      width: "800px",
+      color: "#716add",
+      backdrop: `
+          rgba(0,0,123,0.4)
+          url("https://sweetalert2.github.io/images/nyan-cat.gif")
+          left top
+          no-repeat
+        `,
+    });
+  };
+
+  const Row = (horario, label) => {
+    return `<tr>
+    <th scope="row" style='width:120px'>
+      ${label}
+    </th>
+    <td style='width:10px'>
+    <button style='background-color:${
+      horario.lunes ? "green" : "red"
+    }; border-radius: 10px'><span style='    color: rgba(0, 0, 0, 0);
+    '>ho</span>
+    </button>
+     </td>
+     <td style='width:10px'>
+     <button style='background-color:${
+       horario.martes ? "green" : "red"
+     }; border-radius: 10px'><span style='    color: rgba(0, 0, 0, 0);
+    '>ho</span>
+    </button>
+     </td>
+     <td style='width:10px'>
+     <button style='background-color:${
+       horario.miercoles ? "green" : "red"
+     }; border-radius: 10px'><span style='    color: rgba(0, 0, 0, 0);
+    '>ho</span>
+    </button>
+     </td>
+     <td style='width:10px'>
+     <button style='background-color:${
+       horario.jueves ? "green" : "red"
+     }; border-radius: 10px'><span style='    color: rgba(0, 0, 0, 0);
+    '>ho</span>
+    </button>     </td>
+     <td style='width:10px'>
+     <button style='background-color:${
+       horario.viernes ? "green" : "red"
+     }; border-radius: 10px'><span style='    color: rgba(0, 0, 0, 0);
+    '>ho</span>
+    </button>     </td>
+     <td style='width:10px'>
+     <button style='background-color:${
+       horario.sabado ? "green" : "red"
+     }; border-radius: 10px'><span style='    color: rgba(0, 0, 0, 0);
+    '>ho</span>
+    </button>     </td>
+</tr>`;
+  };
+
   const Estado = ({ estado }) => {
     if (estado === "APROBADO") {
       return (
@@ -208,7 +270,7 @@ const Main = () => {
               aria-controls="collapseOne"
               onClick={() => handleShowRequestBody()}
             >
-              <span className="flex-1 sm:block">Modalidad: {modality}</span>
+              <span className="flex-1 sm:block">{modality}</span>
               <span className="flex-1">{getDomainLabel(domain)}</span>
               <span className="p-2 mr-2 bg-yellow-100 text-center rounded-md">
                 {state}
@@ -264,7 +326,10 @@ const Main = () => {
                       </tr>
                     )}
                     {data.map((element) => (
-                      <tr ke={element._id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                      <tr
+                        ke={element._id}
+                        className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                      >
                         <th
                           scope="row"
                           className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
@@ -364,7 +429,7 @@ const Main = () => {
             *La solicitudes expiran dentro de 5 días desde la fecha de creación
           </span>
 
-          <div className="py-4 px-5">
+          <div>
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
               {label === "Tutorias Solicitadas" ? (
                 data.map((elem) => (
@@ -490,6 +555,68 @@ const Main = () => {
                                   ? "Cualquier parte"
                                   : "Cercana"}
                               </div>
+                              <div className="mt-2">
+                                <button
+                                  className="p-2 bg-cyan-200 rounded-md  hover:bg-cyan-300 mr-2 mb-2"
+                                  onClick={() => {
+                                    ModalMatrizHorario(
+                                      `<table>
+                                      <thead>
+                                        <tr>
+                                          <th scope="col" style='width:70px'></th>
+                                          <th scope="col" style='width:70px'>Lunes</th>
+                                          <th scope="col" style='width:70px'>Martes</th>
+                                          <th scope="col" style='width:90px'>Miércoles</th>
+                                          <th scope="col" style='width:70px'>Jueves</th>
+                                          <th scope="col" style='width:70px'>Viernes</th>
+                                          <th scope="col" style='width:70px'>Sábado</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                      ${Row(
+                                        element.requester_availability._8a9,
+                                        "8:00 a 9:00"
+                                      )}
+                                      ${Row(
+                                        element.requester_availability._9a10,
+                                        "9:00 a 10:00"
+                                      )}
+                                      ${Row(
+                                        element.requester_availability._10a11,
+                                        "10:00 a 11:00"
+                                      )}
+                                      ${Row(
+                                        element.requester_availability._11a12,
+                                        "11:00 a 12:00"
+                                      )}
+                                      ${Row(
+                                        element.requester_availability._12a13,
+                                        "12:00 a 13:00"
+                                      )}
+                                      ${Row(
+                                        element.requester_availability._13a14,
+                                        "13:00 a 14:00"
+                                      )}
+                                      ${Row(
+                                        element.requester_availability._14a15,
+                                        "14:00 a 15:00"
+                                      )}
+                                      ${Row(
+                                        element.requester_availability._15a16,
+                                        "15:00 a 16:00"
+                                      )}
+                                      ${Row(
+                                        element.requester_availability._16a17,
+                                        "16:00 a 17:00"
+                                      )}
+                                      </tbody>
+                                    </table>`
+                                    );
+                                  }}
+                                >
+                                  Matriz de horario
+                                </button>
+                              </div>
                             </div>
                           )}
                         </>
@@ -571,13 +698,14 @@ const Main = () => {
   const getByTutor = (skip) => {
     setLoading(true);
     instance
-      .get(`/task/tutor/${auth.id}`, {
+      .get(`/task/tutor/${auth.profile_id}`, {
         params: {
           skip,
         },
       })
       .then((response) => {
         setRecibidas(response.data.solicitudes);
+        console.log(response.data.solicitudes);
         setRecibidasCount(response.data.count);
         setLoading(false);
       })
@@ -593,7 +721,7 @@ const Main = () => {
   useEffect(() => {
     const getByRequester = () => {
       instance
-        .get(`/task/requester/${auth.id}`)
+        .get(`/task/requester/${auth.profile_id}`)
         .then((response) => {
           setSolicitadas(response.data);
         })

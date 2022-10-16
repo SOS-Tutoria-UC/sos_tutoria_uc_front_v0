@@ -10,12 +10,14 @@ import useAuth from "../../hooks/useAuth";
 
 const Header = () => {
   const [hidden, setHidden] = useState("hidden");
-  const { handleSetAuth, auth, localUser } = useAuth();
+  const { handleSetAuth, auth } = useAuth();
 
   const handleLogout = () => {
     handleSetAuth({});
     localStorage.removeItem("access_token");
   };
+
+  console.log(auth);
 
   return (
     <>
@@ -30,8 +32,8 @@ const Header = () => {
           </span>
         </Link>
         <div className="w-full block flex-grow sm:flex items-center sm:w-auto gap-2">
-          {true && (
-             <div className="text-sm">
+          {auth.answer && (
+            <div className="text-sm">
               <Link
                 to={"request-tutoring"}
                 className="inline-block text-sm px-4 py-2 font-bold leading-none rounded text-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 sm:mt-0"
@@ -40,14 +42,16 @@ const Header = () => {
               </Link>
             </div>
           )}
-          <div className="text-sm">
-            <Link
-              to={"survey"}
-              className="inline-block text-sm px-4 py-2 font-bold leading-none rounded text-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 sm:mt-0"
-            >
-              Completar Survey
-            </Link>
-          </div>
+          {auth.answer ? null : (
+            <div className="text-sm">
+              <Link
+                to={"survey"}
+                className="inline-block text-sm px-4 py-2 font-bold leading-none rounded text-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 sm:mt-0"
+              >
+                Completar Survey
+              </Link>
+            </div>
+          )}
           <div className="text-sm">
             <Link
               to={"quienes-somos"}
@@ -84,7 +88,9 @@ const Header = () => {
               >
                 <div className="mx-1">
                   <h1 className="text-sm font-semibold text-gray-700 dark:text-gray-200">
-                    {auth.name.first + " " + auth.name.last}
+                    {auth.wenet_profile.name.first +
+                      " " +
+                      auth.wenet_profile.name.last}
                   </h1>
                   <p className="truncate text-sm text-gray-500 dark:text-gray-400">
                     {auth.email}
@@ -104,6 +110,15 @@ const Header = () => {
           </div>
         </div>
       </nav>
+      {!auth.answer && (
+        <div
+          className="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
+          role="alert"
+        >
+          <span className="font-medium">Aviso!</span> Aún no has completado el
+          Survey!
+        </div>
+      )}
     </>
   );
 };

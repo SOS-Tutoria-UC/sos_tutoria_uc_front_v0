@@ -182,7 +182,7 @@ const Tutoring = (props) => {
     const _8a9 = {
       lunes: state0[0],
       martes: state0[1],
-      meircoles: state0[2],
+      miercoles: state0[2],
       jueves: state0[3],
       viernes: state0[4],
       sabado: state0[5],
@@ -191,7 +191,7 @@ const Tutoring = (props) => {
     const _9a10 = {
       lunes: state1[0],
       martes: state1[1],
-      meircoles: state1[2],
+      miercoles: state1[2],
       jueves: state1[3],
       viernes: state1[4],
       sabado: state1[5],
@@ -200,7 +200,7 @@ const Tutoring = (props) => {
     const _10a11 = {
       lunes: state2[0],
       martes: state2[1],
-      meircoles: state2[2],
+      miercoles: state2[2],
       jueves: state2[3],
       viernes: state2[4],
       sabado: state2[5],
@@ -209,7 +209,7 @@ const Tutoring = (props) => {
     const _11a12 = {
       lunes: state3[0],
       martes: state3[1],
-      meircoles: state3[2],
+      miercoles: state3[2],
       jueves: state3[3],
       viernes: state3[4],
       sabado: state3[5],
@@ -218,7 +218,7 @@ const Tutoring = (props) => {
     const _12a13 = {
       lunes: state4[0],
       martes: state4[1],
-      meircoles: state4[2],
+      miercoles: state4[2],
       jueves: state4[3],
       viernes: state4[4],
       sabado: state4[5],
@@ -227,7 +227,7 @@ const Tutoring = (props) => {
     const _13a14 = {
       lunes: state5[0],
       martes: state5[1],
-      meircoles: state5[2],
+      miercoles: state5[2],
       jueves: state5[3],
       viernes: state5[4],
       sabado: state5[5],
@@ -236,7 +236,7 @@ const Tutoring = (props) => {
     const _14a15 = {
       lunes: state6[0],
       martes: state6[1],
-      meircoles: state6[2],
+      miercoles: state6[2],
       jueves: state6[3],
       viernes: state6[4],
       sabado: state6[5],
@@ -245,7 +245,7 @@ const Tutoring = (props) => {
     const _15a16 = {
       lunes: state7[0],
       martes: state7[1],
-      meircoles: state7[2],
+      miercoles: state7[2],
       jueves: state7[3],
       viernes: state7[4],
       sabado: state7[5],
@@ -254,7 +254,7 @@ const Tutoring = (props) => {
     const _16a17 = {
       lunes: state8[0],
       martes: state8[1],
-      meircoles: state8[2],
+      miercoles: state8[2],
       jueves: state8[3],
       viernes: state8[4],
       sabado: state8[5],
