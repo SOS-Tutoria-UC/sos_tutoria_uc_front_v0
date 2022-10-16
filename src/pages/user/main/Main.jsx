@@ -99,40 +99,40 @@ const Main = () => {
     </th>
     <td style='width:10px'>
     <button style='background-color:${
-      horario.lunes ? "cyan" : "gray"
+      horario.lunes ? "#008cAf" : "gray"
     }; border-radius: 10px'><span style='    color: rgba(0, 0, 0, 0);
     '>ho</span>
     </button>
      </td>
      <td style='width:10px'>
      <button style='background-color:${
-       horario.martes ? "cyan" : "gray"
+       horario.martes ? "#008cAf" : "gray"
      }; border-radius: 10px'><span style='    color: rgba(0, 0, 0, 0);
     '>ho</span>
     </button>
      </td>
      <td style='width:10px'>
      <button style='background-color:${
-       horario.miercoles ? "cyan" : "gray"
+       horario.miercoles ? "#008cAf" : "gray"
      }; border-radius: 10px'><span style='    color: rgba(0, 0, 0, 0);
     '>ho</span>
     </button>
      </td>
      <td style='width:10px'>
      <button style='background-color:${
-       horario.jueves ? "cyan" : "gray"
+       horario.jueves ? "#008cAf" : "gray"
      }; border-radius: 10px'><span style='    color: rgba(0, 0, 0, 0);
     '>ho</span>
     </button>     </td>
      <td style='width:10px'>
      <button style='background-color:${
-       horario.viernes ? "cyan" : "gray"
+       horario.viernes ? "#008cAf" : "gray"
      }; border-radius: 10px'><span style='    color: rgba(0, 0, 0, 0);
     '>ho</span>
     </button>     </td>
      <td style='width:10px'>
      <button style='background-color:${
-       horario.sabado ? "cyan" : "gray"
+       horario.sabado ? "#008cAf" : "gray"
      }; border-radius: 10px'><span style='    color: rgba(0, 0, 0, 0);
     '>ho</span>
     </button>     </td>
