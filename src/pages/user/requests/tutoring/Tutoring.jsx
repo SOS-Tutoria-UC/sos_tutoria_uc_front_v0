@@ -261,7 +261,7 @@ const Tutoring = (props) => {
     };
 
     const requester_availability = hidden
-      ? true
+      ? false
       : { _8a9, _9a10, _10a11, _11a12, _12a13, _13a14, _14a15, _15a16, _16a17 };
 
     setLoading(true);
