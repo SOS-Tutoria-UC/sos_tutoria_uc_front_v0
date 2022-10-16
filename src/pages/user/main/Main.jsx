@@ -560,7 +560,7 @@ const Main = () => {
                                   className="p-2 bg-cyan-200 rounded-md  hover:bg-cyan-300 mr-2 mb-2"
                                   onClick={() => {
                                     ModalMatrizHorario(
-                                      `<table>
+                                      `<table style='margin:auto'>
                                       <thead>
                                         <tr>
                                           <th scope="col" style='width:70px'></th>
