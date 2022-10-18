@@ -538,7 +538,7 @@ const Main = () => {
                                     to={`evaluar/tutor/${element.attributes.taskId}`}
                                     className="p-2 bg-green-200 rounded-md  hover:bg-green-300"
                                   >
-                                    Evaluar tutoría
+                                    Evaluar
                                   </Link>
                                 )}
                             </td>
