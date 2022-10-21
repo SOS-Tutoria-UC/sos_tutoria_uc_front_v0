@@ -561,7 +561,7 @@ export const Q09OPTIONS = [
   },
   {
     id: "p_blue",
-    name: "19. Poca veces me siento deprimido",
+    name: "19. Pocas veces me siento deprimido",
     level: 1,
   },
   {

@@ -67,9 +67,9 @@ const RegisterForm = (props) => {
   );
   const [stateq04, Selectq04] = useSelect(
     "degree_programme",
-    "Q04 ¿Cuál es su programa de grado este año? (lo que te identifique mejor)",
+    "Q04 ¿Cuál es la etapa de la carrera (que te identifique mejor) este año?",
     Q03BOPTIONS,
-    "Seleccione un programa"
+    "Seleccione una etapa"
   );
 
   const navigate = useNavigate();
@@ -201,7 +201,7 @@ const RegisterForm = (props) => {
     }
     //Validaciones q01 hasta q04
     if (stateq01 === "") {
-      modal("Campos obligatorios!", 'Completar el campo "GÉNERO"', "warning");
+      modal("Campos obligatorios!", 'Completar el campo "SEXO"', "warning");
       return;
     }
     if (stateq03a === "") {
@@ -215,7 +215,7 @@ const RegisterForm = (props) => {
     if (stateq04 === "") {
       modal(
         "Campos obligatorios!",
-        'Completar el campo "PROGRAMA DE GRADO"',
+        'Completar el campo "GRADO ACADÉMICO"',
         "warning"
       );
       return;
@@ -452,8 +452,8 @@ const RegisterForm = (props) => {
                 Cuestionario
               </h3>
               <p className="mt-1 max-w-2xl text-sm text-gray-500">
-                El cuestionario a continuación se utilizará para realizar el
-                matching de tutorías, así también como análisis futuros
+                El cuestionario a continuación se utilizará para el
+                matching de tutorías, así como también para análisis futuros
               </p>
             </div>
             <div className="form-group mb-6">
@@ -503,8 +503,7 @@ const RegisterForm = (props) => {
                 htmlFor="degree"
                 className="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-400 text-bold"
               >
-                Q06 ¿Cómo calificaría su nivel de conocimiento o competencia (el
-                que sea mayor) en lo siguiente? 1=nada, 2=poco, 3=moderado,
+                Q06 ¿Cómo calificarías tu nivel de conocimiento sobre las siguientes competencias? 1=nada, 2=poco, 3=moderado,
                 4=bastante alto, 5=muy alto
               </label>
               <Accordion
@@ -595,8 +594,8 @@ const RegisterForm = (props) => {
                 className="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-400 text-bold"
               >
                 Q09 Descríbete a ti mismo como generalmente eres ahora, no como
-                deseas ser. Utilice la escala a continuación para calificar con
-                qué precisión lo describe cada afirmación 1= No se parece en
+                deseas ser. Utiliza esta escala a continuación para calificar con qué 
+                precisión lo describe cada afirmación 1= No se parece en
                 nada a mí, 2= no se parece mucho a mí, 3= se parece un poco a
                 mí, 4= se parece bastante a mí, 5= se parece mucho a mí
               </label>
