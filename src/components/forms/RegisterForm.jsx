@@ -49,9 +49,9 @@ const RegisterForm = (props) => {
 
   const [stateq01, Selectq01] = useSelect(
     "gender",
-    "¿Cuál es su género?",
+    "¿Cuál es su sexo?",
     Q01OPTIONS,
-    "Seleccione un género"
+    "Seleccione su sexo"
   );
   const [stateq03b, Selectq03b] = useSelect(
     "major",
