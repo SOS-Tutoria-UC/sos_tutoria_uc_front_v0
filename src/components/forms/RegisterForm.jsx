@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { Spinner } from "../spinner/Spinner";
@@ -44,8 +44,6 @@ const RegisterForm = (props) => {
   const [loadingPsy, setLoadingPsy] = useState(false);
   const [loadingGP, setLoadingGP] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  const inputCon = useRef();
 
   const [stateq01, Selectq01] = useSelect(
     "gender",
@@ -142,7 +140,6 @@ const RegisterForm = (props) => {
         ontology: "competence",
       },
     });
-    console.log(stateq06);
   };
 
   const handleChangeQ09 = (e, n) => {
@@ -154,7 +151,7 @@ const RegisterForm = (props) => {
 
   const handleChangeQ08 = (e, n) => {
     setStateq08({
-      ...stateq09,
+      ...stateq08,
       [e.target.name]: { name: n, level: Number(e.target.value) },
     });
   };
@@ -268,7 +265,6 @@ const RegisterForm = (props) => {
         navigate("/user");
       })
       .catch((error) => {
-        console.log(error.response);
         modal("Error!", error.response.data.msg, "error");
         setLoading(false);
       });
@@ -452,8 +448,8 @@ const RegisterForm = (props) => {
                 Cuestionario
               </h3>
               <p className="mt-1 max-w-2xl text-sm text-gray-500">
-                El cuestionario a continuación se utilizará para el
-                matching de tutorías, así como también para análisis futuros
+                El cuestionario a continuación se utilizará para el matching de
+                tutorías, así como también para análisis futuros
               </p>
             </div>
             <div className="form-group mb-6">
@@ -503,8 +499,9 @@ const RegisterForm = (props) => {
                 htmlFor="degree"
                 className="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-400 text-bold"
               >
-                Q06 ¿Cómo calificarías tu nivel de conocimiento sobre las siguientes competencias? 1=nada, 2=poco, 3=moderado,
-                4=bastante alto, 5=muy alto
+                Q06 ¿Cómo calificarías tu nivel de conocimiento sobre las
+                siguientes competencias? 1=nada, 2=poco, 3=moderado, 4=bastante
+                alto, 5=muy alto
               </label>
               <Accordion
                 skills={SKILLS["Ciencias exactas"]}
@@ -594,8 +591,8 @@ const RegisterForm = (props) => {
                 className="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-400 text-bold"
               >
                 Q09 Descríbete a ti mismo como generalmente eres ahora, no como
-                deseas ser. Utiliza esta escala a continuación para calificar con qué 
-                precisión lo describe cada afirmación 1= No se parece en
+                deseas ser. Utiliza esta escala a continuación para calificar
+                con qué precisión lo describe cada afirmación 1= No se parece en
                 nada a mí, 2= no se parece mucho a mí, 3= se parece un poco a
                 mí, 4= se parece bastante a mí, 5= se parece mucho a mí
               </label>
