@@ -336,7 +336,7 @@ const Main = () => {
                         >
                           {state === "FINALIZADO" &&
                           element.state === "SELECCIONADO"
-                            ? element.receiver.email
+                            ? ""
                             : ""}
                         </th>
                         <td className="px-6 py-4">
