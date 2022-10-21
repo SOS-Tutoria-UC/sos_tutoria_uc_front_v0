@@ -337,7 +337,7 @@ const Main = () => {
                           {state === "FINALIZADO" &&
                           element.state === "SELECCIONADO"
                             ? element.receiver.email
-                            : element.receiver.profile_id ? element.receiver.profile_id : ''}
+                            : ""}
                         </th>
                         <td className="px-6 py-4">
                           <Estado estado={element.state} />
@@ -559,8 +559,9 @@ const Main = () => {
                                 <button
                                   className="p-2 bg-cyan-200 rounded-md  hover:bg-cyan-300 mr-2 mb-2"
                                   onClick={() => {
-                                    ModalMatrizHorario(element.requester_availability ?
-                                      `<table style='margin:auto'>
+                                    ModalMatrizHorario(
+                                      element.requester_availability
+                                        ? `<table style='margin:auto'>
                                       <thead>
                                         <tr>
                                           <th scope="col" style='width:70px'></th>
@@ -610,7 +611,8 @@ const Main = () => {
                                         "16:00 a 17:00"
                                       )}
                                       </tbody>
-                                    </table>`: 'Disponibilidad flexible'
+                                    </table>`
+                                        : "Disponibilidad flexible"
                                     );
                                   }}
                                 >
