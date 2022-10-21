@@ -16,15 +16,19 @@ export const QuienesSomos = () => {
       WeNet aborda esta brecha al proporcionar un paradigma de relaciones sociales mediado por máquinas y consciente de la diversidad. 
       El objetivo es conectar a personas que puedan ayudarse mutuamente, y la clave es aprovechar su diversidad.
       </p>
+      <br></br>
       <p>
       La plataforma WeNet será la base de una serie de estudios en universidades de todo el mundo con poblaciones estudiantiles diversas. 
       Los estudios analizarán cómo la plataforma puede mejorar la calidad de vida de los estudiantes dentro y fuera del entorno académico.
       </p>
+      <br></br>
       <p>
       El paradigma innovador de WeNet impacta las interacciones humanas en general, especialmente aquellas que pueden beneficiarse de un enfoque colaborativo 
       (industrias creativas, diagnóstico médico, entre otros). El consorcio WeNet desarrollará una infraestructura de investigación para explotar los resultados del 
       proyecto y fortalecer el ecosistema de innovación europeo con una perspectiva mundial.
       </p>
+      <br></br>
+      <br></br>
       <h1><b>WeNet en la UC Paraguay</b></h1>
       <p>
       En el marco del proyecto, se llevó a cabo en varias instituciones de educación superior del mundo, y entre ellas la Universidad Católica "Nuestra Señora de la Asunción"
