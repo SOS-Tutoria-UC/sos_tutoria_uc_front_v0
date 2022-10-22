@@ -335,9 +335,29 @@ const Main = () => {
                           className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
                         >
                           {state === "FINALIZADO" &&
-                          element.state === "SELECCIONADO"
-                            ? ""
-                            : ""}
+                          element.state === "SELECCIONADO" ? (
+                            <>
+                              {element.email_tutor}
+                              <Link
+                                aria-label="Chat on WhatsApp"
+                                to={
+                                  element.receiver !== null
+                                    ? `https://api.whatsapp.com/send?l=es_py&phone=${element.receiver.wenet_profile.phoneNumber}&text=Hola!`
+                                    : ""
+                                }
+                              >
+                                {" "}
+                                <img
+                                  alt="Chat on WhatsApp"
+                                  src="whatsapp.jpg"
+                                  width={40}
+                                  height={40}
+                                />
+                              </Link>{" "}
+                            </>
+                          ) : (
+                            ""
+                          )}
                         </th>
                         <td className="px-6 py-4">
                           <Estado estado={element.state} />
@@ -707,7 +727,6 @@ const Main = () => {
       })
       .then((response) => {
         setRecibidas(response.data.solicitudes);
-        console.log(response.data.solicitudes);
         setRecibidasCount(response.data.count);
         setLoading(false);
       })
@@ -725,6 +744,7 @@ const Main = () => {
       instance
         .get(`/task/requester/${auth.profile_id}`)
         .then((response) => {
+          console.log("Solciitadas", response.data);
           setSolicitadas(response.data);
         })
         .catch((error) => {
