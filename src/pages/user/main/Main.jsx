@@ -336,27 +336,42 @@ const Main = () => {
                         >
                           {state === "FINALIZADO" &&
                           element.state === "SELECCIONADO" ? (
-                            <>
-                              {element.email_tutor}
-                              <Link
-                                aria-label="Chat on WhatsApp"
-                                to={
-                                  element.receiver !== null
-                                    ? `https://api.whatsapp.com/send?l=es_py&phone=${element.receiver.wenet_profile.phoneNumber}&text=Hola!`
-                                    : ""
-                                }
-                              >
-                                {" "}
-                                <img
-                                  alt="Chat on WhatsApp"
-                                  src="whatsapp.jpg"
-                                  width={40}
-                                  height={40}
-                                />
-                              </Link>{" "}
-                            </>
+                            <div className="lg:flex md:items-center">
+                              {element.receiver.email}
+                              {" | "}
+                              {element.receiver.wenet_profile.phoneNumber && (
+                                <a
+                                  aria-label="Chat on WhatsApp"
+                                  href={
+                                    element.receiver !== null
+                                      ? `https://api.whatsapp.com/send?l=es_py&phone=${element.receiver.wenet_profile.phoneNumber.replace(
+                                          /\s/g,
+                                          ""
+                                        )}&text=Hola!`
+                                      : ""
+                                  }
+                                  target="_blank"
+                                  rel="noreferrer"
+                                >
+                                  {" "}
+                                  <img
+                                    alt="Chat on WhatsApp"
+                                    src="whatsapp.jpg"
+                                    width={40}
+                                    height={40}
+                                  />
+                                </a>
+                              )}
+                              {!element.receiver.wenet_profile.phoneNumber && (
+                                <span
+                                  style={{ fontSize: "small", color: "red" }}
+                                >
+                                  Phonenumber no configurado!
+                                </span>
+                              )}
+                            </div>
                           ) : (
-                            ""
+                            element.profile_id
                           )}
                         </th>
                         <td className="px-6 py-4">
@@ -384,7 +399,7 @@ const Main = () => {
                                 to={`evaluar/requester/${taskId}`}
                                 className="p-2 bg-green-200 rounded-md  hover:bg-green-300"
                               >
-                                Evaluar tutoría
+                                Evaluar
                               </Link>
                             )}
                         </td>
@@ -492,9 +507,7 @@ const Main = () => {
                     <tbody>
                       {!data.length && (
                         <tr>
-                          <th className="m-2 font-bold font-medium">
-                            No hay datos
-                          </th>
+                          <th className="m-2 font-medium">No hay datos</th>
                         </tr>
                       )}
                       {data.map((element) => (
@@ -509,9 +522,13 @@ const Main = () => {
                               scope="row"
                               className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
                             >
-                              {element.state === "SELECCIONADO"
-                                ? element.email_tutor
-                                : element.attributes.userId}
+                              {element.state === "SELECCIONADO" ? (
+                                <div className="lg:flex md:items-center">
+                                  {element.requester.email}
+                                </div>
+                              ) : (
+                                element.attributes.userId
+                              )}
                             </th>
                             <td className="px-6 py-4">
                               {element.attributes.question}
@@ -574,6 +591,45 @@ const Main = () => {
                                 "anywhere"
                                   ? "Cualquier parte"
                                   : "Cercana"}
+                              </div>
+                              <div>
+                                {element.state === "SELECCIONADO" ? (
+                                  <div className="lg:flex md:items-center">
+                                    {element.requester.wenet_profile
+                                      .phoneNumber && (
+                                      <a
+                                        aria-label="Chat on WhatsApp"
+                                        href={
+                                          element.requester !== null
+                                            ? `https://api.whatsapp.com/send?l=es_py&phone=${element.requester.wenet_profile.phoneNumber.replace(
+                                                /\s/g,
+                                                ""
+                                              )}&text=Hola!`
+                                            : ""
+                                        }
+                                      >
+                                        {" "}
+                                        <img
+                                          alt="Chat on WhatsApp"
+                                          src="whatsapp.jpg"
+                                          width={40}
+                                          height={40}
+                                        />
+                                      </a>
+                                    )}
+                                    {!element.requester.wenet_profile
+                                      .phoneNumber && (
+                                      <span
+                                        style={{
+                                          fontSize: "small",
+                                          color: "red",
+                                        }}
+                                      >
+                                        Phonenumber no configurado!
+                                      </span>
+                                    )}
+                                  </div>
+                                ) : null}
                               </div>
                               <div className="mt-2">
                                 <button
@@ -726,6 +782,7 @@ const Main = () => {
         },
       })
       .then((response) => {
+        console.log("recibidas", response.data.solicitudes);
         setRecibidas(response.data.solicitudes);
         setRecibidasCount(response.data.count);
         setLoading(false);
