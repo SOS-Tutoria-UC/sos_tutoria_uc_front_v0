@@ -40,34 +40,42 @@ export const ComoInteractuar = () => {
         <b>Solicitar tutoría</b>
       </h1>
       <p>
-      <span className="font-bold">Paso 5. </span> En caso que quiera hacer una nueva solicitud deberá tener en cuenta lo siguiente:
-      
+      <span className="font-bold">Paso 5. </span> En caso que quiera hacer una nueva solicitud deberá tener en cuenta la modalidad que uno desea para la siguiente tutoría (presencial o remota), 
+      el tipo de personalidad de la opción de tutores con respecto a mí mismo (misma personalidad, distinta o indiferente), la competencia académica que mejor se ajuste al pedido de tutoría que uno tiene, 
+      escribir una buena descripción de el tema específico que uno desea tratar en la tutoría para que otro alumno acepte o rechace la solicitud de acuerdo a su capacidad, el horario que uno dispone para 
+      la tutoría o en caso que se tenga disponibilidad completa o en caso que se busque una persona que se encuentre cerca al momento de crear la solicitud (sólo disponible en móviles Android que tengan instalado iLog)
+      </p>
+      <p>
+      En caso de presentar un problema para realizar una solicitud puede comunicarse con nosotros y le estaremos ayudando con gusto.
       </p>
       <h1>
         <b>Tutorías Solicitadas</b>
       </h1>
       <p>
-      <span className="font-bold">Paso 6. </span> En caso que quiera hacer una nueva solicitud
+      <span className="font-bold">Paso 6. </span> El panel principal cuenta con la sección de solicitudes hechas en orden de creación de más a menor fecha. En cada tutoría solicitada se tiene la modalidad, competencia, descripción, estado de la solicitud y las respuestas de los tutores posibles.
       </p>
+      <p>La respuesta de un tutor puede ser pendiente, aprobado o rechazado. La respuesta de los posibles tutores puede tardar un tiempo, le recomendamos paciencia y tolerancia para poder elegir un tutor entre las respuestas aceptadas. </p>
+      <p>Al seleccionar un tutor para la solicitud creada se dará por finalizada la solicitud y se mostrarán datos del tutor elegido y una vez concretada y realizada la tutoría le pedimos que vaya al Paso 8 para evaluar el desempeño del tutor.</p>
       <h1>
         <b>Tutorías Recibidas</b>
       </h1>
       <p>
-      <span className="font-bold">Paso 7. </span> En caso que quiera hacer una nueva solicitud
+      <span className="font-bold">Paso 7. </span> En el panel de solicitudes recibidas se puede ver el detalle de cada solicitud haciendo click en una tutoría específica y según el tema, competencia, 
+      horario disponible del alumno y modalidad deseada por el alumno puede elegir si desea aceptar o rechazar una solicitud. En caso que no conteste quedará como pendiente.
       </p>
       <h1>
         <b>Evaluar tutor</b>
       </h1>
       <p>Este paso es importante en caso que tú u otro compañero quiera acceder a créditos académicos o gratificaciones posteriores.</p>
       <p>
-      <span className="font-bold">Paso 8. </span> En caso que quiera hacer una nueva solicitud
+      <span className="font-bold">Paso 8. </span> Evalua a cada tutor por tutoría concretada y realizada.
       </p>  
       <h1>
         <b>Evaluar alumno</b>
       </h1>
       <p>Este paso es importante en caso que tú u otro compañero quiera acceder a créditos académicos o gratificaciones posteriores.</p>
       <p>
-      <span className="font-bold">Paso 9. </span> En caso que quiera hacer una nueva solicitud
+      <span className="font-bold">Paso 9. </span> Evalua a cada alumno por tutoría concretada y realizada.
       </p>
       <h1>
         <b>Cerrar sesión</b>
