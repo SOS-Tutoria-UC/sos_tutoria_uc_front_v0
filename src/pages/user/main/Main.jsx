@@ -370,9 +370,9 @@ const Main = () => {
                                 </span>
                               )}
                               {" | "}
-                              {element.receiver.email.wenet_profile.name.first}
+                              {element.receiver.wenet_profile.name.first}
                               {" "}
-                              {element.receiver.email.wenet_profile.name.last}
+                              {element.receiver.wenet_profile.name.last}
 
                             </div>
                           ) : (
@@ -561,6 +561,10 @@ const Main = () => {
                                   Phonenumber no configurado!
                                 </span>
                               )}
+                              {" | "}
+                              {element.requester.wenet_profile.name.first}
+                              {" "}
+                              {element.requester.wenet_profile.name.last}
                                 </div>
                               ) : (
                                 element.attributes.userId
