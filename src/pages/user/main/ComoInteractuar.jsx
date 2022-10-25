@@ -10,6 +10,7 @@ export const ComoInteractuar = () => {
       decidirán si aceptan el desafío o rechazan. De la misma forma, tú podrás
       recibir notificaciones de pedidos de ayuda en las competencias que
       reportaste que son tu fuerte. Éxitos!
+      <br></br>
       <h1>
         <b>Registro</b>
       </h1>
