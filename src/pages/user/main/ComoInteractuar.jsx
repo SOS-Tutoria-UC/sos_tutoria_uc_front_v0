@@ -17,7 +17,7 @@ export const ComoInteractuar = () => {
       <span className="font-bold">Paso 1. </span> En caso que no se tenga una cuenta en WE NET, al ingresar al link de SOS TUTORÍA UC uno podrá registrarse en la App. Si se cuenta con una cuenta de WE NET ya asociada a la App, saltar al <span className="font-bold">Paso 3 </span>.
       </p>
       <p>
-      <span className="font-bold">Paso 2. </span> Al completar el Paso 1, deberá redireccionarse al link que llegará por mail para completar algunos datos en la página de WE NET.
+      <span className="font-bold">Paso 2. </span> Al completar el <span className="font-bold">Paso 1</span>, deberá redireccionarse al link que llegará por mail para completar algunos datos en la página de WE NET.
       </p>
       <h1>
         <b>Inicio de sesión</b>
@@ -34,7 +34,7 @@ export const ComoInteractuar = () => {
       Si no es la primera vez que inicia sesión y ya completaste el Survey, salta al <span className="font-bold">Paso 5 </span>.
       </p>
       <p>
-      En este punto tenemos la opción de realizar una solicitud de tutoría (<span className="font-bold">Paso 5. </span>), ver las solicitudes realizadas (<span className="font-bold">Paso 6 </span>), contestar solicitudes recibidas (<span className="font-bold">Paso 7 </span>), evaluar a un tutor (<span className="font-bold">Paso 8 </span>) o evaluar a un alumno (<span className="font-bold">Paso 9 </span>).
+      En este punto tenemos la opción de realizar una solicitud de tutoría (<span className="font-bold">Paso 5</span>), ver las solicitudes realizadas (<span className="font-bold">Paso 6</span>), contestar solicitudes recibidas (<span className="font-bold">Paso 7</span>), evaluar a un tutor (<span className="font-bold">Paso 8</span>) o evaluar a un alumno (<span className="font-bold">Paso 9</span>).
       </p>
       <h1>
         <b>Solicitar tutoría</b>
