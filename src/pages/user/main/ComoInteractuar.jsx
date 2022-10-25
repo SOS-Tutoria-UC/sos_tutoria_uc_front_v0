@@ -14,7 +14,7 @@ export const ComoInteractuar = () => {
         <b>Registro</b>
       </h1>
       <p>
-      <span className="font-bold">Paso 1. </span> En caso que no se tenga una cuenta en WE NET, al ingresar al link de SOS TUTORÍA UC uno podrá registrarse en la App. Si se cuenta con una cuenta de WE NET ya asociada a la App, saltar al Paso 3.
+      <span className="font-bold">Paso 1. </span> En caso que no se tenga una cuenta en WE NET, al ingresar al link de SOS TUTORÍA UC uno podrá registrarse en la App. Si se cuenta con una cuenta de WE NET ya asociada a la App, saltar al <span className="font-bold">Paso 3 </span>.
       </p>
       <p>
       <span className="font-bold">Paso 2. </span> Al completar el Paso 1, deberá redireccionarse al link que llegará por mail para completar algunos datos en la página de WE NET.
@@ -31,10 +31,10 @@ export const ComoInteractuar = () => {
       <p>
       <span className="font-bold">Paso 4. </span> Si es la primera vez que inicia sesión en la App, deberá completar el Survey cuya opción se encuentra en la primera opción en la pestaña superior izquierda de la pantalla. 
       Esta información es muy importante y nos ayudará a poder recomendar y recomendarte mejor alumnos en cada solicitud que crees posteriormente.
-      Si no es la primera vez que inicia sesión y ya completaste el Survey, salta al Paso 5.
+      Si no es la primera vez que inicia sesión y ya completaste el Survey, salta al <span className="font-bold">Paso 5 </span>.
       </p>
       <p>
-      En este punto tenemos la opción de realizar una solicitud de tutoría (Paso 5), ver las solicitudes realizadas (Paso 6), contestar solicitudes recibidas (Paso 7), evaluar a un tutor (Paso 8) o evaluar a un alumno (Paso 9).
+      En este punto tenemos la opción de realizar una solicitud de tutoría (<span className="font-bold">Paso 5. </span>), ver las solicitudes realizadas (<span className="font-bold">Paso 6 </span>), contestar solicitudes recibidas (<span className="font-bold">Paso 7 </span>), evaluar a un tutor (<span className="font-bold">Paso 8 </span>) o evaluar a un alumno (<span className="font-bold">Paso 9 </span>).
       </p>
       <h1>
         <b>Solicitar tutoría</b>
@@ -55,7 +55,7 @@ export const ComoInteractuar = () => {
       <span className="font-bold">Paso 6. </span> El panel principal cuenta con la sección de solicitudes hechas en orden de creación de más a menor fecha. En cada tutoría solicitada se tiene la modalidad, competencia, descripción, estado de la solicitud y las respuestas de los tutores posibles.
       </p>
       <p>La respuesta de un tutor puede ser pendiente, aprobado o rechazado. La respuesta de los posibles tutores puede tardar un tiempo, le recomendamos paciencia y tolerancia para poder elegir un tutor entre las respuestas aceptadas. </p>
-      <p>Al seleccionar un tutor para la solicitud creada se dará por finalizada la solicitud y se mostrarán datos del tutor elegido y una vez concretada y realizada la tutoría le pedimos que vaya al Paso 8 para evaluar el desempeño del tutor.</p>
+      <p>Al seleccionar un tutor para la solicitud creada se dará por finalizada la solicitud y se mostrarán datos del tutor elegido y una vez concretada y realizada la tutoría le pedimos que vaya al <span className="font-bold">Paso 8 </span> para evaluar el desempeño del tutor.</p>
       <h1>
         <b>Tutorías Recibidas</b>
       </h1>
@@ -63,7 +63,7 @@ export const ComoInteractuar = () => {
       <span className="font-bold">Paso 7. </span> En el panel de solicitudes recibidas se puede ver el detalle de cada solicitud haciendo click en una tutoría específica y según el tema, competencia, 
       horario disponible del alumno y modalidad deseada por el alumno puede elegir si desea aceptar o rechazar una solicitud. En caso que no conteste quedará como pendiente.
       </p>
-      <p>Una vez aceptada una tutoría, el alumno solicitante podrá seleccionarte como tutor o elegir a otro compañero. En caso que el solicitante te elija, no olvides pasar al Paso 9.</p>
+      <p>Una vez aceptada una tutoría, el alumno solicitante podrá seleccionarte como tutor o elegir a otro compañero. En caso que el solicitante te elija, no olvides pasar al <span className="font-bold">Paso 9 </span>.</p>
       <h1>
         <b>Evaluar tutor</b>
       </h1>
