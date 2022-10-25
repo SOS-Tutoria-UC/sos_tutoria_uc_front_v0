@@ -369,6 +369,11 @@ const Main = () => {
                                   Phonenumber no configurado!
                                 </span>
                               )}
+                              {" | "}
+                              {element.receiver.email.wenet_profile.name.first}
+                              {" "}
+                              {element.receiver.email.wenet_profile.name.last}
+
                             </div>
                           ) : (
                             element.profile_id
