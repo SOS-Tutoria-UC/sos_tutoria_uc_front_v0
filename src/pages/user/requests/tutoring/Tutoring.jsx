@@ -260,6 +260,18 @@ const Tutoring = (props) => {
       sabado: state8[5],
     };
 
+    const competencias = [
+      ...SKILLS["Ciencias exactas"],
+      ...SKILLS["Ciencias de la computación"],
+      ...SKILLS["Salud"],
+      ...SKILLS["Administrativas y Contables"],
+      ...SKILLS["Ciencias Sociales"],
+      ...SKILLS["Jurídicas"],
+      ...SKILLS["Ciencias de la Electrónica"],
+      ...SKILLS["Diseño y Construcción"],
+      ...SKILLS["Ambiental"],
+    ];
+    const competencia = competencias.filter((e) => e.name === stateCompetencia);
     const requester_availability = hidden
       ? false
       : { _8a9, _9a10, _10a11, _11a12, _12a13, _13a14, _14a15, _15a16, _16a17 };
@@ -269,7 +281,7 @@ const Tutoring = (props) => {
       .post("/task", {
         modality: stateModalidad,
         positionOfAnswerer: positionOA,
-        skill: stateCompetencia,
+        skill: competencia[0].id,
         domain: getDominio(stateCompetencia),
         beliefsAndValues: getBeliefAndValue(stateBeliefsAndValues),
         description: descripcion,
