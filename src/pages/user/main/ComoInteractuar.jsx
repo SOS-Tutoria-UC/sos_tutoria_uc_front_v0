@@ -63,6 +63,7 @@ export const ComoInteractuar = () => {
       <span className="font-bold">Paso 7. </span> En el panel de solicitudes recibidas se puede ver el detalle de cada solicitud haciendo click en una tutoría específica y según el tema, competencia, 
       horario disponible del alumno y modalidad deseada por el alumno puede elegir si desea aceptar o rechazar una solicitud. En caso que no conteste quedará como pendiente.
       </p>
+      <p>Una vez aceptada una tutoría, el alumno solicitante podrá seleccionarte como tutor o elegir a otro compañero. En caso que el solicitante te elija, no olvides pasar al Paso 9.</p>
       <h1>
         <b>Evaluar tutor</b>
       </h1>
