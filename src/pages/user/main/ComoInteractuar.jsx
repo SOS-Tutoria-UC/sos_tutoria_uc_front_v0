@@ -82,7 +82,7 @@ export const ComoInteractuar = () => {
         <b>Cerrar sesión</b>
       </h1>
       <p>
-        En la esquina superior derecha se encuentra el ícono del usuario, haciendo click en este se podrá cerrar sesión en la App.
+      <span className="font-bold">Paso 10. </span>En la esquina superior derecha se encuentra el ícono del usuario, haciendo click en este se podrá cerrar sesión en la App.
       </p>
     </div>
   );
