@@ -160,7 +160,7 @@ export const SKILLS = {
     { id: "c_digital_design", name: "Diseño digital", level: 1 },
   ],
   Ambiental: [
-    { id: "c_environment_sciences", name: "Ciencias ambientales", level: 1 },
+    { id: "c_environmental_sciences", name: "Ciencias ambientales", level: 1 },
   ],
 };
 
