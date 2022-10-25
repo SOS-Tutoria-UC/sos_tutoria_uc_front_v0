@@ -13,17 +13,23 @@ export const ComoInteractuar = () => {
       <h1>
         <b>Registro</b>
       </h1>
+      <a href="https://tutoria-uc.vercel.app/" target="_blank" rel="noreferrer">
+        Ingresando en {" "} nos encontraremos con la siguiente página de inicio ..
+        <i>
+          <b>WeNet</b>
+        </i>
+      </a>
+      <a>
+        {" "}
+        <img
+          alt="Inicio de sesión"
+          src="whatsapp.jpg"
+          width={40}
+          height={40}
+        />
+        </a>
       <p>
-        Ingresando en https://tutoria-uc.vercel.app/ nos encontraremos con la siguiente página de inicio ..
-          
-          {" "}
-          <img
-            alt="Página de inicio de sesión"
-            src="../public/Login.png"
-            width={400}
-            height={400}
-          />  
-
+        P1
       </p>
       <h1>
         <b>Inicio de sesión</b>
