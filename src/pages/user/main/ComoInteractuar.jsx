@@ -19,12 +19,14 @@ export const ComoInteractuar = () => {
       <p>
       <span className="font-bold">Paso 2. </span> Al completar el <span className="font-bold">Paso 1</span>, deberá redireccionarse al link que llegará por mail para completar algunos datos en la página de WE NET.
       </p>
+      <br></br>
       <h1>
         <b>Inicio de sesión</b>
       </h1>
       <p>
       <span className="font-bold">Paso 3. </span> Ya con un usuario y contraseña válidos, iniciamos sesión en la App para continuar con el Consentimiento Informado.
       </p>
+      <br></br>
       <h1>
         <b>Completar el survey</b>
       </h1>
@@ -36,6 +38,7 @@ export const ComoInteractuar = () => {
       <p>
       En este punto tenemos la opción de realizar una solicitud de tutoría (<span className="font-bold">Paso 5</span>), ver las solicitudes realizadas (<span className="font-bold">Paso 6</span>), contestar solicitudes recibidas (<span className="font-bold">Paso 7</span>), evaluar a un tutor (<span className="font-bold">Paso 8</span>) o evaluar a un alumno (<span className="font-bold">Paso 9</span>).
       </p>
+      <br></br>
       <h1>
         <b>Solicitar tutoría</b>
       </h1>
@@ -48,6 +51,7 @@ export const ComoInteractuar = () => {
       <p>
       En caso de presentar un problema para realizar una solicitud puede comunicarse con nosotros y le estaremos ayudando con gusto.
       </p>
+      <br></br>
       <h1>
         <b>Tutorías Solicitadas</b>
       </h1>
@@ -56,6 +60,7 @@ export const ComoInteractuar = () => {
       </p>
       <p>La respuesta de un tutor puede ser pendiente, aprobado o rechazado. La respuesta de los posibles tutores puede tardar un tiempo, le recomendamos paciencia y tolerancia para poder elegir un tutor entre las respuestas aceptadas. </p>
       <p>Al seleccionar un tutor para la solicitud creada se dará por finalizada la solicitud y se mostrarán datos del tutor elegido y una vez concretada y realizada la tutoría le pedimos que vaya al <span className="font-bold">Paso 8 </span> para evaluar el desempeño del tutor.</p>
+      <br></br>
       <h1>
         <b>Tutorías Recibidas</b>
       </h1>
@@ -64,13 +69,15 @@ export const ComoInteractuar = () => {
       horario disponible del alumno y modalidad deseada por el alumno puede elegir si desea aceptar o rechazar una solicitud. En caso que no conteste quedará como pendiente.
       </p>
       <p>Una vez aceptada una tutoría, el alumno solicitante podrá seleccionarte como tutor o elegir a otro compañero. En caso que el solicitante te elija, no olvides pasar al <span className="font-bold">Paso 9 </span>.</p>
+      <br></br>
       <h1>
         <b>Evaluar tutor</b>
       </h1>
       <p>Este paso es importante en caso que tú u otro compañero quiera acceder a créditos académicos o gratificaciones posteriores.</p>
       <p>
       <span className="font-bold">Paso 8. </span> Evalua a cada tutor por tutoría concretada y realizada.
-      </p>  
+      </p>
+      <br></br>  
       <h1>
         <b>Evaluar alumno</b>
       </h1>
@@ -78,6 +85,7 @@ export const ComoInteractuar = () => {
       <p>
       <span className="font-bold">Paso 9. </span> Evalua a cada alumno por tutoría concretada y realizada.
       </p>
+      <br></br>
       <h1>
         <b>Cerrar sesión</b>
       </h1>
