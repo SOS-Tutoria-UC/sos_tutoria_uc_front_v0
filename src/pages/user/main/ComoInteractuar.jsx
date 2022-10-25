@@ -15,10 +15,11 @@ export const ComoInteractuar = () => {
       </h1>
       <p>
         Ingresando en https://tutoria-uc.vercel.app/ nos encontraremos con la siguiente página de inicio ..
+          
           {" "}
           <img
             alt="Página de inicio de sesión"
-            src="Login.png"
+            src="../public/Login.png"
             width={400}
             height={400}
           />  
