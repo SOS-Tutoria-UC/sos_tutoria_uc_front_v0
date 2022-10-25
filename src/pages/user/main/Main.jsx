@@ -525,6 +525,37 @@ const Main = () => {
                               {element.state === "SELECCIONADO" ? (
                                 <div className="lg:flex md:items-center">
                                   {element.requester.email}
+                                  {" | "}
+                              {element.requester.wenet_profile.phoneNumber && (
+                                <a
+                                  aria-label="Chat on WhatsApp"
+                                  href={
+                                    element.requester !== null
+                                      ? `https://api.whatsapp.com/send?l=es_py&phone=${element.requester.wenet_profile.phoneNumber.replace(
+                                          /\s/g,
+                                          ""
+                                        )}&text=Hola!`
+                                      : ""
+                                  }
+                                  target="_blank"
+                                  rel="noreferrer"
+                                >
+                                  {" "}
+                                  <img
+                                    alt="Chat on WhatsApp"
+                                    src="whatsapp.jpg"
+                                    width={40}
+                                    height={40}
+                                  />
+                                </a>
+                              )}
+                              {!element.requester.wenet_profile.phoneNumber && (
+                                <span
+                                  style={{ fontSize: "small", color: "red" }}
+                                >
+                                  Phonenumber no configurado!
+                                </span>
+                              )}
                                 </div>
                               ) : (
                                 element.attributes.userId
