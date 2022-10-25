@@ -44,7 +44,7 @@ const Tutoring = (props) => {
       ...SKILLS["Diseño y Construcción"],
       ...SKILLS["Ambiental"],
     ],
-    "Seleccione compentencia"
+    "Seleccione competencia"
   );
   const [descripcion, setDescripcion] = useState("");
   const [loading, setLoading] = useState(false);
@@ -334,8 +334,7 @@ const Tutoring = (props) => {
               htmlFor="descripcion"
               className="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-400 text-bold"
             >
-              <span className="text-red-500">*</span> Describe el tema a tratar
-              a tu compañero
+              <span className="text-red-500">*</span> Describe el tema a tratar. Esto leerán tus compañeros para responder la solicitud.
             </label>
             <textarea
               id="descripcion"
@@ -351,7 +350,7 @@ const Tutoring = (props) => {
             {disponibilidadCheck && (
               <>
                 <label className="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-400 text-bold">
-                  Elija los horarios disponibles que tiene
+                  Elija el horario disponible que tiene
                 </label>
 
                 <div className="flex items-center mb-4">
