@@ -14,7 +14,15 @@ export const ComoInteractuar = () => {
         <b>Registro</b>
       </h1>
       <p>
-        P1
+        Ingresando en https://tutoria-uc.vercel.app/ nos encontraremos con la siguiente página de inicio ..
+          {" "}
+          <img
+            alt="Página de inicio de sesión"
+            src="Login.png"
+            width={400}
+            height={400}
+          />  
+
       </p>
       <h1>
         <b>Inicio de sesión</b>
@@ -46,6 +54,18 @@ export const ComoInteractuar = () => {
       <p>
         P6
       </p>
+      <h1>
+        <b>Evaluar tutor</b>
+      </h1>
+      <p>
+        P8
+      </p>    
+      <h1>
+        <b>Evaluar alumno</b>
+      </h1>
+      <p>
+        P9
+      </p> 
       <h1>
         <b>Cerrar sesión</b>
       </h1>
