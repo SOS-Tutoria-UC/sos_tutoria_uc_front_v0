@@ -281,7 +281,7 @@ const Tutoring = (props) => {
       .post("/task", {
         modality: stateModalidad,
         positionOfAnswerer: positionOA,
-        skill: competencia[0].id,
+        skill: competencia[0],
         domain: getDominio(stateCompetencia),
         beliefsAndValues: getBeliefAndValue(stateBeliefsAndValues),
         description: descripcion,
@@ -346,7 +346,8 @@ const Tutoring = (props) => {
               htmlFor="descripcion"
               className="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-400 text-bold"
             >
-              <span className="text-red-500">*</span> Describe el tema a tratar. Esto leerán tus compañeros para responder la solicitud.
+              <span className="text-red-500">*</span> Describe el tema a tratar.
+              Esto leerán tus compañeros para responder la solicitud.
             </label>
             <textarea
               id="descripcion"
