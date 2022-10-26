@@ -476,7 +476,7 @@ const Main = () => {
                     data={elem.messages}
                     taskId={elem.task_id}
                     domain={elem.domain}
-                    competence={elem.competence}
+                    competence={elem.goal.name}
                     description={elem.description}
                     modality={elem.modality}
                     state={elem.state}
