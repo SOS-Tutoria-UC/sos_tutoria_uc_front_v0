@@ -230,6 +230,7 @@ const Main = () => {
       data,
       taskId,
       domain,
+      competence,
       description,
       modality,
       state,
@@ -271,7 +272,7 @@ const Main = () => {
               onClick={() => handleShowRequestBody()}
             >
               <span className="flex-1 sm:block">{modality}</span>
-              <span className="flex-1">{getDomainLabel(domain)}</span>
+              <span className="flex-1">{competence}</span>
               <span className="p-2 mr-2 bg-yellow-100 text-center rounded-md">
                 {state}
               </span>
@@ -475,6 +476,7 @@ const Main = () => {
                     data={elem.messages}
                     taskId={elem.task_id}
                     domain={elem.domain}
+                    competence={elem.competence}
                     description={elem.description}
                     modality={elem.modality}
                     state={elem.state}
