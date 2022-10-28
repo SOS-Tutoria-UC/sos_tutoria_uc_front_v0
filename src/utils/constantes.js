@@ -90,7 +90,7 @@ export const SKILLS = {
   "Ciencias de la computación": [
     { id: "c_informatics", name: "Informática", level: 1 },
     { id: "c_soft_engineering", name: "Ingeniería de Software", level: 1 },
-    { id: "c_programming", name: "Programación", level: 1 },
+    { id: "c_programing", name: "Programación", level: 1 },
     { id: "c_networks", name: "Redes de computadoras", level: 1 },
     { id: "c_operating_systems", name: "Sistemas Operativos", level: 1 },
     { id: "c_databases", name: "Base de datos", level: 1 },
