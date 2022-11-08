@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
-import Swal from 'sweetalert2';
-import { Spinner } from '../../../components/spinner/Spinner';
-import instance from '../../../config/axios/instance';
-import { useSelect } from '../../../hooks/inputs/useSelect';
+import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
+import { Spinner } from "../../../components/spinner/Spinner";
+import instance from "../../../config/axios/instance";
+import { useSelect } from "../../../hooks/inputs/useSelect";
 
 const EvaluarByRequester = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const params = useParams();
   const [qs01, SelectQs01] = useSelect(
     "qs01",
@@ -122,7 +122,7 @@ const EvaluarByRequester = () => {
         qs03,
         qs04,
         qs05,
-        qs06
+        qs06,
       })
       .then((response) => {
         setLoading(false);
@@ -134,43 +134,42 @@ const EvaluarByRequester = () => {
         console.log(error.response);
         modal("Error!", error.response.data.msg, "error");
       });
-
-  }
+  };
 
   return (
     <>
-    <div className="p-6 rounded-lg shadow-lg bg-white lg:w-3/4 m-auto">
-      {loading && <Spinner />}
-      <div className="mb-5">
-        <h3 className="text-3xl leading-6 font-bold text-gray-900 mb-4">
-          Evaluación de Tutoría
-        </h3>
-      </div>
-      <form onSubmit={handleSubmit}>
-        <div className="flex flex-wrap -mx-3 mb-6">
-          <div className="w-full px-3 mb-6">
-            <SelectQs01 disabled={loading} />
-          </div>
-          <div className="w-full px-3 mb-6">
-            <SelectQs02 disabled={loading} />
-          </div>
-          <div className="w-full px-3 mb-6">
-            <SelectQs03 disabled={loading} />
-          </div>
-          <div className="w-full px-3 mb-6">
-            <SelectQs04 disabled={loading} />
-          </div>
-          <div className="w-full px-3 mb-6">
-            <SelectQs05 disabled={loading} />
-          </div>
-          <div className="w-full px-3 mb-6">
-            <SelectQs06 disabled={loading} />
-          </div>
+      <div className="p-6 rounded-lg shadow-lg bg-white lg:w-3/4 m-auto">
+        {loading && <Spinner />}
+        <div className="mb-5">
+          <h3 className="text-3xl leading-6 font-bold text-gray-900 mb-4">
+            Evaluación de Tutoría
+          </h3>
         </div>
+        <form onSubmit={handleSubmit}>
+          <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="w-full px-3 mb-6">
+              <SelectQs01 disabled={loading} />
+            </div>
+            <div className="w-full px-3 mb-6">
+              <SelectQs06 disabled={loading} />
+            </div>
+            <div className="w-full px-3 mb-6">
+              <SelectQs03 disabled={loading} />
+            </div>
+            <div className="w-full px-3 mb-6">
+              <SelectQs02 disabled={loading} />
+            </div>
+            <div className="w-full px-3 mb-6">
+              <SelectQs04 disabled={loading} />
+            </div>
+            <div className="w-full px-3 mb-6">
+              <SelectQs05 disabled={loading} />
+            </div>
+          </div>
 
-        <button
-          disabled={loading}
-          className="
+          <button
+            disabled={loading}
+            className="
           w-full
           px-6
           py-2.5
@@ -188,13 +187,13 @@ const EvaluarByRequester = () => {
           transition
           duration-150
           ease-in-out"
-        >
-          Guardar
-        </button>
-      </form>
-    </div>
-  </>
-  )
-}
+          >
+            Guardar
+          </button>
+        </form>
+      </div>
+    </>
+  );
+};
 
-export default EvaluarByRequester
+export default EvaluarByRequester;
