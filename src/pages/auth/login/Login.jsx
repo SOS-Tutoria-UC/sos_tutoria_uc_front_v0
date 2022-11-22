@@ -33,7 +33,7 @@ const Login = () => {
       if (!localStorage.getItem("access_token"))
         if (code === null) {
           window.location.replace(
-            "http://internetofus.u-hopper.com/prod/hub/frontend/oauth/login?client_id=NqGWkPYgkE"
+            "http://internetofus.u-hopper.com/prod/hub/frontend/oauth/login?client_id=iqhdS8YlRu"
           );
         } else {
           instance
@@ -72,7 +72,7 @@ const Login = () => {
             localStorage.removeItem("access_token");
             setLoading(false);
             window.location.replace(
-              "http://internetofus.u-hopper.com/prod/hub/frontend/oauth/login?client_id=NqGWkPYgkE"
+              "http://internetofus.u-hopper.com/prod/hub/frontend/oauth/login?client_id=iqhdS8YlRu"
             );
           });
       }
@@ -102,7 +102,7 @@ const Login = () => {
         setError(error.response.data);
       });
   };
-  
+
   if (loading) return <Spinner />;
 
   return <p></p>;
