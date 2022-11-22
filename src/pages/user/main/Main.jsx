@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import instance from "../../../config/axios/instance";
 import useAuth from "../../../hooks/useAuth";
 import { getDomainLabel } from "../../../utils/constantes";
@@ -328,7 +328,7 @@ const Main = () => {
                     )}
                     {data.map((element) => (
                       <tr
-                        ke={element._id}
+                        key={element._id}
                         className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                       >
                         <th
@@ -516,7 +516,7 @@ const Main = () => {
                         </tr>
                       )}
                       {data.map((element) => (
-                        <>
+                        <Fragment key={element._id}>
                           <tr
                             className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer"
                             onClick={() => {
@@ -743,7 +743,7 @@ const Main = () => {
                               </div>
                             </div>
                           )}
-                        </>
+                        </Fragment>
                       ))}
                     </tbody>
                   </table>
