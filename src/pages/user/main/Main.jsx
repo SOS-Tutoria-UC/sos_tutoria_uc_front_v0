@@ -82,10 +82,9 @@ const Main = () => {
       title: "Disponibilidad del Solicitante",
       html: v,
       width: "800px",
-      color: "#716add",
+      color: "#362bd3",
       backdrop: `
           rgba(0,0,123,0.4)
-          url("https://sweetalert2.github.io/images/nyan-cat.gif")
           left top
           no-repeat
         `,
