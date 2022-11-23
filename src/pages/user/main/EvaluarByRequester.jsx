@@ -61,7 +61,7 @@ const EvaluarByRequester = () => {
     "Si no se realizó la tutoría... por qué?",
     [
       { id: "1", name: "No asistí a la tutoría" },
-      { id: "2", name: "El tutor asistió a la tutoría" },
+      { id: "2", name: "El tutor no asistió a la tutoría" },
       { id: "3", name: "Otro" },
     ],
     "Seleccione respuesta"
