@@ -27,7 +27,7 @@ const Tutoring = (props) => {
       { id: "indifferent", name: "Indiferente" },
       { id: "different", name: "Diferente" },
     ],
-    "Seleccione similitud en creencias"
+    "Seleccione similitud en personalidad"
   );
 
   const [stateCompetencia, SelectCompetencia] = useSelect(
