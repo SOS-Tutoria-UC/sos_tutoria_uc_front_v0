@@ -50,7 +50,9 @@ const EvaluarByRequester = () => {
       { id: "1", name: "Menos de 30 min" },
       { id: "2", name: "Entre 30 min a 1 hora" },
       { id: "3", name: "Entre 1 a 2 horas" },
-      { id: "4", name: "Más de 2 horas" },
+      { id: "4", name: "Entre 2 a 3 horas" },
+      { id: "5", name: "Entre 4 a 5 horas" },
+      { id: "6", name: "Más de 5 horas" },
     ],
     "Seleccione respuesta"
   );
@@ -58,8 +60,9 @@ const EvaluarByRequester = () => {
     "qs05",
     "Si no se realizó la tutoría... por qué?",
     [
-      { id: "1", name: "No me fui a la tutoría" },
-      { id: "2", name: "El tutor no se fue a la tutoría" },
+      { id: "1", name: "No asistí a la tutoría" },
+      { id: "2", name: "El tutor asistió a la tutoría" },
+      { id: "3", name: "Otro" },
     ],
     "Seleccione respuesta"
   );
