@@ -21,7 +21,7 @@ const Tutoring = (props) => {
   );
   const [stateBeliefsAndValues, SelectBeliefsAndValues] = useSelect(
     "b1",
-    "Qué similitud en creencias/valores el tutor debe tener?",
+    "Te gustaría que la personalidad con respecto a la tuya sea:",
     [
       { id: "similar", name: "Similar" },
       { id: "indifferent", name: "Indiferente" },
