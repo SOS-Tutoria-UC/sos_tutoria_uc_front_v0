@@ -91,34 +91,38 @@ const EvaluarByTutor = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (qs01 === "") {
-      modal("Campo obligatorio!", "Seleccione una respuesta!", "warning");
-      return;
+    if (tutoria) {
+      if (qs01 === "") {
+        modal("Campo obligatorio!", "Seleccione una respuesta!", "warning");
+        return;
+      }
+      if (qs02 === "") {
+        modal("Campo obligatorio!", "Seleccione una respuesta!", "warning");
+        return;
+      }
+      if (qs03 === "") {
+        modal("Campo obligatorio!", "Seleccione una respuesta!", "warning");
+        return;
+      }
+      if (qs04 === "") {
+        modal("Campo obligatorio!", "Seleccione una respuesta!", "warning");
+        return;
+      }
+      if (qs05 === "") {
+        modal("Campo obligatorio!", "Seleccione una respuesta!", "warning");
+        return;
+      }
     }
-    if (qs02 === "") {
-      modal("Campo obligatorio!", "Seleccione una respuesta!", "warning");
-      return;
-    }
-    if (qs03 === "") {
-      modal("Campo obligatorio!", "Seleccione una respuesta!", "warning");
-      return;
-    }
-    if (qs04 === "") {
-      modal("Campo obligatorio!", "Seleccione una respuesta!", "warning");
-      return;
-    }
-    if (qs05 === "") {
-      modal("Campo obligatorio!", "Seleccione una respuesta!", "warning");
-      return;
-    }
-    if (motivo === "") {
-      modal(
-        "Campo obligatorio!",
-        "Motivo por el cual no se realizó la tutoría",
-        "warning"
-      );
-      return;
-    }
+
+    if (!tutoria)
+      if (motivo === "") {
+        modal(
+          "Campo obligatorio!",
+          "Motivo por el cual no se realizó la tutoría",
+          "warning"
+        );
+        return;
+      }
 
     setLoading(true);
     instance
