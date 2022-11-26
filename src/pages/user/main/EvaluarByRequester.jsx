@@ -110,7 +110,7 @@ const EvaluarByRequester = () => {
         modal("Campo obligatorio!", "Seleccione una respuesta!", "warning");
         return;
       }
-      if (qs05 === "") {
+      if (qs06 === "") {
         modal("Campo obligatorio!", "Seleccione una respuesta!", "warning");
         return;
       }
@@ -134,7 +134,7 @@ const EvaluarByRequester = () => {
         qs02,
         qs03,
         qs04,
-        qs05,
+        motivo,
         qs06,
       })
       .then((response) => {
