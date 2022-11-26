@@ -8,6 +8,8 @@ import { useSelect } from "../../../hooks/inputs/useSelect";
 const EvaluarByRequester = () => {
   const navigate = useNavigate();
   const params = useParams();
+  const [tutoria, setTutoria] = useState(true);
+  const [motivo, setMotivo] = useState("");
   const [qs01, SelectQs01] = useSelect(
     "qs01",
     "El tutor supo del tema?",
@@ -91,30 +93,38 @@ const EvaluarByRequester = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (qs01 === "") {
-      modal("Campo obligatorio!", "Seleccione una respuesta!", "warning");
-      return;
+    if (tutoria) {
+      if (qs01 === "") {
+        modal("Campo obligatorio!", "Seleccione una respuesta!", "warning");
+        return;
+      }
+      if (qs02 === "") {
+        modal("Campo obligatorio!", "Seleccione una respuesta!", "warning");
+        return;
+      }
+      if (qs03 === "") {
+        modal("Campo obligatorio!", "Seleccione una respuesta!", "warning");
+        return;
+      }
+      if (qs04 === "") {
+        modal("Campo obligatorio!", "Seleccione una respuesta!", "warning");
+        return;
+      }
+      if (qs05 === "") {
+        modal("Campo obligatorio!", "Seleccione una respuesta!", "warning");
+        return;
+      }
     }
-    if (qs02 === "") {
-      modal("Campo obligatorio!", "Seleccione una respuesta!", "warning");
-      return;
-    }
-    if (qs03 === "") {
-      modal("Campo obligatorio!", "Seleccione una respuesta!", "warning");
-      return;
-    }
-    if (qs04 === "") {
-      modal("Campo obligatorio!", "Seleccione una respuesta!", "warning");
-      return;
-    }
-    if (qs05 === "") {
-      modal("Campo obligatorio!", "Seleccione una respuesta!", "warning");
-      return;
-    }
-    if (qs06 === "") {
-      modal("Campo obligatorio!", "Seleccione una respuesta!", "warning");
-      return;
-    }
+
+    if (!tutoria)
+      if (motivo === "") {
+        modal(
+          "Campo obligatorio!",
+          "Motivo por el cual no se realizó la tutoría",
+          "warning"
+        );
+        return;
+      }
 
     setLoading(true);
     instance
@@ -149,25 +159,49 @@ const EvaluarByRequester = () => {
           </h3>
         </div>
         <form onSubmit={handleSubmit}>
+          <div className="w-full px-3 mb-6">
+            <input
+              id="tutoria"
+              disabled={loading}
+              type="checkbox"
+              value={tutoria}
+              className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              onChange={() => {
+                setTutoria(!tutoria);
+              }}
+            />
+            <label
+              for="tutoria"
+              className="ml-2 2xl font-medium text-gray-900 dark:text-gray-300"
+            >
+              No se realizó la tutoría
+            </label>
+          </div>
           <div className="flex flex-wrap -mx-3 mb-6">
-            <div className="w-full px-3 mb-6">
-              <SelectQs01 disabled={loading} />
-            </div>
-            <div className="w-full px-3 mb-6">
-              <SelectQs06 disabled={loading} />
-            </div>
-            <div className="w-full px-3 mb-6">
-              <SelectQs03 disabled={loading} />
-            </div>
-            <div className="w-full px-3 mb-6">
-              <SelectQs02 disabled={loading} />
-            </div>
-            <div className="w-full px-3 mb-6">
-              <SelectQs04 disabled={loading} />
-            </div>
-            <div className="w-full px-3 mb-6">
-              <SelectQs05 disabled={loading} />
-            </div>
+            {tutoria && (
+              <>
+                <div className="w-full px-3 mb-6">
+                  <SelectQs01 disabled={loading} />
+                </div>
+                <div className="w-full px-3 mb-6">
+                  <SelectQs06 disabled={loading} />
+                </div>
+                <div className="w-full px-3 mb-6">
+                  <SelectQs03 disabled={loading} />
+                </div>
+                <div className="w-full px-3 mb-6">
+                  <SelectQs02 disabled={loading} />
+                </div>
+                <div className="w-full px-3 mb-6">
+                  <SelectQs04 disabled={loading} />
+                </div>
+              </>
+            )}
+            {!tutoria && (
+              <div className="w-full px-3 mb-6">
+                <SelectQs05 disabled={loading} />
+              </div>
+            )}
           </div>
 
           <button
