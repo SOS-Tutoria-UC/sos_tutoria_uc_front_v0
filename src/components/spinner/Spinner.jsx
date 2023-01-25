@@ -20,7 +20,10 @@ export const Spinner = ({ message }) => {
         <div className="sk-circle12 sk-child"></div>
       </div>
       <div>
-        <label className="text-xl leading-6 font-bold text-red-900 mb-4">
+        <label
+          className="text-xl leading-6 font-bold text-red-900 mb-4"
+          style={{ position: "absolute", top: "60%", right: "50%" }}
+        >
           {message}
         </label>
       </div>
