@@ -32,9 +32,9 @@ const Login = () => {
     const oauth = () => {
       if (!localStorage.getItem("access_token"))
         if (code === null) {
-          // window.location.replace(
-          //  "http://internetofus.u-hopper.com/prod/hub/frontend/oauth/login?client_id=NqGWkPYgkE"
-          //);
+          window.location.replace(
+            "http://internetofus.u-hopper.com/prod/hub/frontend/oauth/login?client_id=NqGWkPYgkE"
+          );
         } else {
           instance
             .post("/auth/oauth", {
@@ -48,7 +48,7 @@ const Login = () => {
                 .then((response) => {
                   console.log(response.data);
                   handleSetAuth(response.data);
-                  setLoading(true);
+                  setLoading(false);
                   navigate("/user");
                 })
                 .catch((error) => {
@@ -64,13 +64,13 @@ const Login = () => {
           .get(`/users/wenet-profile`)
           .then((response) => {
             handleSetAuth(response.data);
-            setLoading(true);
+            setLoading(false);
             navigate("/user");
           })
           .catch((error) => {
             console.log(error.response);
             localStorage.removeItem("access_token");
-            setLoading(true);
+            setLoading(false);
             window.location.replace(
               "http://internetofus.u-hopper.com/prod/hub/frontend/oauth/login?client_id=NqGWkPYgkE"
             );
@@ -103,7 +103,7 @@ const Login = () => {
       });
   };
 
-  if (loading) return <Spinner message="Porbando" />;
+  if (loading) return <Spinner message="" />;
 
   return <p></p>;
 };
