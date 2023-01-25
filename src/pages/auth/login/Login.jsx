@@ -103,7 +103,7 @@ const Login = () => {
       });
   };
 
-  if (loading) return <Spinner />;
+  if (loading) return <Spinner message="" />;
 
   return <p></p>;
 };

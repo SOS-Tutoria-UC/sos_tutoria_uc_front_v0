@@ -858,7 +858,7 @@ const Main = () => {
 
   return (
     <>
-      {loading && <Spinner />}
+      {loading && <Spinner message="" />}
 
       {solicitadas.length > 0 && (
         <Accordion

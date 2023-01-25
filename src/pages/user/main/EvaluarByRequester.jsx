@@ -152,7 +152,7 @@ const EvaluarByRequester = () => {
   return (
     <>
       <div className="p-6 rounded-lg shadow-lg bg-white lg:w-3/4 m-auto">
-        {loading && <Spinner />}
+        {loading && <Spinner message="" />}
         <div className="mb-5">
           <h3 className="text-3xl leading-6 font-bold text-gray-900 mb-4">
             Evaluación de Tutoría

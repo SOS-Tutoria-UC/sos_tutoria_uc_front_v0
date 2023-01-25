@@ -1,31 +1,34 @@
-import React from 'react'
-import { Outlet, Navigate } from 'react-router-dom'
+import React from "react";
+import { Outlet, Navigate } from "react-router-dom";
 
 //Components
-import PrivateHeader from './components/PrivateHeader'
-import { Spinner } from '../components/spinner/Spinner'
+import PrivateHeader from "./components/PrivateHeader";
+import { Spinner } from "../components/spinner/Spinner";
 
 //Hooks
-import useAuth from '../hooks/useAuth'
+import useAuth from "../hooks/useAuth";
 
 const Private = () => {
   const { auth, loading } = useAuth();
 
-
-  if(loading) return <Spinner />;
+  if (loading) return <Spinner message="" />;
 
   return (
-     <>{auth.profile_id? (
+    <>
+      {auth.profile_id ? (
         <div className="bg-gray-100">
-            <PrivateHeader />
-            <div className="md:flex md:min-h-screen">
-              <main className="flex-1 mt-10">
-                  <Outlet />
-              </main>
-            </div>
+          <PrivateHeader />
+          <div className="md:flex md:min-h-screen">
+            <main className="flex-1 mt-10">
+              <Outlet />
+            </main>
+          </div>
         </div>
-    ) : <Navigate to="/" />}</>
-  )
-}
+      ) : (
+        <Navigate to="/" />
+      )}
+    </>
+  );
+};
 
 export default Private;
