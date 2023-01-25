@@ -302,7 +302,7 @@ const Tutoring = (props) => {
   return (
     <>
       <div className="p-6 rounded-lg shadow-lg bg-white lg:w-3/4 m-auto">
-        {true && (
+        {loading && (
           <Spinner message="Por favor espera! Estamos buscando tutores para tí..." />
         )}
         <div className="mb-5">
