@@ -48,7 +48,7 @@ const Login = () => {
                 .then((response) => {
                   console.log(response.data);
                   handleSetAuth(response.data);
-                  setLoading(false);
+                  setLoading(true);
                   navigate("/user");
                 })
                 .catch((error) => {
