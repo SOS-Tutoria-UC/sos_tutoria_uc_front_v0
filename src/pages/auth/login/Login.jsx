@@ -32,9 +32,9 @@ const Login = () => {
     const oauth = () => {
       if (!localStorage.getItem("access_token"))
         if (code === null) {
-          window.location.replace(
-            "http://internetofus.u-hopper.com/prod/hub/frontend/oauth/login?client_id=NqGWkPYgkE"
-          );
+          // window.location.replace(
+          //  "http://internetofus.u-hopper.com/prod/hub/frontend/oauth/login?client_id=NqGWkPYgkE"
+          //);
         } else {
           instance
             .post("/auth/oauth", {
