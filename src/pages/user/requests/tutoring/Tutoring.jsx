@@ -288,12 +288,12 @@ const Tutoring = (props) => {
         requester_availability,
       })
       .then((response) => {
-        setLoading(false);
+        setLoading(true);
         modal(response.data.msg, "", "success");
         navigate("/user");
       })
       .catch((error) => {
-        setLoading(false);
+        setLoading(true);
         console.log(error.response);
         modal("Error!", error.response.data.msg, "error");
       });
