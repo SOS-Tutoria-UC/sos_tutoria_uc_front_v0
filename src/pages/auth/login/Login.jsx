@@ -64,13 +64,13 @@ const Login = () => {
           .get(`/users/wenet-profile`)
           .then((response) => {
             handleSetAuth(response.data);
-            setLoading(false);
+            setLoading(true);
             navigate("/user");
           })
           .catch((error) => {
             console.log(error.response);
             localStorage.removeItem("access_token");
-            setLoading(false);
+            setLoading(true);
             window.location.replace(
               "http://internetofus.u-hopper.com/prod/hub/frontend/oauth/login?client_id=NqGWkPYgkE"
             );
@@ -103,7 +103,7 @@ const Login = () => {
       });
   };
 
-  if (loading) return <Spinner />;
+  if (loading) return <Spinner message="Porbando" />;
 
   return <p></p>;
 };

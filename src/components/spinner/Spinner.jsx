@@ -1,7 +1,7 @@
 import React from "react";
 import "./spinner.css";
 
-export const Spinner = () => {
+export const Spinner = ({ message }) => {
   return (
     <>
       {" "}
@@ -21,7 +21,7 @@ export const Spinner = () => {
       </div>
       <div>
         <label className="text-xl leading-6 font-bold text-red-900 mb-4">
-          Por favor, estamos buscando tutores para tí...
+          {message}
         </label>
       </div>
     </>
