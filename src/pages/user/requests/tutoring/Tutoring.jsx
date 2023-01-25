@@ -288,12 +288,12 @@ const Tutoring = (props) => {
         requester_availability,
       })
       .then((response) => {
-        setLoading(true);
+        setLoading(false);
         modal(response.data.msg, "", "success");
         navigate("/user");
       })
       .catch((error) => {
-        setLoading(true);
+        setLoading(false);
         console.log(error.response);
         modal("Error!", error.response.data.msg, "error");
       });
@@ -302,7 +302,7 @@ const Tutoring = (props) => {
   return (
     <>
       <div className="p-6 rounded-lg shadow-lg bg-white lg:w-3/4 m-auto">
-        {loading && (
+        {true && (
           <Spinner message="Por favor espera! Estamos buscando tutores para tí..." />
         )}
         <div className="mb-5">
