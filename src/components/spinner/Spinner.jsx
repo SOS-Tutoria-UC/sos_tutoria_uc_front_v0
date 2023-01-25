@@ -19,9 +19,9 @@ export const Spinner = () => {
         <div className="sk-circle11 sk-child"></div>
         <div className="sk-circle12 sk-child"></div>
       </div>
-      <h5 className="text-3xl leading-6 font-bold text-red-900 mb-4">
+      <label className="text-xl leading-6 font-bold text-red-900 mb-4">
         Por favor, estamos buscando tutores para tí...
-      </h5>
+      </label>
     </>
   );
 };
