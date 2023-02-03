@@ -289,7 +289,7 @@ const Tutoring = (props) => {
           description: descripcion,
           requester_availability,
         },
-        { timeout: 60000 }
+        { timeout: 600000 }
       )
       .then((response) => {
         setLoading(false);
@@ -300,7 +300,7 @@ const Tutoring = (props) => {
       .catch((error) => {
         setLoading(false);
         console.log("Error!", error);
-        modal("Error!", error.response.data.msg, "error");
+        modal("Error!", error.message, "error");
       });
   };
 
