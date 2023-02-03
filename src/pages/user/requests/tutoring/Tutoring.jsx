@@ -289,7 +289,7 @@ const Tutoring = (props) => {
           description: descripcion,
           requester_availability,
         },
-        { timeout: 600000 }
+        { timeout: 60000 }
       )
       .then((response) => {
         setLoading(false);
@@ -300,7 +300,8 @@ const Tutoring = (props) => {
       .catch((error) => {
         setLoading(false);
         if (error.message.includes("Network Error")) {
-          console.log("Task Creada!", "");
+          console.log("Task Creada!");
+          modal("Task Creada!", "", "success");
         } else {
           console.log("Error!", error);
           modal("Error!", error.message, "error");
