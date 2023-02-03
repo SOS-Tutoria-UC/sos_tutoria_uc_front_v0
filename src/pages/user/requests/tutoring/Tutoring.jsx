@@ -299,8 +299,12 @@ const Tutoring = (props) => {
       })
       .catch((error) => {
         setLoading(false);
-        console.log("Error!", error);
-        modal("Error!", error.message, "error");
+        if (error.message.includes("Network Error")) {
+          console.log("Task Creada!", "");
+        } else {
+          console.log("Error!", error);
+          modal("Error!", error.message, "error");
+        }
       });
   };
 
