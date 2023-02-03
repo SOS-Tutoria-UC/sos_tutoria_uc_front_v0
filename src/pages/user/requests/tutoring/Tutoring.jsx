@@ -289,7 +289,7 @@ const Tutoring = (props) => {
           description: descripcion,
           requester_availability,
         },
-        { timeout: 30000 }
+        { timeout: 60000 }
       )
       .then((response) => {
         setLoading(false);
