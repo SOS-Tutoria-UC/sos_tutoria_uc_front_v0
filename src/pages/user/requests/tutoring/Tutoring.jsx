@@ -278,15 +278,19 @@ const Tutoring = (props) => {
 
     setLoading(true);
     instance
-      .post("/task", {
-        modality: stateModalidad,
-        positionOfAnswerer: positionOA,
-        skill: competencia[0],
-        domain: getDominio(stateCompetencia),
-        beliefsAndValues: getBeliefAndValue(stateBeliefsAndValues),
-        description: descripcion,
-        requester_availability,
-      })
+      .post(
+        "/task",
+        {
+          modality: stateModalidad,
+          positionOfAnswerer: positionOA,
+          skill: competencia[0],
+          domain: getDominio(stateCompetencia),
+          beliefsAndValues: getBeliefAndValue(stateBeliefsAndValues),
+          description: descripcion,
+          requester_availability,
+        },
+        { timeout: 30000 }
+      )
       .then((response) => {
         setLoading(false);
         console.log("Task Creada!", response.data);
@@ -295,7 +299,7 @@ const Tutoring = (props) => {
       })
       .catch((error) => {
         setLoading(false);
-        console.log(error.response);
+        console.log("Error!", error.response);
         modal("Error!", error.response.data.msg, "error");
       });
   };
