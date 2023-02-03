@@ -289,6 +289,7 @@ const Tutoring = (props) => {
       })
       .then((response) => {
         setLoading(false);
+        console.log("Task Creada!", response.data);
         modal(response.data.msg, "", "success");
         navigate("/user");
       })
