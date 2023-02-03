@@ -302,6 +302,7 @@ const Tutoring = (props) => {
         if (error.message.includes("Network Error")) {
           console.log("Task Creada!");
           modal("Task Creada!", "", "success");
+          navigate("/user");
         } else {
           console.log("Error!", error);
           modal("Error!", error.message, "error");
