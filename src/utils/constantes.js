@@ -9,7 +9,7 @@ export const Q01OPTIONS = [
   },
   {
     id: "O",
-    name: "Otro",
+    name: "Prefiero no decir",
   },
 ];
 
